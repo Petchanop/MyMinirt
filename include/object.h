@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:22:12 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 15:23:32 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:49:44 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void		init_object(t_object *ob, t_vector center, t_vector n, t_color rgb);
 void		init_type(t_object *ob, char *type, char *reflec);
 
 //ray
-t_color		ray_color(t_vector cam, t_vector p, t_object *ob, int depth);
+t_color		ray_color(t_vector cam, t_vector dir, t_object *ob, int depth);
 t_vector	ray_dir(t_cam *cam, t_vector r, float u, float v);
 
 //sphere

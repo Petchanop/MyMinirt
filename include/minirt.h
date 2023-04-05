@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 00:30:57 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:45:08 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@
 # define MIN_HIT_DIS 0.001
 # define MAX_TRACE_DIS 1000.0
 # define MAX_STEP 600;
-
-float	g_point_[800][600];
 
 typedef struct s_data {
 	void	*img;

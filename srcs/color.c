@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 14:36:44 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/04 23:53:39 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:44:22 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_color	generate_obcolor(t_vector cam, t_object ob, t_vector dir, float t)
 	vec = vector_add(cam, vector_mul(dir, t));//r.at
 	vec = vector_normalize(vector_sub(vec, ob.center));
 	ret = (t_color){(vec.x + 1) * 0.5, (vec.y + 1) * 0.5, (vec.z + 1) * 0.5};
-	// ret = (t_color){ret.r * 255.999, ret.g * 255.999, ret.b * 255.999};
 	return (ret);
 }
 

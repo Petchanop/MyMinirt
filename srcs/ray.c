@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:19 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 15:23:43 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:51:19 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,20 @@ t_vector	ray_dir(t_cam *cam, t_vector r, float u, float v)
 	lower = vector_add(cam->lower, v_h);
 	lower = vector_add(lower, v_v);
 	lower = vector_sub(lower, r);
+	lower = vector_normalize(vector_sub(lower, cam->cpoint));
 	return (lower);
 }
 
 //ray()origin = cpoint, dir = dir
 // ray_dir
 // ray_color
-t_color	ray_color(t_vector cam, t_vector p, t_object *ob, int depth)
+t_color	ray_color(t_vector cam, t_vector dir, t_object *ob, int depth)
 {
-	t_vector	dir;
 	t_vector	n_p;
 	t_color		ncolor;
 	int			i;
 	float		t;
 
-	dir = vector_normalize(vector_sub(p, cam));
 	i = 0;
 	ncolor = (t_color){0, 0, 0};
 	n_p = (t_vector){0, 0, 0, 0};
@@ -66,7 +65,7 @@ t_color	ray_color(t_vector cam, t_vector p, t_object *ob, int depth)
 		}
 		i++;
 	}	
-	return (generate_color(p, t));
+	return (generate_color(dir, t));
 }
 
 t_vector	random_hemisphere(t_vector normal)
