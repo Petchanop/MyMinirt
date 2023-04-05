@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:00:31 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 02:41:16 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:24:48 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,52 +34,28 @@ int	near_zero(t_vector v)
 {
 	float	s;
 
-	s = 0.01;
+	s = 0.001;
 	return ((fabs(v.x) < s) && (fabs(v.y) < s) && (fabs(v.z) < s));
 }
 
-t_ray	scatter_lambertian(t_object *ob, t_vector cam)
+t_color	metal_reflec(t_object *ob, t_object *ob_h, t_vector dir, int depth)
 {
-	t_vector	scatter;
-	t_ray		scatered;
+	t_ray		scattered;
 	t_vector	reflec;
 	t_vector	fuzz;
 
-	// scatter = vector_add(ob->ob_hit.normal, vector_normalize(rand_in_sphere()));
-	reflec = isreflect(vector_normalize(cam), ob->ob_hit.normal);
-	// scatter = vector_add(vector_normalize(ob->ob_hit.p), vector_normalize(ob->ob_hit.normal));
-	// scatter = vector_add(vector_normalize(ob->ob_hit.p), ob->ob_hit.normal);
-	scatter = vector_add(ob->ob_hit.p, ob->ob_hit.normal);
-	// scatter = vector_add(ob->ob_hit.p, reflec);
-	if (near_zero(scatter))
-	{
-		scatter = ob->ob_hit.normal;
-		printf("scatter : %f, %f, %f\n", scatter.x, scatter.y, scatter.z);
-	}
-	// printf("dot : %d\n", dot_product(reflec, ob->ob_hit.normal) > 0);
-	if ((dot_product(reflec, ob->ob_hit.normal) > 0))
-		scatter =  reflec;
-	if (!strcmp(ob->reflec, "fu"))
-	{
-		fuzz = vector_mul(rand_in_sphere(), rand_between(0.1, 1));
-		scatered = (t_ray){ob->ob_hit.p, vector_add(scatter, fuzz) , ob->ob_hit.t};
-	}
-	else
-		scatered = (t_ray){ob->ob_hit.p, scatter, ob->ob_hit.t};
-	return (scatered);
-}
-
-t_color	metal_reflec(t_ray r_in, t_object *ob, int depth)
-{
-	t_vector	v_reflec;
-
-	v_reflec = isreflect(vector_normalize(r_in.dir), ob->ob_hit.normal);
-	// scattered = scatter_lambertian(ob);
-	r_in.origin = ob->ob_hit.p;
-	if ((dot_product(v_reflec, ob->ob_hit.normal) > 0))
-	{
-		r_in.dir = v_reflec;
-		return (ray_color(r_in.origin, r_in.dir, ob, depth - 1));
+	reflec = isreflect(vector_normalize(dir), ob_h->ob_hit.normal);
+	scattered.origin = ob_h->ob_hit.p;
+	scattered.t = ob_h->ob_hit.t;
+	scattered.dir = reflec;
+	if ((dot_product(reflec, ob_h->ob_hit.normal) > 0))
+	{	
+		if (!strcmp(ob_h->reflec, "fu"))
+		{
+			fuzz = vector_mul(rand_in_sphere(), rand_between(0.1, 1));
+			scattered.dir = vector_add(scattered.dir, fuzz);
+		}
+		return (ray_color(scattered.origin, scattered.dir, ob, depth - 1));
 	}
 	return ((t_color){0, 0, 0});
 }

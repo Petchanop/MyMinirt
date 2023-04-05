@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:19 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 02:49:00 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:23:43 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_color	ray_color(t_vector cam, t_vector p, t_object *ob, int depth)
 {
 	t_vector	dir;
 	t_vector	n_p;
-	t_ray		r_in;
 	t_color		ncolor;
 	int			i;
 	float		t;
@@ -59,12 +58,7 @@ t_color	ray_color(t_vector cam, t_vector p, t_object *ob, int depth)
 				ncolor = ray_color(ob[i].ob_hit.p, n_p, ob, depth - 1);
 			}
 			else if (!strcmp(ob[i].texture, "mt"))
-			{
-				// r_in = (t_ray){ob[i].ob_hit.normal, ob[i].ob_hit.p, t};
-				r_in = scatter_lambertian(&ob[i], dir);
-				// ncolor = metal_reflec(r_in, &ob[i], depth);
-				ncolor = ray_color(r_in.origin, r_in.dir, ob, depth - 1);
-			}
+				ncolor = metal_reflec(ob, &ob[i], dir, depth);
 			else
 				ncolor = color_mul(ray_color(ob[i].ob_hit.p, n_p, ob, depth - 1), 0.5);
 			ncolor = color_multiply(ob[i].color, ncolor);

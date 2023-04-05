@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:44:08 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/01 20:07:11 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/05 13:04:42 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,7 @@ float	hit_object(t_object *ob, t_vector v, t_vector cam)
 	if (ob->ob_hit.dis < 0)
 		return (0);
 	else
-	{
 		return (hit(ob, sdis, v, cam));
-	}
 }
 
 //unit_vector == vector_normalize

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:22:12 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 02:10:53 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:23:32 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ t_vector	random_hemisphere(t_vector normal);
 float		dis_from_sphere(t_vector current, t_object *ob, float r);
 
 //texture
-t_ray		scatter_lambertian(t_object *ob, t_vector cam);
-t_color		metal_reflec(t_ray r_in, t_object *ob, int depth);
+// t_color		scatter_lambertian(t_object *ob_h, t_vector dir, int depth);
+t_color		metal_reflec(t_object *ob, t_object *ob_h, t_vector dir, int depth);
 
 int			near_zero(t_vector v);
 int			isclose(float f1, float f2);

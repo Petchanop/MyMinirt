@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 02:24:04 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/05 13:19:08 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ int	main(int argc, char **argv)
 	init_object(&ob[2], p2, (t_vector){0, 0, 1, 0}, rgb2);
 	init_object(&ob[3], n, (t_vector){0, 0, 1, 0}, rgb3);
 	init_type(&ob[0], "df", "");
-	init_type(&ob[1], "mt", "fu");
-	init_type(&ob[2], "mt", "gl");
+	init_type(&ob[1], "mt", "gl");
+	init_type(&ob[2], "mt", "fu");
 	init_type(&ob[3], "df", "");
 	ob[4].type = NULL;
 	init_properties(&ob[0], 0.5, 0, 0);
