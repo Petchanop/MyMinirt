@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:00:31 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 15:24:48 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:37:08 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	near_zero(t_vector v)
 	return ((fabs(v.x) < s) && (fabs(v.y) < s) && (fabs(v.z) < s));
 }
 
-t_color	metal_reflec(t_object *ob, t_object *ob_h, t_vector dir, int depth)
+t_color	metal_reflec(t_cam *c, t_object *ob, t_object *ob_h, t_vector dir, int depth)
 {
 	t_ray		scattered;
 	t_vector	reflec;
@@ -55,7 +55,7 @@ t_color	metal_reflec(t_object *ob, t_object *ob_h, t_vector dir, int depth)
 			fuzz = vector_mul(rand_in_sphere(), rand_between(0.1, 1));
 			scattered.dir = vector_add(scattered.dir, fuzz);
 		}
-		return (ray_color(scattered.origin, scattered.dir, ob, depth - 1));
+		return (ray_color(c, scattered.origin, scattered.dir, ob, depth - 1));
 	}
 	return ((t_color){0, 0, 0});
 }

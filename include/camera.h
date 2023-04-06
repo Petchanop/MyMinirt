@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:51:48 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/02 00:52:47 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:25:36 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_cam
 	t_vector	v_v;
 	t_vector	v_w;
 	t_vector	lookat;
+	float		t_max;
 	float		theta;
 	float		depth;
 	float		h;
@@ -43,6 +44,6 @@ typedef struct s_cam
 
 t_cam		*init_camera( void );
 float		degrees_to_radians(float degrees);
-t_vector	find_lowerleft(t_vector cam, t_vector v_h, t_vector v_v);
+t_vector	find_lowerleft(t_vector cam, t_vector v_h, t_vector v_v, t_vector w);
 
 #endif

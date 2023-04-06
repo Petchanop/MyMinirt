@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:22:12 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 15:49:44 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:00:32 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_object
 	float		width;
 	float		t_min;
 	float		t_max;
+	int			index;
 	t_hit		ob_hit;
 	t_vector	vector;
 	t_vector	center;
@@ -65,18 +66,19 @@ void		init_object(t_object *ob, t_vector center, t_vector n, t_color rgb);
 void		init_type(t_object *ob, char *type, char *reflec);
 
 //ray
-t_color		ray_color(t_vector cam, t_vector dir, t_object *ob, int depth);
+t_color		ray_color(t_cam *c, t_vector cam, t_vector dir, t_object *ob, int depth);
 t_vector	ray_dir(t_cam *cam, t_vector r, float u, float v);
 
 //sphere
-float		hit_object(t_object *ob, t_vector v, t_vector cam);
+int		hit_object(t_object *ob, t_vector v, t_vector cam, float t_max);
 t_vector	isfront_face(t_vector v, t_vector outward, t_object *ob);
 t_vector	random_hemisphere(t_vector normal);
 float		dis_from_sphere(t_vector current, t_object *ob, float r);
 
 //texture
 // t_color		scatter_lambertian(t_object *ob_h, t_vector dir, int depth);
-t_color		metal_reflec(t_object *ob, t_object *ob_h, t_vector dir, int depth);
+t_color		metal_reflec(t_cam *c, t_object *ob, t_object *ob_h, t_vector dir, int depth);
+int			closed_object(t_object *ob);
 
 int			near_zero(t_vector v);
 int			isclose(float f1, float f2);

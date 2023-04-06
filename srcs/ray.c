@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:19 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 15:51:19 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:22:09 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,37 +34,49 @@ t_vector	ray_dir(t_cam *cam, t_vector r, float u, float v)
 //ray()origin = cpoint, dir = dir
 // ray_dir
 // ray_color
-t_color	ray_color(t_vector cam, t_vector dir, t_object *ob, int depth)
+t_color	ray_color(t_cam *c, t_vector cam, t_vector dir, t_object *ob, int depth)
 {
 	t_vector	n_p;
 	t_color		ncolor;
 	int			i;
-	float		t;
+	int		t;
+	int		idx;
 
 	i = 0;
+	idx = -1;
 	ncolor = (t_color){0, 0, 0};
 	n_p = (t_vector){0, 0, 0, 0};
 	if (depth <= 0)
 		return ((t_color){0, 0, 0});
 	while (ob[i].type)
 	{
-		t = hit_object(&ob[i], dir, cam);
-		if (t != 0.000)
+		t = hit_object(&ob[i], dir, cam, c->t_max);
+		if (t > -1)
 		{
-			if (!strcmp(ob[i].texture, "df"))
-			{
-				n_p = diffuse_mat(ob[i]);
-				ncolor = ray_color(ob[i].ob_hit.p, n_p, ob, depth - 1);
-			}
-			else if (!strcmp(ob[i].texture, "mt"))
-				ncolor = metal_reflec(ob, &ob[i], dir, depth);
-			else
-				ncolor = color_mul(ray_color(ob[i].ob_hit.p, n_p, ob, depth - 1), 0.5);
-			ncolor = color_multiply(ob[i].color, ncolor);
-			return (ncolor);
+			c->t_max = ob[t].ob_hit.t;
+			idx = t;
 		}
 		i++;
-	}	
+	}
+	if (idx > -1)
+	{
+		if (ob[idx].ob_hit.t != 0.000)
+		{
+			c->t_max = T_MAX;
+			if (!strcmp(ob[idx].texture, "df"))
+			{
+				n_p = diffuse_mat(ob[idx]);
+				ncolor = ray_color(c, ob[idx].ob_hit.p, n_p, ob, depth - 1);
+			}
+			else if (!strcmp(ob[idx].texture, "mt"))
+				ncolor = metal_reflec(c, ob, &ob[idx], dir, depth);
+			else
+				ncolor = color_mul(ray_color(c, ob[idx].ob_hit.p, n_p, ob, depth - 1), 0.5);
+			ncolor = color_multiply(ob[idx].color, ncolor);
+			return (ncolor);
+		}
+	}
+	c->t_max = T_MAX;
 	return (generate_color(dir, t));
 }
 

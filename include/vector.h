@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:41:16 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 17:55:36 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/05 21:06:05 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ t_vector	vector_add(t_vector v1, t_vector v2);
 t_vector	vector_sub(t_vector v1, t_vector v2);
 t_vector	vector_div(t_vector v1, float k);
 t_vector	vector_mul(t_vector v, float k);
+t_vector	vector_multiply(t_vector v, t_vector u);
 
 #endif

@@ -51,3 +51,13 @@ t_vector	vector_mul(t_vector v, float k)
 	vector_mul.z = v.z * k;
 	return (vector_mul);
 }
+
+t_vector	vector_multiply(t_vector v, t_vector u)
+{
+	t_vector	vec;
+
+	vec.x = v.x * u.x;
+	vec.y = v.y * u.y;
+	vec.z = v.z * v.z;
+	return (vec);
+}

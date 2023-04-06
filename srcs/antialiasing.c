@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:46:25 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 13:23:57 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/06 16:36:15 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,22 @@ t_color	super_sampling(t_cam *cam, t_object *ob, int x, int y)
 	u = ((float)x + ((float)1 / 8)) / (SCENCE_WIDTH - 1);
 	v = ((float)y + ((float)3 / 8)) / (SCENCE_HEIGHT - 1);
 	ray = ray_dir(cam, cam->cpoint, u, v);
-	pixel = ray_color(cam->cpoint, ray, ob, cam->depth);
+	pixel = ray_color(cam, cam->cpoint, ray, ob, cam->depth);
 	ret = (t_color){ret.r += pixel.r, ret.g += pixel.g, ret.b += pixel.b};
 	u = ((float)x + ((float)3 / 8)) / (SCENCE_WIDTH - 1);
 	v = ((float)y - ((float)1 / 8)) / (SCENCE_HEIGHT - 1);
 	ray = ray_dir(cam, cam->cpoint, u, v);
-	pixel = ray_color(cam->cpoint, ray, ob, cam->depth);
+	pixel = ray_color(cam, cam->cpoint, ray, ob, cam->depth);
 	ret = (t_color){ret.r += pixel.r, ret.g += pixel.g, ret.b += pixel.b};
 	u = ((float)x - ((float)3 / 8)) / (SCENCE_WIDTH - 1);
 	v = ((float)y - ((float)1 / 8)) / (SCENCE_HEIGHT - 1);
 	ray = ray_dir(cam, cam->cpoint, u, v);
-	pixel = ray_color(cam->cpoint, ray, ob, cam->depth);
+	pixel = ray_color(cam, cam->cpoint, ray, ob, cam->depth);
 	ret = (t_color){ret.r += pixel.r, ret.g += pixel.g, ret.b += pixel.b};
 	u = ((float)x - ((float)3 / 8)) / (SCENCE_WIDTH - 1);
 	v = ((float)y + ((float)1 / 8)) / (SCENCE_HEIGHT - 1);
 	ray = ray_dir(cam, cam->cpoint, u, v);
-	pixel = ray_color(cam->cpoint, ray, ob, cam->depth);
+	pixel = ray_color(cam, cam->cpoint, ray, ob, cam->depth);
 	ret = (t_color){ret.r += pixel.r, ret.g += pixel.g, ret.b += pixel.b};
 	return (ret);
 }
