@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:50:06 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/06 17:23:56 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/06 20:40:52 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,22 @@ t_cam	*init_camera( void )
 
 	cam = malloc(sizeof(t_cam));
 	cam->c = "C";
-	cam->cpoint = (t_vector){-3, 2, 1, 0};
+	cam->cpoint = (t_vector){-2.0, 2.0, 1.0, 0};
 	// cam->cpoint = (t_vector){0, 0, 0, 0};
-	cam->lookat = (t_vector){0, 0, -1, 0};
+	cam->lookat = (t_vector){0, 0, -1.0 , 0};
 	// cam->lookat = (t_vector){0, 0, 0, 0};
-	cam->vector = (t_vector){0, 1, 0, 0};
+	cam->vector = (t_vector){0, 1.0, 0, 0};
 	// cam->vector = (t_vector){0, 0, 1, 0};
+	cam->aspect_ratio = (float)SCENCE_WIDTH / (float)SCENCE_HEIGHT;
 	cam->t_max = T_MAX;
 	cam->depth = 50;
-	cam->fov = 140;
-	cam->theta = degrees_to_radians(cam->fov);
+	cam->fov = 152.0 / cam->aspect_ratio;
+	cam->theta = degrees_to_radians(cam->fov); 
 	printf("theta : %f\n", cam->theta);
-	cam->h = tan(cam->theta / 2);
 	cam->len = 1;
-	cam->aspect_ratio = (float)SCENCE_WIDTH / SCENCE_HEIGHT;
+	cam->h = tan(cam->theta / 2);
+	// cam->h = tan(cam->fov / 2);
+	printf("h by fhov : %f\n", cam->h);
 	t_vector w = vector_normalize(vector_sub(cam->cpoint, cam->lookat));
 	t_vector u = vector_normalize(cross_product(cam->vector, w));
 	t_vector v = cross_product(w, u);
@@ -59,7 +61,7 @@ t_vector	find_lowerleft(t_vector cam, t_vector v_h, t_vector v_v, t_vector w)
 
 	lower = vector_sub(cam, vector_div(v_h, 2));
 	lower = vector_sub(lower, vector_div(v_v, 2));
-	lower = vector_sub(lower, w);
+	lower = vector_add(lower, w);
 	return (lower);
 }
 //todo : calculate generate ray
