@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 14:36:44 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 15:44:22 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/12 01:24:08 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,13 @@ t_color	color_add(t_color c1, t_color c2)
 	c.r = c1.r + c2.r;
 	c.g = c1.g + c2.g;
 	c.b = c1.b + c2.b;
+	return (c);
+}
+
+t_color	translate_color(t_color c)
+{
+	c.r = clamp(sqrt(c.r), 0.0, 0.99) * 255.999;
+	c.g = clamp(sqrt(c.g), 0.0, 0.99) * 255.999;
+	c.b = clamp(sqrt(c.b), 0.0, 0.99) * 255.999;
 	return (c);
 }

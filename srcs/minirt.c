@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/06 17:01:18 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/11 01:00:33 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,41 +61,60 @@ int	main(int argc, char **argv)
 	t_color 	rgb1;
 	t_color 	rgb2;
 	t_color 	rgb3;
+	t_color 	rgb4;
+	t_color 	rgb5;
+	// t_color 	rgb6;
 
-	ob = malloc(sizeof(t_object) * 5);
+	ob = malloc(sizeof(t_object) * 6);
 	vars.mlx = mlx_init();
 	vars.mlx_win = mlx_new_window(vars.mlx, SCENCE_WIDTH, SCENCE_HEIGHT, "npiya-is");
 	build_image(&vars.img, 100, 100);
 	init_t_data(&vars);
-	// float r = cos(M_PI / 4);
 	cam = init_camera();
 	p = (t_vector){0, 0, -1, 0};
-	// n = (t_vector){0, 0, 1, 0};
 	t_vector p1 = (t_vector){1, 0, -1, 0};
 	t_vector p2 = (t_vector){-1, 0, -1, 0};
+	t_vector p3 = (t_vector){-1.2, 1, 2, 0};
+	t_vector p4 = (t_vector){-2, 1, 0, 0};
+	// t_vector p5 = (t_vector){0, 0, 1, 0};
 	n = (t_vector){0, -100.5, -1, 0};
-	rgb = (t_color){180.0 / 255.999, 77.0 / 255.999, 77.0 / 255.999};
+	rgb = (t_color){25.0 / 255.999, 50.0 / 255.999, 125.0 / 255.999};
 	rgb1 = (t_color){240.0 / 255.999, 150.0 / 255.999, 100.0 / 255.999};
 	rgb2 = (t_color){150.0 / 255.999, 150.0 / 255.999, 100.0 / 255.999};
 	rgb3 = (t_color){0.85, 0.85, 0.0};
+	rgb4 = (t_color){170.0 / 255.999, 80.0 / 255.999, 40.0 / 255.999};
+	rgb5 = (t_color){50.0 / 255.999, 200.0 / 255.999, 240.0 / 255.999};
+	// rgb6 = (t_color){179.0 / 255.999, 140.0 / 255.999, 60.0 / 255.999};
 	init_object(&ob[0], p, (t_vector){0, 0, 1, 0}, rgb);
 	init_object(&ob[1], p1, (t_vector){0, 0, 1, 0}, rgb1);
 	init_object(&ob[2], p2, (t_vector){0, 0, 1, 0}, rgb2);
 	init_object(&ob[3], n, (t_vector){0, 0, 1, 0}, rgb3);
+	init_object(&ob[4], p3, (t_vector){0, 0, 1, 0}, rgb4);
+	init_object(&ob[5], p4, (t_vector){0, 0, 1, 0}, rgb5);
+	// init_object(&ob[6], p5, (t_vector){0, 0, 1, 0}, rgb6);
 	init_type(&ob[0], "df", "1");
 	init_type(&ob[1], "mt", "gl");
 	init_type(&ob[2], "df", "2");
 	init_type(&ob[3], "df", "");
-	ob[4].type = NULL;
+	init_type(&ob[4], "mt", "fu");
+	init_type(&ob[5], "mt", "fu");
+	// init_type(&ob[6], "df", "");
+	ob[6].type = NULL;
 	init_properties(&ob[0], 0.5, 0, 0);
 	init_properties(&ob[1], 0.5, 0, 0);
 	init_properties(&ob[2], 0.5, 0, 0);
 	init_properties(&ob[3], 100, 0, 0);
+	init_properties(&ob[4], 0.5, 0, 0);
+	init_properties(&ob[5], 0.5, 0, 0);
+	// init_properties(&ob[6], 1.5, 0, 0);
 	rgb = (t_color){0, 0, 0};
 	ob[0].index = 0;
 	ob[1].index = 1;
 	ob[2].index = 2;
 	ob[3].index = 3;
+	ob[4].index = 4;
+	ob[5].index = 5;
+	ob[6].index = 6;
 	create_background(cam, ob, &vars.img, rgb);
 	// draw_sphere(ob, vars, cam);
 	/*define which camera angle for object*/

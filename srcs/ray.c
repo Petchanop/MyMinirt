@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:19 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/06 17:22:09 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/12 00:28:59 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_vector	ray_dir(t_cam *cam, t_vector r, float u, float v)
 	t_vector	v_h;
 	t_vector	v_v;
 	t_vector	lower;
-
+	
 	v_h = vector_mul(cam->v_h, u);
 	v_v = vector_mul(cam->v_v, v);
 	lower = vector_add(cam->lower, v_h);

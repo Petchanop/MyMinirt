@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 14:31:47 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/31 18:55:41 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/12 00:54:36 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	create_background(t_cam *cam, t_object *ob, t_data *data, t_color color)
 		{
 			color = antialiasing(cam, ob, x, y);
 			c = convert_to_int(color);
-			put_pixel(data, x, SCENCE_HEIGHT - y, c);
+			put_pixel(data, x, y, c);
 			x--;
 		}
 		y--;

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:44:08 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/06 17:18:36 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/12 00:00:53 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int	hit(t_object *ob, float sdis, t_vector v, t_vector cam, float t_max)
 	{
 		root = (-ob->ob_hit.b + sdis) / ob->ob_hit.a;
 		if (root < T_MIN || t_max < root)
-		{
-			// printf("texture : %s\n", ob->reflec);
 			return (-1);
-		}
 	}
 	t_max = root;
 	ob->ob_hit.t = root;

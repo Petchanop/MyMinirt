@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:46:25 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/06 16:36:15 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/12 01:24:39 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,38 +48,88 @@ t_color	super_sampling(t_cam *cam, t_object *ob, int x, int y)
 	ret = (t_color){0, 0, 0};
 	u = ((float)x + ((float)1 / 8)) / (SCENCE_WIDTH - 1);
 	v = ((float)y + ((float)3 / 8)) / (SCENCE_HEIGHT - 1);
+	// ray = sampling_ray(cam, u, v);
 	ray = ray_dir(cam, cam->cpoint, u, v);
 	pixel = ray_color(cam, cam->cpoint, ray, ob, cam->depth);
 	ret = (t_color){ret.r += pixel.r, ret.g += pixel.g, ret.b += pixel.b};
 	u = ((float)x + ((float)3 / 8)) / (SCENCE_WIDTH - 1);
 	v = ((float)y - ((float)1 / 8)) / (SCENCE_HEIGHT - 1);
+	// ray = sampling_ray(cam, u, v);
 	ray = ray_dir(cam, cam->cpoint, u, v);
 	pixel = ray_color(cam, cam->cpoint, ray, ob, cam->depth);
 	ret = (t_color){ret.r += pixel.r, ret.g += pixel.g, ret.b += pixel.b};
 	u = ((float)x - ((float)3 / 8)) / (SCENCE_WIDTH - 1);
 	v = ((float)y - ((float)1 / 8)) / (SCENCE_HEIGHT - 1);
+	// ray = sampling_ray(cam, u, v);
 	ray = ray_dir(cam, cam->cpoint, u, v);
 	pixel = ray_color(cam, cam->cpoint, ray, ob, cam->depth);
 	ret = (t_color){ret.r += pixel.r, ret.g += pixel.g, ret.b += pixel.b};
 	u = ((float)x - ((float)3 / 8)) / (SCENCE_WIDTH - 1);
 	v = ((float)y + ((float)1 / 8)) / (SCENCE_HEIGHT - 1);
+	// ray = sampling_ray(cam, u, v);
 	ray = ray_dir(cam, cam->cpoint, u, v);
 	pixel = ray_color(cam, cam->cpoint, ray, ob, cam->depth);
 	ret = (t_color){ret.r += pixel.r, ret.g += pixel.g, ret.b += pixel.b};
 	return (ret);
 }
 
+t_vector	sampling_ray(t_cam *cam, float x, float y)
+{
+	t_vector	dir;
+
+	dir.x = x * cam->v_h.x + y * cam->v_v.x + cam->lower.x;
+	dir.y = x * cam->v_h.y + y * cam->v_v.y + cam->lower.y;
+	dir.z = x * cam->v_h.z + y * cam->v_v.z + cam->lower.z;
+	dir.w = 0;
+	return (vector_normalize(dir));
+}
+
+t_color	random_sampling(t_cam *cam, t_object *ob, float x, float y)
+{
+	t_vector	dir;
+	t_color		ret;
+
+	dir = sampling_ray(cam, x, y);
+	ret = ray_color(cam, cam->cpoint, dir, ob, cam->depth);
+	return (ret);
+}
+
+t_color	generate_sampling(t_cam *cam, t_object *ob, int x, int y)
+{
+	t_color		ret;
+	t_color		*pixel;
+	float		u;
+	float		v;
+
+	pixel = malloc(sizeof(t_color));
+	ret = random_sampling(cam, ob, x, y);
+	*pixel = (t_color){ret.r += pixel->r, ret.g += pixel->g, ret.b += pixel->b};
+	u = (float)x + 0.25;
+	v = (float)y + 0.25;
+	ret = random_sampling(cam, ob, u, v);
+	*pixel = (t_color){ret.r += pixel->r, ret.g += pixel->g, ret.b += pixel->b};
+	u = (float)x + 0.25;
+	v = (float)y - 0.25;
+	ret = random_sampling(cam, ob, u, v);
+	*pixel = (t_color){ret.r += pixel->r, ret.g += pixel->g, ret.b += pixel->b};
+	u = (float)x - 0.25;
+	v = (float)y - 0.25;
+	ret = random_sampling(cam, ob, u, v);
+	*pixel = (t_color){ret.r += pixel->r, ret.g += pixel->g, ret.b += pixel->b};
+	u = (float)x - 0.25;
+	v = (float)y + 0.25;
+	ret = random_sampling(cam, ob, u, v);
+	*pixel = (t_color){ret.r += pixel->r, ret.g += pixel->g, ret.b += pixel->b};
+	return (*pixel);
+}
+
 t_color	antialiasing(t_cam *cam, t_object *ob, int x, int y)
 {
-	int		i;
-	t_color	ret;
+	int			i;
+	t_color		ret;
 
-	ret = super_sampling(cam, ob, x, y);
 	i = SAMPLE_PIXEL;
+	ret = generate_sampling(cam, ob, x, y);
 	ret = (t_color){(ret.r /= i), (ret.g /= i), (ret.b /= i)};
-	ret.r = clamp(sqrt(ret.r), 0.0, 0.99);
-	ret.g = clamp(sqrt(ret.g), 0.0, 0.99);
-	ret.b = clamp(sqrt(ret.b), 0.0, 0.99);
-	ret = (t_color){ret.r * 255.999, ret.g * 255.999, ret.b * 255.999};
-	return (ret);
+	return (translate_color(ret));
 }
