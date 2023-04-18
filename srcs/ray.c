@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:19 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/12 00:28:59 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/19 00:56:18 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,45 +15,34 @@
 // origin = cpoint
 //dir = direction;
 //N = at(t);
-
-t_vector	ray_dir(t_cam *cam, t_vector r, float u, float v)
-{
-	t_vector	v_h;
-	t_vector	v_v;
-	t_vector	lower;
-	
-	v_h = vector_mul(cam->v_h, u);
-	v_v = vector_mul(cam->v_v, v);
-	lower = vector_add(cam->lower, v_h);
-	lower = vector_add(lower, v_v);
-	lower = vector_sub(lower, r);
-	lower = vector_normalize(vector_sub(lower, cam->cpoint));
-	return (lower);
-}
-
 //ray()origin = cpoint, dir = dir
 // ray_dir
 // ray_color
 t_color	ray_color(t_cam *c, t_vector cam, t_vector dir, t_object *ob, int depth)
 {
 	t_vector	n_p;
+	t_vector	l;
+	t_vector	s;
 	t_color		ncolor;
+	float		tn;
+	float		len;
 	int			i;
 	int		t;
 	int		idx;
 
 	i = 0;
+	tn = 1;
 	idx = -1;
 	ncolor = (t_color){0, 0, 0};
 	n_p = (t_vector){0, 0, 0, 0};
 	if (depth <= 0)
-		return ((t_color){0, 0, 0});
+		return (ncolor);
 	while (ob[i].type)
 	{
 		t = hit_object(&ob[i], dir, cam, c->t_max);
 		if (t > -1)
 		{
-			c->t_max = ob[t].ob_hit.t;
+			c->t_max = ob[i].ob_hit.t;
 			idx = t;
 		}
 		i++;
@@ -63,21 +52,27 @@ t_color	ray_color(t_cam *c, t_vector cam, t_vector dir, t_object *ob, int depth)
 		if (ob[idx].ob_hit.t != 0.000)
 		{
 			c->t_max = T_MAX;
+			l = diffuse_mat(ob[idx], c, dir);
+			len = vector_length(l);
+			t_vector normal = ob[idx].ob_hit.normal;
+			t_vector n_p = ob[idx].ob_hit.p;
+			tn = c->light.bright_ratio * pow(fmax(0, dot_product(vector_normalize(normal), l)), 2);
+			if (is_shadow(c, ob[idx].ob_hit.p, l, ob, idx) != -1)
+				return (ncolor);
+			s = isreflect(l, normal);
+			s = vector_normalize(s);
+			if ((dot_product(dir, s) > 0))
+				tn +=  c->light.bright_ratio * pow(fmax(0, dot_product(dir, s)), 2);
 			if (!strcmp(ob[idx].texture, "df"))
-			{
-				n_p = diffuse_mat(ob[idx]);
-				ncolor = ray_color(c, ob[idx].ob_hit.p, n_p, ob, depth - 1);
-			}
+				ncolor = ray_color(c, n_p, l, ob, depth - 1);
 			else if (!strcmp(ob[idx].texture, "mt"))
-				ncolor = metal_reflec(c, ob, &ob[idx], dir, depth);
-			else
-				ncolor = color_mul(ray_color(c, ob[idx].ob_hit.p, n_p, ob, depth - 1), 0.5);
+				ncolor = metal_reflec(c, ob, &ob[idx], dir, depth - 1);
 			ncolor = color_multiply(ob[idx].color, ncolor);
-			return (ncolor);
+			return (color_mul(ncolor, tn));
 		}
 	}
 	c->t_max = T_MAX;
-	return (generate_color(dir, t));
+	return (generate_color(dir));
 }
 
 t_vector	random_hemisphere(t_vector normal)

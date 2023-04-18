@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 14:36:44 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/12 01:24:08 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/19 00:51:34 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ int	convert_to_int(t_color color)
 	return (result);
 }
 
-t_color	generate_color(t_vector lower, float t)
+t_color	generate_color(t_vector lower)
 {
 	t_vector	unit;
 	t_color		c1;
 	t_color		c2;
 	t_color		c3;
+	float		t;
 
 	unit = vector_normalize(lower);
 	t = 0.5 * (unit.y + 1);
@@ -66,6 +67,16 @@ t_color	color_multiply(t_color c1, t_color c2)
 	return (c);
 }
 
+t_color color_div(t_color c, float a)
+{
+	t_color	ret;
+
+	ret.r = c.r / a;
+	ret.g = c.g / a;
+	ret.b = c.b / a;
+	return (ret);
+}
+
 t_color	color_add(t_color c1, t_color c2)
 {
 	t_color	c;
@@ -76,10 +87,23 @@ t_color	color_add(t_color c1, t_color c2)
 	return (c);
 }
 
-t_color	translate_color(t_color c)
+t_color	color_sub(t_color c1, t_color c2)
 {
-	c.r = clamp(sqrt(c.r), 0.0, 0.99) * 255.999;
-	c.g = clamp(sqrt(c.g), 0.0, 0.99) * 255.999;
-	c.b = clamp(sqrt(c.b), 0.0, 0.99) * 255.999;
+	t_color	c;
+
+	c.r = c1.r - c2.r;
+	c.g = c1.g - c2.g;
+	c.b = c1.b - c2.b;
 	return (c);
+}
+
+t_color	translate_color(t_color *c)
+{
+	t_color	nc;
+
+	nc.r = clamp(sqrt(c->r), 0.0, 0.99) * 255.999;
+	nc.g = clamp(sqrt(c->g), 0.0, 0.99) * 255.999;
+	nc.b = clamp(sqrt(c->b), 0.0, 0.99) * 255.999;
+	free(c);
+	return (nc);
 }

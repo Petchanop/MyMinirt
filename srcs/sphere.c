@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:44:08 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/12 00:00:53 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/17 17:26:46 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	hit(t_object *ob, float sdis, t_vector v, t_vector cam, float t_max)
 	ob->ob_hit.t = root;
 	ob->ob_hit.p = vector_add(cam, vector_mul(v, ob->ob_hit.t));
 	outward = vector_div(vector_sub(ob->ob_hit.p, ob->center), ob->radius);
-	ob->ob_hit.normal = isfront_face(v, outward, ob);
+	ob->ob_hit.normal = vector_normalize(isfront_face(v, outward, ob));
 	return (ob->index);
 }
 

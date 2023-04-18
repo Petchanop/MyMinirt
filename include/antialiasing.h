@@ -6,14 +6,16 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:49:44 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/12 01:00:55 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/12 19:51:50 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ANTIALIASING_H
 # define ANTIALIASING_H
 
-# define SAMPLE_PIXEL 5 
+# define SAMPLE_PIXEL 5
+
+# include "type.h"
 
 float		clamp(float x, float min, float max);
 float		random_float( void );

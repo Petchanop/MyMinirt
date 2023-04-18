@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/03/31 19:04:53 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/04/18 21:44:59 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCS= $(SRCS_DIR)minirt.c \
 	$(SRCS_DIR)antialiasing.c \
 	$(SRCS_DIR)diffuse.c \
 	$(SRCS_DIR)texture.c \
+	$(SRCS_DIR)light.c \
 	bg.c \
 
 
@@ -67,6 +68,9 @@ debug:$(SRCS)
 	@make -C $(MLX)
 	# $(CC) -g $(CFLAGS) $(SRCS) $(SRCS_INCLUDE) $(LIBS) -o $(NAME)
 	@$(CC) -g $(CFLAGS) $(SRCS) $(LIBS) -o $(NAME)
+
+leaks:$(SRCS)
+	@$(CC) -g $(CFLAGS) $(SRCS) -o $(NAME)
 
 clean:
 	rm -rf $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/06 16:39:57 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/19 00:53:53 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@
 
 # define SCENCE_WIDTH 1067
 # define SCENCE_HEIGHT 600
-// # define SCENCE_WIDTH 600
-// # define SCENCE_HEIGHT 400
 # define MIN_HIT_DIS 0.001
 # define MAX_TRACE_DIS 1000.0
 # define MAX_STEP 600;
@@ -63,17 +61,6 @@ typedef struct s_vars {
 	float		angle1;
 	float		angle2;
 }	t_vars;
-
-typedef struct s_light
-{
-	char		*l;
-	float		bright_ratio;
-	t_point		lpoint;
-	t_vector	point;
-	t_vector	vector;
-	t_color		color;
-	t_vector	m_lab;
-}	t_light;
 
 typedef struct s_plane
 {
@@ -100,6 +87,11 @@ t_vector	random_vector(float min, float max);
 t_vector	rand_in_sphere( void );
 
 //texture
-t_vector	diffuse_mat(t_object ob);
+t_vector	isreflect(t_vector v, t_vector n);
+t_vector	diffuse_mat(t_object ob, t_cam *c, t_vector dir);
+t_vector	specular_mat(t_object ob, t_cam *c, t_vector dir);
+// t_color	diffuse_mat(t_object *ob, t_cam *c, t_vector p, t_vector n, int depth);
+float	is_shadow(t_cam *c, t_vector cam, t_vector ldir, t_object *ob, int idx);
+t_color	light_color(t_object *ob, t_cam *c, int depth);
 
 #endif

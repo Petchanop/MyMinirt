@@ -6,20 +6,14 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:41:16 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 21:06:05 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/12 19:51:08 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 # define VECTOR_H
 
-typedef struct s_vector
-{
-	float	x;
-	float	y;
-	float	z;
-	float	w;
-}	t_vector;
+# include "type.h"
 
 float		distanceto_ob(t_vector p1, t_vector p2);
 float		dot_product(t_vector v1, t_vector v2);
