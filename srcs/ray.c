@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:19 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/19 00:56:18 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/25 23:41:47 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,26 @@ t_color	ray_color(t_cam *c, t_vector cam, t_vector dir, t_object *ob, int depth)
 	}
 	if (idx > -1)
 	{
+		// c->t_max = T_MAX;
 		if (ob[idx].ob_hit.t != 0.000)
 		{
-			c->t_max = T_MAX;
 			l = diffuse_mat(ob[idx], c, dir);
 			len = vector_length(l);
 			t_vector normal = ob[idx].ob_hit.normal;
 			t_vector n_p = ob[idx].ob_hit.p;
 			tn = c->light.bright_ratio * pow(fmax(0, dot_product(vector_normalize(normal), l)), 2);
-			if (is_shadow(c, ob[idx].ob_hit.p, l, ob, idx) != -1)
+			if (is_shadow(c, n_p, l, ob, idx) != -1)
 				return (ncolor);
 			s = isreflect(l, normal);
 			s = vector_normalize(s);
 			if ((dot_product(dir, s) > 0))
-				tn +=  c->light.bright_ratio * pow(fmax(0, dot_product(dir, s)), 2);
+				tn += c->light.bright_ratio * pow(fmax(0, dot_product(dir, s)), 2);
 			if (!strcmp(ob[idx].texture, "df"))
 				ncolor = ray_color(c, n_p, l, ob, depth - 1);
 			else if (!strcmp(ob[idx].texture, "mt"))
 				ncolor = metal_reflec(c, ob, &ob[idx], dir, depth - 1);
+			else
+				ncolor = ray_color(c, n_p, l, ob, depth - 1);
 			ncolor = color_multiply(ob[idx].color, ncolor);
 			return (color_mul(ncolor, tn));
 		}

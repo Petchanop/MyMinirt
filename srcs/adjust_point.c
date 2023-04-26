@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 15:40:04 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/24 13:44:56 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:15:16 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ t_point	point_transformation(t_point pnt, t_vars vars)
 {
 	t_point	pre;
 
-	pre = translate_point(pnt);
+	// pre = translate_point(pnt);
+	pre = pnt;
 	pnt = rotatez(pre, vars);
 	pnt = rotatex(pnt, vars);
 	pnt = rotatey(pnt, vars);

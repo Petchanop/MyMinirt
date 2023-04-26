@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:48:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/14 21:41:27 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:25:00 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,10 @@ typedef struct s_cam
 	char		*c;
 	t_vector	cpoint;
 	t_vector	vector;
-	t_vector	lower;
+	t_vector	lookat;
 	t_vector	v_h;
 	t_vector	v_v;
-	t_vector	v_w;
-	t_vector	lookat;
+	t_vector	lower;
 	t_light		light;
 	t_light		ambient;
 	float		t_max;
@@ -62,7 +61,6 @@ typedef struct s_cam
 	float		depth;
 	float		h;
 	float		len;
-	float		focus_dist;
 	float		aspect_ratio;
 	float		fov;
 }	t_cam;

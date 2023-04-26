@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/04/18 21:44:59 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/04/21 18:47:11 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,24 +22,27 @@ INCLUDE_DIR= include/
 
 BUILD_DIR = build/
 
-SRCS= $(SRCS_DIR)minirt.c \
-	$(SRCS_DIR)adjust_point.c \
-	$(SRCS_DIR)finddxdy.c \
-	$(SRCS_DIR)write_line.c \
-	$(SRCS_DIR)checkpoint.c	\
-	$(SRCS_DIR)camera.c \
-	$(SRCS_DIR)object.c \
-	$(SRCS_DIR)calculate_vector.c \
-	$(SRCS_DIR)vector_operation.c \
-	$(SRCS_DIR)sphere.c \
-	$(SRCS_DIR)color.c \
-	$(SRCS_DIR)ray.c \
-	$(SRCS_DIR)antialiasing.c \
-	$(SRCS_DIR)diffuse.c \
-	$(SRCS_DIR)texture.c \
-	$(SRCS_DIR)light.c \
+SRC= minirt.c \
+	adjust_point.c \
+	finddxdy.c \
+	write_line.c \
+	checkpoint.c	\
+	camera.c \
+	object.c \
+	calculate_vector.c \
+	vector_operation.c \
+	sphere.c \
+	cylinder.c \
+	plane.c \
+	color.c \
+	ray.c \
+	antialiasing.c \
+	diffuse.c \
+	texture.c \
+	light.c \
 	bg.c \
 
+SRCS= ${addprefix ${SRCS_DIR}, ${SRC}}
 
 SRCS_INCLUDE= include/getnextline/get_next_line.c\
 	include/getnextline/get_next_line_utils.c\
@@ -66,7 +69,6 @@ $(NAME):$(OBJS) $(OBJS_IN)
 debug:$(SRCS)
 	# @make -C $(LIBFT)
 	@make -C $(MLX)
-	# $(CC) -g $(CFLAGS) $(SRCS) $(SRCS_INCLUDE) $(LIBS) -o $(NAME)
 	@$(CC) -g $(CFLAGS) $(SRCS) $(LIBS) -o $(NAME)
 
 leaks:$(SRCS)

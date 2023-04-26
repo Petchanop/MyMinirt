@@ -6,11 +6,16 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:31:43 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/03/31 19:00:40 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/26 00:45:33 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+float	min(float a, float b)
+{
+	return ((a < b) ? a : b);
+}
 
 float	distanceto_ob(t_vector p1, t_vector p2)
 {

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/19 00:53:53 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/26 14:15:33 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_plane
 }	t_plane;
 
 /*build type object to kept all information and identified which type is*/
-void		create_background(t_cam *cam, t_object *ob, t_data *data, t_color color);
+void		create_background(t_cam *cam, t_object *ob, t_vars *data, t_color color);
 void		put_pixel(t_data *data, int x, int y, int color);
 void		write_line(t_vars vars, t_point point[2], t_color color);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);

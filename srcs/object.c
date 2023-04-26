@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:20:52 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/05 02:10:22 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/21 18:35:31 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,22 @@ void	init_object(t_object *ob, t_vector center, t_vector n, t_color rgb)
 	ob->center = center;
 	ob->color = rgb;
 	ob->vector = n;
+}
+
+void	init_cylinder(t_object *ob, t_vector center, t_vector n, t_color rgb)
+{
+	ob->type = "cy";
+	ob->center = center;
+	ob->color = rgb;
+	ob->vector = n;
+}
+
+void	init_plane(t_object *ob, t_vector center, t_vector n, t_color rgb)
+{
+	ob->type = "pl";
+	ob->center = center;
+	ob->color = rgb;
+	ob->vector = n;	
 }
 
 void	init_type(t_object *ob, char *type, char *reflec)
