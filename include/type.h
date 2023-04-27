@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:48:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/26 14:25:00 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:27:51 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ typedef struct s_object
 	t_hit		ob_hit;
 	t_vector	vector;
 	t_vector	center;
+	t_vector	t_cap;
+	t_vector	b_cap;
 	t_color		color;
 	t_cam		cam;
 }	t_object;

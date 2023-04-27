@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 18:38:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/25 23:38:49 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/27 16:04:11 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,14 @@ int	hit_disk(t_object *ob, t_vector v, t_vector cam, t_vector p, float t)
 
 	p0 = vector_add(vector_mul(v, t), cam);
 	w = vector_sub(p, p0);
-	d = vector_length(w);
+	d = vector_length(w) / 2;
 	if (sqrt(d) <= ob->radius)
+	{
+		ob->ob_hit.t = t;
+		ob->ob_hit.p = p0;
+		ob->ob_hit.normal = ob->vector;
 		return (ob->index);
+	}
 	return (-1);
 }
 

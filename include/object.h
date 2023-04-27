@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:22:12 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/25 23:26:05 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/26 23:40:59 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void		init_object(t_object *ob, t_vector center, t_vector n, t_color rgb);
 void		init_type(t_object *ob, char *type, char *reflec);
 void		init_cylinder(t_object *ob, t_vector center, t_vector n, t_color rgb);
 void		init_plane(t_object *ob, t_vector center, t_vector n, t_color rgb);
+void		init_disk(t_object *ob, t_vector center, t_vector n, t_color rgb);
 //ray
 t_color		ray_color(t_cam *c, t_vector cam, t_vector dir, t_object *ob, int depth);
 

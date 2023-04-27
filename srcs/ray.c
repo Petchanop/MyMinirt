@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:19 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/25 23:41:47 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/26 18:15:42 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_color	ray_color(t_cam *c, t_vector cam, t_vector dir, t_object *ob, int depth)
 	}
 	if (idx > -1)
 	{
-		// c->t_max = T_MAX;
+		c->t_max = T_MAX;
 		if (ob[idx].ob_hit.t != 0.000)
 		{
 			l = diffuse_mat(ob[idx], c, dir);
