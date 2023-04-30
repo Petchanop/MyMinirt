@@ -6,12 +6,17 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:48:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/26 15:27:51 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/28 23:07:08 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPE_H
 # define TYPE_H
+
+typedef struct s_matrix
+{
+	float	m[4][4];
+}	t_matrix;
 
 typedef struct s_color
 {
@@ -95,6 +100,8 @@ typedef struct s_object
 	float		t_max;
 	int			index;
 	t_hit		ob_hit;
+	t_matrix	mat;
+	t_matrix 	inv;
 	t_vector	vector;
 	t_vector	center;
 	t_vector	t_cap;

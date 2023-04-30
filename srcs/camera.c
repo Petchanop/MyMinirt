@@ -6,12 +6,12 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:50:06 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/26 23:59:28 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/28 01:07:08 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-/*
+
 void	cameara_fov(t_cam *cam)
 {
 	cam->lookat = (t_vector){0, 0, -1, 0};
@@ -26,7 +26,7 @@ void	cameara_fov(t_cam *cam)
 	cam->lower.y = vp.y * fl - 0.5 * ((float)SCENCE_WIDTH * u.y + (float)SCENCE_HEIGHT * v.y);
 	cam->lower.z = vp.z * fl - 0.5 * ((float)SCENCE_WIDTH * u.z + (float)SCENCE_HEIGHT * v.z);
 	cam->lower.w = 0;
-}*/
+}
 
 t_cam	*init_camera( void )
 {
@@ -42,7 +42,7 @@ t_cam	*init_camera( void )
 	cam->t_max = T_MAX;
 	cam->depth = 50;
 	cam->fov = 156;
-	// cam->fov = 66;
+	// cam->fov = 90;
 	cam->theta = degrees_to_radians(cam->fov * 0.5);
 	cam->len = 1;
 	cam->h = tan(cam->theta);

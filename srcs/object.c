@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:20:52 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/27 16:38:19 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/28 21:10:04 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void	init_cylinder(t_object *ob, t_vector center, t_vector n, t_color rgb)
 	ob->b_cap = (t_vector){center.x, center.y - (ob->height / 2), center.z, 0};
 	ob->color = rgb;
 	ob->vector = n;
-	printf("t_cap : %f, %f, %f\n", ob->t_cap.x, ob->t_cap.y, ob->t_cap.z);
+	tranform_vectomat(ob);
+	// printf("t_cap : %f, %f, %f\n", ob->t_cap.x, ob->t_cap.y, ob->t_cap.z);
+	// printf("b_cap : %f, %f, %f\n", ob->b_cap.x, ob->b_cap.y, ob->b_cap.z);
 }
 
 void	init_plane(t_object *ob, t_vector center, t_vector n, t_color rgb)

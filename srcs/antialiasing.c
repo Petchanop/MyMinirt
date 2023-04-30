@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:46:25 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/27 15:16:43 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/28 01:06:27 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,16 @@ float	clamp(float x, float min, float max)
 	return (x);
 }
 
-/*
-t_vector	sampling_ray(t_cam *cam, float x, float y)
-{
-	t_vector	dir;
+// t_vector	sampling_ray(t_cam *cam, float x, float y)
+// {
+// 	t_vector	dir;
 
-	dir.x = x * cam->v_h.x + y * cam->v_v.x + cam->lower.x;
-	dir.y = x * cam->v_h.y + y * cam->v_v.y + cam->lower.y;
-	dir.z = x * cam->v_h.z + y * cam->v_v.z + cam->lower.z;
-	dir.w = 0;
-	return (vector_normalize(dir));
-}*/
+// 	dir.x = x * cam->v_h.x + y * cam->v_v.x + cam->lower.x;
+// 	dir.y = x * cam->v_h.y + y * cam->v_v.y + cam->lower.y;
+// 	dir.z = x * cam->v_h.z + y * cam->v_v.z + cam->lower.z;
+// 	dir.w = 0;
+// 	return (vector_normalize(dir));
+// }
 
 t_vector	sampling_ray(t_cam *cam, float x, float y)
 {
@@ -55,7 +54,7 @@ t_vector	sampling_ray(t_cam *cam, float x, float y)
 
 	dir.x = (2 * ((x + 0.5) / SCENCE_WIDTH) - 1) * cam->h * cam->aspect_ratio;
 	dir.y = (1 - 2 * ((y + 0.5) / SCENCE_HEIGHT)) * cam->h;
-	dir.z = 1;
+	dir.z = -1;
 	dir = vector_sub(dir, cam->cpoint);
 	return (vector_normalize(dir));
 }

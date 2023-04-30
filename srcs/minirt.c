@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/27 16:40:02 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/04/30 15:55:31 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ int	main(int argc, char **argv)
 	build_image(&vars.img, 100, 100);
 	init_t_data(&vars);
 	cam = init_camera();
-	p = (t_vector){-3, 0.5, 0, 0};
-	t_vector p1 = (t_vector){0, -10, 0, 0};
+	p = (t_vector){-2.5, 0.0, 0.0, 0};
+	t_vector p1 = (t_vector){0, -5, 0, 0};
 	t_vector p2 = (t_vector){0, 0, 0, 0};
 	t_vector p3 = (t_vector){2, 2, 3, 0};
 	t_vector p4 = (t_vector){4, 2, -2, 0};

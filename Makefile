@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/04/21 18:47:11 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/04/28 18:08:11 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC= minirt.c \
 	texture.c \
 	light.c \
 	bg.c \
+	matrix_operation.c
 
 SRCS= ${addprefix ${SRCS_DIR}, ${SRC}}
 
