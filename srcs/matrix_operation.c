@@ -6,50 +6,13 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 15:22:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/29 18:37:55 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/03 22:29:32 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
 t_matrix	transpose(t_matrix num, t_matrix fac, float r);
-
-t_matrix	vectomatrix(t_vector *p)
-{
-	t_matrix	m;
-	int			i;
-
-	i = 0;
-	while (i < 4)
-	{
-		m.m[i][0] = p[i].x;
-		m.m[i][1] = p[i].y;
-		m.m[i][2] = p[i].z;
-		m.m[i][3] = p[i].w;
-		i++;
-	}
-	return (m);
-}
-
-t_matrix	matrix_scale(t_matrix m, float x, float y, float z)
-{
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		m.m[i][0] = 0;
-		m.m[i][1] = 0;
-		m.m[i][2] = 0;
-		m.m[i][3] = 0;
-		i++;
-	}
-	m.m[0][0] = x;
-	m.m[1][1] = y;
-	m.m[2][2] = z;
-	m.m[3][3] = 1;
-	return (m);
-}
 
 t_matrix	rotate_z(float r)
 {
@@ -94,23 +57,6 @@ t_matrix	rotate_y(float r)
 	m.m[0][2] = sin(r);
 	m.m[2][0] = -sin(r);
 	m.m[2][2] = cos(r);
-	return (m);
-}
-
-t_matrix	matrix_mul(t_matrix *a, t_matrix *b)
-{
-	t_matrix	m;
-	int			i;
-
-	i = 0;
-	while (i < 4)
-	{
-		m.m[i][0] = a->m[i][0] * b->m[0][0] + a->m[i][1] * b->m[1][0] + a->m[i][2] * b->m[2][0] + a->m[i][3] * b->m[3][0];
-		m.m[i][1] = a->m[i][0] * b->m[0][1] + a->m[i][1] * b->m[1][1] + a->m[i][2] * b->m[2][1] + a->m[i][3] * b->m[3][1];
-		m.m[i][2] = a->m[i][0] * b->m[0][2] + a->m[i][1] * b->m[1][2] + a->m[i][2] * b->m[2][2] + a->m[i][3] * b->m[3][2];
-		m.m[i][3] = a->m[i][0] * b->m[0][3] + a->m[i][1] * b->m[1][3] + a->m[i][2] * b->m[2][3] + a->m[i][3] * b->m[3][3];
-		i++;
-	}
 	return (m);
 }
 
@@ -321,21 +267,6 @@ t_matrix	matrix_trans(t_matrix m)
 	return (trans);
 }
 
-t_vector	matrix_tmul(t_matrix m, t_vector n)
-{
-	t_vector	trans;
-
-	trans.x = m.m[0][0] * n.x + m.m[0][1] * n.y + m.m[0][2] * n.z
-		+ m.m[0][3] * n.w;
-	trans.y = m.m[1][0] * n.x + m.m[1][1] * n.y + m.m[1][2] * n.z
-		+ m.m[1][3] * n.w;
-	trans.z = m.m[2][0] * n.x + m.m[2][1] * n.y + m.m[2][2] * n.z
-		+ m.m[2][3] * n.w;
-	trans.w = m.m[3][0] * n.x + m.m[3][1] * n.y + m.m[3][2] * n.z
-		+ m.m[3][3] * n.w;
-	return (trans);
-}
-
 void printf_matrix(t_matrix m)
 {
 	int	i;
@@ -361,19 +292,19 @@ void	tranform_vectomat(t_object *ob)
 	t_matrix	trans;
 	float	det;
 
-	ob->mat = matrix_scale(ob->mat, 2 * ob->radius, ob->height, 2 * ob->radius);
-	printf("scale matrix.\n");
-	printf_matrix(ob->mat);
+	ob->mat = matrix_scale(ob->mat, ob->radius, ob->height, ob->radius);
+	// printf("scale matrix.\n");
+	// printf_matrix(ob->mat);
 	rotate = rotation_matrix(vector_normalize(ob->vector));
-	printf("Rotation matrix.\n");
-	printf_matrix(rotate);
+	// printf("Rotation matrix.\n");
+	// printf_matrix(rotate);
 	ob->mat = matrix_mul(&rotate, &ob->mat);
 	trans = matrix_translate(ob->center);
-	printf("translation.\n");
-	printf_matrix(trans);
+	// printf("translation.\n");
+	// printf_matrix(trans);
 	ob->mat = matrix_mul(&trans, &ob->mat);
-	printf("before inverse.\n");
-	printf_matrix(ob->mat);
+	// printf("before inverse.\n");
+	// printf_matrix(ob->mat);
 	det = determinant(ob->mat, 4);
 	if (!det)
 	{
@@ -381,7 +312,21 @@ void	tranform_vectomat(t_object *ob)
 		exit(0);
 	}
 	ob->inv = cofactor(ob->mat, 4);
-	printf("inverse\n");
-	printf_matrix(ob->inv);
+	// printf("inverse\n");
+	// printf_matrix(ob->inv);
+	ob->inv_trans = matrix_trans(ob->inv);
+	// printf("inverse trans\n");
+	// printf_matrix(ob->inv_trans);
+	ob->re[0] = matrix_scale(ob->re[0], ob->t_cap.x, ob->t_cap.y, ob->t_cap.z);
+	ob->re[1] = matrix_scale(ob->re[1], ob->b_cap.x, ob->b_cap.y, ob->b_cap.z);
+	ob->re[0] = matrix_mul(&ob->inv, &ob->re[0]);
+	// printf("rescale h\n");
+	// printf_matrix(ob->re[0]);
+	ob->re[1] = matrix_mul(&ob->inv, &ob->re[1]);
+	// printf("rescale c\n");
+	// printf_matrix(ob->re[1]);
+	ob->re[0] = matrix_sub(ob->re[0], ob->re[1]);
+	// printf("h - c\n");
+	// printf_matrix(ob->re[0]);
 	// exit(0);
 }

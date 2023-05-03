@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/30 15:55:31 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 02:07:12 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ int	main(int argc, char **argv)
 	build_image(&vars.img, 100, 100);
 	init_t_data(&vars);
 	cam = init_camera();
-	p = (t_vector){-2.5, 0.0, 0.0, 0};
-	t_vector p1 = (t_vector){0, -5, 0, 0};
-	t_vector p2 = (t_vector){0, 0, 0, 0};
+	p = (t_vector){-1, 1.1, 0.0, 0};
+	t_vector p1 = (t_vector){0, 0, 0, 0};
+	t_vector p2 = (t_vector){3, 0.5, -1, 0};
 	t_vector p3 = (t_vector){2, 2, 3, 0};
-	t_vector p4 = (t_vector){4, 2, -2, 0};
-	t_vector p5 = (t_vector){2, 0.5, 0, 0};
-	n = (t_vector){-1, 0.0, 0, 0};
+	t_vector p4 = (t_vector){3, 2, -4, 0};
+	t_vector p5 = (t_vector){-2.5, 2, -4, 0};
+	n = (t_vector){0, 0.5, 0, 0};
 	rgb = (t_color){25.0 / 255.999, 50.0 / 255.999, 125.0 / 255.999};
 	rgb1 = (t_color){240.0 / 255.999, 150.0 / 255.999, 100.0 / 255.999};
 	rgb2 = (t_color){150.0 / 255.999, 150.0 / 255.999, 100.0 / 255.999};
@@ -89,7 +89,7 @@ int	main(int argc, char **argv)
 	init_properties(&ob[4], 0.5, 0, 0);
 	init_properties(&ob[5], 0.5, 0, 0);
 	init_properties(&ob[6], 0.5, 0, 0);
-	init_cylinder(&ob[0], p, (t_vector){0, 1, 0, 0}, rgb);
+	init_cylinder(&ob[0], p, (t_vector){0, 1, -1, 0}, rgb);
 	init_plane(&ob[1], p1, (t_vector){0, 1, 0, 0}, rgb1);
 	init_object(&ob[2], n, (t_vector){0, 0, 1.0, 0}, rgb3);
 	init_object(&ob[3], p2, (t_vector){0, 0, 1, 0}, rgb2);

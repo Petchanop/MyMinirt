@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/26 14:15:33 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/02 15:44:28 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "object.h"
 # include "color.h"
 # include "antialiasing.h"
+# include "matrix.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096 

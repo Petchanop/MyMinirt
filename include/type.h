@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:48:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/28 23:07:08 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/03 22:04:14 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct s_hit
 	float		c;
 	float		dis;
 	float		t;
+	float		t1;
 }	t_hit;
 
 typedef struct s_object
@@ -102,8 +103,11 @@ typedef struct s_object
 	t_hit		ob_hit;
 	t_matrix	mat;
 	t_matrix 	inv;
+	t_matrix 	inv_trans;
+	t_matrix	re[2];
 	t_vector	vector;
 	t_vector	center;
+	t_vector	diff;
 	t_vector	t_cap;
 	t_vector	b_cap;
 	t_color		color;

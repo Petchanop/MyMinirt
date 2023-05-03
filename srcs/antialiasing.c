@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:46:25 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/28 01:06:27 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/03 23:22:05 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_vector	sampling_ray(t_cam *cam, float x, float y)
 
 	dir.x = (2 * ((x + 0.5) / SCENCE_WIDTH) - 1) * cam->h * cam->aspect_ratio;
 	dir.y = (1 - 2 * ((y + 0.5) / SCENCE_HEIGHT)) * cam->h;
-	dir.z = -1;
+	dir.z = 1;
 	dir = vector_sub(dir, cam->cpoint);
 	return (vector_normalize(dir));
 }

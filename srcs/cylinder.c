@@ -6,60 +6,65 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 16:59:05 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/27 16:47:35 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 02:08:39 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-int	hit_caps(t_object *ob, float sdis, t_vector v, t_vector cam, float t_max)
+int	hit_cap(t_object *ob, t_vector cam, t_vector v, float t_max)
 {
-	t_vector	p0;
-	t_vector	oc;
-	float		root;
+	float		denom;
+	float		t;
+	t_vector	p;
 
-	root = ((-ob->ob_hit.b - sdis) / ob->ob_hit.a);
-	if (root < T_MIN || t_max < root)
-	{
-		root = (-ob->ob_hit.b + sdis) / ob->ob_hit.a;
-		if (root < T_MIN || t_max < root)
-			return (-1);
-	}
-	oc = vector_sub(cam, ob->b_cap);
-	float m = dot_product(v, ob->vector) * root + dot_product(oc, ob->vector);
-	if (m < T_MIN || t_max < m)
-		return (-1);
-	// oc = vector_sub(cam, ob->t_cap);
-	// float m2 = dot_product(v, ob->vector) * root + dot_product(oc, ob->vector);
-	// if (m)
-	// 	return (-1);
-	// float m = m2;
-	p0 = vector_add(vector_mul(v, root), cam);
-	// printf("hit cap : %f, %f, %f\n", p0.x, p0.y, p0.z);
-	float denom = dot_product(ob->vector, v);
+	denom = dot_product(ob->vector, v);
+	t = 0.0;
+	p = (t_vector){0, 0, 0, 0};
 	if (fabs(denom) < 0.0001f)
-		return (ob->index);
-	t_vector p = vector_sub(p0, cam);
-	// t_vector p1 = vector_sub(ob->b_cap, cam);
-	// t_vector c = vector_sub(ob->center, cam);
-	float t_hitcap = dot_product(p, ob->vector) / denom;
-	// float t_hit = dot_product(c, ob->vector) / denom;
-	// float t_hitbcap = dot_product(p1, ob->vector) / denom;
-	// if (t_hitcap < T_MIN || t_max < t_hitcap)
-	// {
-		ob->ob_hit.t = t_hitcap;
-		ob->ob_hit.p = vector_add(cam, vector_mul(v, ob->ob_hit.t));
-		ob->ob_hit.normal = ob->vector;
-	// }
-	// printf("hittcap , center, hitbcap : %f, %f, %f\n", t_hitcap, t_hit, t_hitbcap);
+		return (-1);
+	p = vector_sub(ob->t_cap, cam);
+	t = dot_product(p, ob->vector) / denom;
+	if (T_MIN < t && t < t_max)
+	{
+		printf("hit tcap\n");
+		return (hit_disk(ob, v, cam, ob->t_cap, t));
+	}
+	p = vector_sub(ob->b_cap, cam);
+	t = dot_product(p, ob->vector) / denom;
+	if (T_MIN < t && t < t_max)
+		return (hit_disk(ob, v, cam, ob->b_cap, t));
+	return (-1);
+}
+
+int	hit_body(t_object *ob, t_vector v, t_vector cam, float t[], int inside)
+{
+	t_vector	point;
+	t_vector	ori_diff;
+	float		dtop;
+	t_vector	point_cent;
+	t_vector	pc;
+
+	point = vector_add(cam, vector_mul(v, t[0]));
+	ori_diff = vector_sub(ob->center, point);
+	dtop = dot_product(ori_diff, ob->vector);
+	if (fabs(dtop) > ob->height / 2)
+		return (-1);
+	point_cent = vector_add(ob->center, vector_mul(ob->vector, -dtop));
+	ob->ob_hit.t = t[0];
+	ob->ob_hit.p = point;
+	pc = vector_sub(point, point_cent);
+	ob->ob_hit.normal = vector_normalize(pc);
+	if (inside)
+		ob->ob_hit.normal = vector_mul(ob->ob_hit.normal, -1);
 	return (ob->index);
 }
 
 int	hit_cylinder(t_object *ob, t_vector v, t_vector cam, float t_max)
 {
-	t_vector	oc;
 	float		sdis;
-	(void)t_max;
+	float		t[2];
+	t_vector	oc;
 
 	oc = vector_sub(cam, ob->center);
 	ob->ob_hit.a = pow(dot_product(v, v), 2) - pow(dot_product(v, ob->vector), 2);
@@ -69,7 +74,20 @@ int	hit_cylinder(t_object *ob, t_vector v, t_vector cam, float t_max)
 	sdis = sqrt(ob->ob_hit.dis);
 	if (ob->ob_hit.dis < 0)
 		return (-1);
-	return (hit_caps(ob, sdis, v, cam, t_max));
+	t[0] = ((-ob->ob_hit.b - sdis) / ob->ob_hit.a);
+	t[1] = t_max;
+	if (t[0] > T_MIN && t[0] < t_max)
+	{
+		if (hit_body(ob, v, cam, t, 0) != -1)
+			return (ob->index);
+	}
+	t[0] = (-ob->ob_hit.b + sdis) / ob->ob_hit.a;
+	if (t[1] > T_MIN && t[1] < t_max)
+	{
+		if (hit_body(ob, v, cam, t, 0) != -1)
+			return (ob->index);
+	}
+	return (hit_cap(ob, v, cam, t[1]));
 }
 
 // int	hit_cylinder(t_object *ob, t_vector v, t_vector cam, float t_max)
