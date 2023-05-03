@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 18:38:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/27 23:47:21 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 03:06:02 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	hit_disk(t_object *ob, t_vector v, t_vector cam, t_vector p, float t)
 	{
 		ob->ob_hit.t = t;
 		ob->ob_hit.p = p0;
-		ob->ob_hit.normal = ob->vector;
+		ob->ob_hit.normal = ob->ob_hit.normal;
 		return (ob->index);
 	}
 	return (-1);
@@ -49,5 +49,7 @@ int	hit_plane(t_object *ob, t_vector v, t_vector cam, float t_max)
 	ob->ob_hit.t = t;
 	ob->ob_hit.p = vector_add(cam, vector_mul(v, ob->ob_hit.t));
 	ob->ob_hit.normal = ob->vector;
+	if (denom > 0)
+		ob->ob_hit.normal = vector_mul(ob->vector, -1);
 	return (ob->index);
 }

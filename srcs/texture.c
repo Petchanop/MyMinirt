@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:00:31 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/25 22:08:58 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 02:41:25 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,10 @@ float	is_shadow(t_cam *c, t_vector cam, t_vector ldir, t_object *ob, int idx)
 	int		t;
 	int		id;
 	(void)idx;
-	(void)c;
 
 	i = 0;
 	id = -1;
 	t = -1;
-	// printf("idx : %d, %f, %f, %f\n", idx, ob[idx].ob_hit.p.x, ob[idx].ob_hit.p.y, ob[idx].ob_hit.p.z);
 	while (ob[i].type)
 	{
 		t = hit_object(&ob[i], ldir, cam, c->t_max);
@@ -58,10 +56,7 @@ float	is_shadow(t_cam *c, t_vector cam, t_vector ldir, t_object *ob, int idx)
 	}
 	c->t_max = T_MAX;
 	if (id > -1)
-	{
-		// printf("hit : %d, %f, %f, %f\n", id, ob[id].ob_hit.p.x, ob[id].ob_hit.p.y, ob[id].ob_hit.p.z);
 		return (id);
-	}
 	return (-1);
 }
 

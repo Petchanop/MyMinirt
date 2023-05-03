@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 02:07:12 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 03:38:32 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	main(int argc, char **argv)
 	init_object(&ob[3], p2, (t_vector){0, 0, 1, 0}, rgb2);
 	init_object(&ob[4], p3, (t_vector){0, 0, 1, 0}, rgb4);
 	init_object(&ob[5], p4, (t_vector){0, 0, 1, 0}, rgb5);
-	init_disk(&ob[6], p5, (t_vector){0, 1, 1, 0}, rgb6);
+	init_disk(&ob[6], p5, (t_vector){0, 1, -1, 0}, rgb6);
 	init_type(&ob[0], "cy", "1");
 	init_type(&ob[1], "pl", "gl");
 	init_type(&ob[2], "df", "2");
@@ -103,7 +103,7 @@ int	main(int argc, char **argv)
 	init_type(&ob[4], "df", "3");
 	init_type(&ob[5], "mt", "gl");
 	init_type(&ob[6], "dk", "");
-	ob[7].type = NULL;
+	ob[6].type = NULL;
 	rgb = (t_color){0, 0, 0};
 	ob[0].index = 0;
 	ob[1].index = 1;

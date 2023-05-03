@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:19 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 00:21:24 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 02:38:26 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ t_color	ray_color(t_cam *c, t_vector cam, t_vector dir, t_object *ob, int depth)
 			t_vector normal = ob[idx].ob_hit.normal;
 			t_vector n_p = ob[idx].ob_hit.p;
 			tn = c->light.bright_ratio * pow(fmax(0, dot_product(vector_normalize(normal), l)), 2);
-			// if (tn == 0 && idx == 2)
-			// 	printf("normal : %f, %f, %f\n", ob[idx].ob_hit.normal.x, ob[idx].ob_hit.normal.y, ob[idx].ob_hit.normal.z);
 			if (is_shadow(c, n_p, l, ob, idx) != -1)
 				return (ncolor);
 			s = isreflect(l, normal);
