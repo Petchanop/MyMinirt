@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 19:03:11 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 00:31:05 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int argc, char **argv)
 	t_vector p1 = (t_vector){0, 0, 0, 0};
 	t_vector p2 = (t_vector){-3, 1, 1.5, 0};
 	t_vector p3 = (t_vector){1, 0.5, -3, 0};
-	t_vector p4 = (t_vector){3, 3, 3, 0};
+	t_vector p4 = (t_vector){3, 4, 3, 0};
 	t_vector p5 = (t_vector){3, 2, -5, 0};
 	t_vector p6 = (t_vector){0, 0.5, 0, 0};
 	rgb = (t_color){25.0 / 255.999, 50.0 / 255.999, 125.0 / 255.999};

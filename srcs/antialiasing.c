@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:46:25 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 18:39:51 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 23:59:40 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,59 @@ float	clamp(float x, float min, float max)
 	return (x);
 }
 
-// t_vector	sampling_ray(t_cam *cam, float x, float y)
-// {
-// 	t_vector	dir;
+t_vector	rotate_z(t_cam *c, t_vector dir)
+{
+	t_vector	pre;
 
-// 	dir.x = x * cam->v_h.x + y * cam->v_v.x + cam->lower.x;
-// 	dir.y = x * cam->v_h.y + y * cam->v_v.y + cam->lower.y;
-// 	dir.z = x * cam->v_h.z + y * cam->v_v.z + cam->lower.z;
-// 	dir.w = 0;
-// 	return (vector_normalize(dir));
-// }
+	pre = dir;
+	dir.x = (pre.x * cos(c->vector.z)) + (pre.y * sin(c->vector.z));
+	dir.y = (pre.y * cos(c->vector.z)) - (pre.x * sin(c->vector.z));
+	return (dir);
+}
+
+t_vector	rotate_x(t_cam *c, t_vector dir)
+{
+	t_vector	pre;
+
+	pre = dir;
+	dir.x = (pre.x * cos(c->vector.x)) - (pre.z * sin(c->vector.x));
+	dir.z = (pre.z * cos(c->vector.x)) + (pre.x * sin(c->vector.x));
+	return (dir);
+}
+
+t_vector	rotate_y(t_cam *c, t_vector dir)
+{
+	t_vector	pre;
+
+	pre = dir;
+	dir.z = (pre.z * cos(c->vector.y)) - (pre.y * sin(c->vector.y));
+	dir.y = (pre.y * cos(c->vector.y)) + (pre.z * sin(c->vector.y));
+	return (dir);
+}
 
 t_vector	sampling_ray(t_cam *cam, float x, float y)
 {
-	t_vector	dir;	
+	t_vector	dir;
 
-	dir.x = (2 * ((x + 0.5) / SCENCE_WIDTH) - 1) * cam->h * cam->aspect_ratio;
-	dir.y = (1 - 2 * ((y + 0.5) / SCENCE_HEIGHT)) * cam->h;
-	dir.z = 1;
+	dir.x = x * cam->u.x + y * cam->v.x + cam->lower.x;
+	dir.y = x * cam->u.y + y * cam->v.y + cam->lower.y;
+	dir.z = x * cam->u.z + y * cam->v.z + cam->lower.z;
+	dir.w = 0;
 	dir = vector_sub(dir, cam->cpoint);
 	return (vector_normalize(dir));
 }
+
+// t_vector	sampling_ray(t_cam *cam, float x, float y)
+// {
+// 	t_vector	dir;	
+
+// 	dir.x = (2 * ((x + 0.5) / SCENCE_WIDTH) - 1) * cam->h * cam->aspect_ratio;
+// 	dir.y = (1 - 2 * ((y + 0.5) / SCENCE_HEIGHT)) * cam->h;
+// 	dir.z = 1;
+// 	dir.w = 0;
+// 	dir = vector_sub(dir, cam->cpoint);
+// 	return (vector_normalize(dir));
+// }
 
 t_color	random_sampling(t_cam *cam, t_object *ob, float x, float y)
 {
