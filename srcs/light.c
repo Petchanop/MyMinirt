@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 20:52:28 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 15:50:14 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 01:44:49 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	init_light(t_light *light)
 {
 	light->l = "L";
-	light->point = (t_vector){-8, 10, -10, 0};
+	light->point = (t_vector){8, 10, -10, 0};
 	light->vector = (t_vector){0, 0, 1, 0};
-	light->color = (t_color){10 / 255.999, 0, 255 / 255.999};
+	light->color = (t_color){200 / 255.999, 200 / 255.999, 255 / 255.999};
 	light->bright_ratio = 0.8;
 	light->dir = vector_normalize(light->point);
 }
@@ -25,8 +25,8 @@ void	init_light(t_light *light)
 void	init_ambient(t_light *light)
 {
 	light->l = "A";
-	light->bright_ratio = 0.2;
-	light->color = (t_color){255, 255, 255};
+	light->bright_ratio = 0.8;
+	light->color = (t_color){1, 0.5, 0.5};
 }
 
 t_color	light_color(t_object *ob, t_cam *c, int depth)

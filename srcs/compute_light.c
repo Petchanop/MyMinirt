@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 18:28:08 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 18:33:00 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 02:04:43 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,17 @@ float	compute_shade(t_cam *c, t_vector p, t_vector s)
 	float	tn;
 	float	dot;
 
+	dot = dot_product(p, s);
+	tn = c->light.bright_ratio * fmax(0, dot);
+	return (tn);
+}
+
+float	compute_specular(t_cam *c, t_vector p, t_vector s)
+{
+	float	dot;
+	float	tn;
+
 	dot = dot_product(vector_normalize(p), s);
-	tn = c->light.bright_ratio * pow(fmax(0, dot), 2);
+	tn = c->light.bright_ratio * pow(fmax(0, dot), 4);
 	return (tn);
 }

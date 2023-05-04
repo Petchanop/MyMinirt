@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:19 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 19:02:22 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 02:01:20 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_color	texture_color(t_cam *c, t_ray r, t_object *ob, int depth)
 	s = isreflect(r.dir, r.normal);
 	s = vector_normalize(s);
 	if ((dot_product(c->ray.dir, s) > 0))
-		ob[idx].tn += compute_shade(c, c->ray.dir, s);
+		ob[idx].tn += compute_specular(c, c->ray.dir, s);
 	if (!strcmp(ob[idx].texture, "df"))
 		ncolor = ray_color(c, r, ob, depth - 1);
 	else if (!strcmp(ob[idx].texture, "mt"))
@@ -37,7 +37,8 @@ t_color	texture_color(t_cam *c, t_ray r, t_object *ob, int depth)
 	else
 		ncolor = ray_color(c, r, ob, depth - 1);
 	ncolor = color_multiply(ob[idx].color, ncolor);
-	return (color_mul(ncolor, ob[idx].tn));
+	ncolor = color_multiply(c->light.color, color_mul(ncolor, ob[idx].tn));
+	return (ncolor);
 }
 
 t_color	ray_color(t_cam *c, t_ray ca, t_object *ob, int depth)
@@ -60,7 +61,8 @@ t_color	ray_color(t_cam *c, t_ray ca, t_object *ob, int depth)
 			r.dir = light_dir(ob[idx], c);
 			r.origin = ob[idx].ob_hit.p;
 			r.normal = ob[idx].ob_hit.normal;
-			ob[idx].tn = compute_shade(c, r.normal, r.dir);
+			ob[idx].tn = c->ambient.bright_ratio;
+			ob[idx].tn *= compute_shade(c, r.normal, r.dir);
 			if (is_shadow(c, r, ob) != -1)
 				return (ncolor);
 			return (texture_color(c, r, ob, depth));

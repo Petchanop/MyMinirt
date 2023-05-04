@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:22:12 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 19:00:28 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 02:01:50 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_color		metal_reflec(t_cam *c, t_object *ob, t_object *ob_h, t_vector dir, int 
 int			closed_object(t_object *ob);
 
 //shading
-float	compute_shade(t_cam *c, t_vector p, t_vector s);
+float		compute_shade(t_cam *c, t_vector p, t_vector s);
+float		compute_specular(t_cam *c, t_vector p, t_vector s);
 
 int			near_zero(t_vector v);
 int			isclose(float f1, float f2);
