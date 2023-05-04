@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:46:25 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/03 23:22:05 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:03:58 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,13 @@ t_vector	sampling_ray(t_cam *cam, float x, float y)
 t_color	random_sampling(t_cam *cam, t_object *ob, float x, float y)
 {
 	t_vector	dir;
+	t_ray		ca;
 	t_color		ret;
 
 	dir = sampling_ray(cam, x, y);
-	ret = ray_color(cam, cam->cpoint, dir, ob, cam->depth);
+	ca.dir = dir;
+	ca.origin = cam->cpoint;
+	ret = ray_color(cam, ca, ob, cam->depth);
 	return (ret);
 }
 

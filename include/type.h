@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:48:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/03 22:04:14 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:57:10 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_ray
 {
 	t_vector	origin;
 	t_vector	dir;
+	t_vector	normal;
 	float		t;
 }	t_ray;
 

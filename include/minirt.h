@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 15:44:23 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:57:59 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,14 @@ void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_vector	random_vector(float min, float max);
 t_vector	rand_in_sphere( void );
 
+//light vector function
+t_vector	light_dir(t_object ob, t_cam *c);
+
 //texture
 t_vector	isreflect(t_vector v, t_vector n);
-t_vector	diffuse_mat(t_object ob, t_cam *c, t_vector dir);
 t_vector	specular_mat(t_object ob, t_cam *c, t_vector dir);
 
-// t_color	diffuse_mat(t_object *ob, t_cam *c, t_vector p, t_vector n, int depth);
-float		is_shadow(t_cam *c, t_vector cam, t_vector ldir, t_object *ob, int idx);
+float		is_shadow(t_cam *c, t_ray r, t_object *ob);
 t_color		light_color(t_object *ob, t_cam *c, int depth);
 
 #endif
