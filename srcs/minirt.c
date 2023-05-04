@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 03:38:32 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 19:03:11 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	main(int argc, char **argv)
 	t_vars		vars;
 	t_object	*ob;
 	t_vector	p;
-	t_vector	n;
 	t_color 	rgb;
 	t_color 	rgb1;
 	t_color 	rgb2;
@@ -68,13 +67,13 @@ int	main(int argc, char **argv)
 	build_image(&vars.img, 100, 100);
 	init_t_data(&vars);
 	cam = init_camera();
-	p = (t_vector){-1, 1.1, 0.0, 0};
+	p = (t_vector){-4.5, 1.05, -1, 0};
 	t_vector p1 = (t_vector){0, 0, 0, 0};
-	t_vector p2 = (t_vector){3, 0.5, -1, 0};
-	t_vector p3 = (t_vector){2, 2, 3, 0};
-	t_vector p4 = (t_vector){3, 2, -4, 0};
-	t_vector p5 = (t_vector){-2.5, 2, -4, 0};
-	n = (t_vector){0, 0.5, 0, 0};
+	t_vector p2 = (t_vector){-3, 1, 1.5, 0};
+	t_vector p3 = (t_vector){1, 0.5, -3, 0};
+	t_vector p4 = (t_vector){3, 3, 3, 0};
+	t_vector p5 = (t_vector){3, 2, -5, 0};
+	t_vector p6 = (t_vector){0, 0.5, 0, 0};
 	rgb = (t_color){25.0 / 255.999, 50.0 / 255.999, 125.0 / 255.999};
 	rgb1 = (t_color){240.0 / 255.999, 150.0 / 255.999, 100.0 / 255.999};
 	rgb2 = (t_color){150.0 / 255.999, 150.0 / 255.999, 100.0 / 255.999};
@@ -84,22 +83,22 @@ int	main(int argc, char **argv)
 	rgb6 = (t_color){179.0 / 255.999, 140.0 / 255.999, 60.0 / 255.999};
 	init_properties(&ob[0], 0.5, 2, 0);
 	init_properties(&ob[1], 100, 0, 0);
-	init_properties(&ob[2], 0.5, 0, 0);
-	init_properties(&ob[3], 0.5, 0, 0);
+	init_properties(&ob[2], 1, 0, 0);
+	init_properties(&ob[3], 0.5, 3, 0);
 	init_properties(&ob[4], 0.5, 0, 0);
 	init_properties(&ob[5], 0.5, 0, 0);
 	init_properties(&ob[6], 0.5, 0, 0);
-	init_cylinder(&ob[0], p, (t_vector){0, 1, -1, 0}, rgb);
+	init_cylinder(&ob[0], p, (t_vector){0.2, 0.5, 0.5, 0}, rgb);
 	init_plane(&ob[1], p1, (t_vector){0, 1, 0, 0}, rgb1);
-	init_object(&ob[2], n, (t_vector){0, 0, 1.0, 0}, rgb3);
-	init_object(&ob[3], p2, (t_vector){0, 0, 1, 0}, rgb2);
-	init_object(&ob[4], p3, (t_vector){0, 0, 1, 0}, rgb4);
-	init_object(&ob[5], p4, (t_vector){0, 0, 1, 0}, rgb5);
-	init_disk(&ob[6], p5, (t_vector){0, 1, -1, 0}, rgb6);
+	init_object(&ob[2], p2, (t_vector){0, 0, 1.0, 0}, rgb3);
+	init_cylinder(&ob[3], p3, (t_vector){0, 0, 1, 0}, rgb2);
+	init_object(&ob[4], p4, (t_vector){0, 0, 1, 0}, rgb4);
+	init_object(&ob[5], p5, (t_vector){0, 0, 1, 0}, rgb5);
+	init_disk(&ob[6], p6, (t_vector){0, 1, -1, 0}, rgb6);
 	init_type(&ob[0], "cy", "1");
 	init_type(&ob[1], "pl", "gl");
 	init_type(&ob[2], "df", "2");
-	init_type(&ob[3], "df", "");
+	init_type(&ob[3], "cy", "");
 	init_type(&ob[4], "df", "3");
 	init_type(&ob[5], "mt", "gl");
 	init_type(&ob[6], "dk", "");
@@ -113,12 +112,6 @@ int	main(int argc, char **argv)
 	ob[5].index = 5;
 	ob[6].index = 6;
 	create_background(cam, ob, &vars, rgb);
-	// draw_sphere(ob, vars, cam);
-	/*define which camera angle for object*/
-	/*find where light source is and how effect color*/
-	/*render shadow and Phoung shading*/
-
-	/*1st try with simple sphere shape*/
 	mlx_put_image_to_window(vars.mlx, vars.mlx_win, vars.img.img, 0, 0);
 	mlx_loop(vars.mlx);
 	free(cam);

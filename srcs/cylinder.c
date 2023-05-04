@@ -6,11 +6,36 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 16:59:05 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 16:39:06 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:23:01 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+int	compute_hitpoint(t_object *ob, t_ray r, int compare[], float t[])
+{
+	float	m;
+
+	m = INFINITY;
+	if (compare[0] != -1 && compare[1] != -1)
+	{
+		if (t[0] < t[1])
+			m = t[0];
+		else
+			m = t[1];
+	}
+	else if (compare[0] != -1)
+		m = t[0];
+	else if (compare[1] != -1)
+		m = t[1];
+	if (m != INFINITY)
+	{
+		ob->ob_hit.t = m;
+		ob->ob_hit.p = vector_add(vector_mul(r.dir, m), r.origin);
+		return (ob->index);
+	}
+	return (-1);
+}
 
 int	hit_cap(t_object *ob, t_ray r, float t_max)
 {
@@ -35,39 +60,9 @@ int	hit_cap(t_object *ob, t_ray r, float t_max)
 		compare[0] = hit_disk(ob, r, ob->t_cap, t[0]);
 	if (T_MIN < t[1] && t[1] < t_max)
 		compare[1] = hit_disk(ob, r, ob->b_cap, t[1]);
-	if (compare[0] != -1 && compare[1] != -1)
-	{
-		if (t[0] < t[1])
-		{
-			ob->ob_hit.t = t[0];
-			ob->ob_hit.p = vector_add(vector_mul(r.dir, t[0]), r.origin);
-		}
-		else
-		{
-			ob->ob_hit.t = t[1];
-			ob->ob_hit.p = vector_add(vector_mul(r.dir, t[1]), r.origin);
-		}
-		if (denom > 0)
-			ob->ob_hit.normal = vector_mul(ob->vector, -1);
-		return (ob->index);
-	}
-	else if (compare[0] != -1)
-	{
-		ob->ob_hit.t = t[0];
-		ob->ob_hit.p = vector_add(vector_mul(r.dir, t[0]), r.origin);
-		if (denom > 0)
-			ob->ob_hit.normal = vector_mul(ob->vector, -1);
-		return (ob->index);
-	}
-	else if (compare[1] != -1)
-	{
-		ob->ob_hit.t = t[1];
-		ob->ob_hit.p = vector_add(vector_mul(r.dir, t[1]), r.origin);
-		if (denom > 0)
-			ob->ob_hit.normal = vector_mul(ob->vector, -1);
-		return (ob->index);
-	}
-	return (-1);
+	if (denom > 0)
+		ob->ob_hit.normal = vector_mul(ob->vector, -1);
+	return (compute_hitpoint(ob, r, compare, t));
 }
 
 int	hit_body(t_object *ob, t_ray r, float t[], int inside)
@@ -97,12 +92,16 @@ int	hit_cylinder(t_object *ob, t_ray r, float t_max)
 {
 	float		sdis;
 	float		t[2];
+	float		dot[3];
 	t_vector	oc;
 
 	oc = vector_sub(r.origin, ob->center);
-	ob->ob_hit.a = pow(dot_product(r.dir, r.dir), 2) - pow(dot_product(r.dir, ob->vector), 2);
-	ob->ob_hit.b = (dot_product(r.dir, oc) - dot_product(r.dir, ob->vector) * dot_product(oc, ob->vector));
-	ob->ob_hit.c = dot_product(oc, oc) - pow(dot_product(oc, ob->vector), 2) - pow(ob->radius, 2);
+	dot[0] = dot_product(r.dir, r.dir);
+	dot[1] = dot_product(r.dir, ob->vector);
+	dot[2] = dot_product(oc, ob->vector);
+	ob->ob_hit.a = pow(dot[0], 2) - pow(dot[1], 2);
+	ob->ob_hit.b = (dot_product(r.dir, oc) - dot[1] * dot[2]);
+	ob->ob_hit.c = dot_product(oc, oc) - pow(dot[2], 2) - pow(ob->radius, 2);
 	ob->ob_hit.dis = (pow(ob->ob_hit.b, 2)) - (ob->ob_hit.a * ob->ob_hit.c);
 	sdis = sqrt(ob->ob_hit.dis);
 	if (ob->ob_hit.dis < 0)

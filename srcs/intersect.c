@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:38:42 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 16:31:56 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:59:32 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,26 @@ int	hit_object(t_object *ob, t_ray r, float t_max)
 			return (hit_disk(ob, r, ob->center, ob->ob_hit.t));
 	}
 	return (-1);
+}
+
+int	find_objecthit(t_cam *c, t_ray ca, t_object *ob)
+{
+	int	i;
+	int	idx;
+
+	i = 0;
+	idx = -1;
+	while (ob[i].type)
+	{
+		c->id_hit = hit_object(&ob[i], ca, c->t_max);
+		if (c->id_hit > -1)
+		{
+			c->t_max = ob[i].ob_hit.t;
+			idx = c->id_hit;
+		}
+		i++;
+	}
+	return (idx);
 }
 
 float	is_shadow(t_cam *c, t_ray r, t_object *ob)

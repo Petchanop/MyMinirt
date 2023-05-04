@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/05/04 15:43:25 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/05/04 18:33:16 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC= minirt.c \
 	light.c \
 	bg.c \
 	intersect.c \
+	compute_light.c \
 
 SRCS= ${addprefix ${SRCS_DIR}, ${SRC}}
 

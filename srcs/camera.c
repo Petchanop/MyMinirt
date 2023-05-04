@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:50:06 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 15:46:58 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 18:55:52 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ t_cam	*init_camera( void )
 
 	cam = malloc(sizeof(t_cam));
 	cam->c = "C";
-	cam->cpoint = (t_vector){0, 1, -10, 0};
-	cam->vector = (t_vector){0, 1, 0, 0};
+	cam->cpoint = (t_vector){0, 2, -10, 0};
+	cam->vector = (t_vector){0, 1, 1, 0};
 	init_light(&cam->light);
 	init_ambient(&cam->ambient);
 	cam->aspect_ratio = (float)SCENCE_WIDTH / (float)SCENCE_HEIGHT;
 	cam->t_max = T_MAX;
 	cam->depth = 50;
-	cam->fov = 156;
+	cam->fov = 160;
 	cam->theta = degrees_to_radians(cam->fov * 0.5);
 	cam->len = 1;
 	cam->h = tan(cam->theta);
