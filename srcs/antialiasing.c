@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:46:25 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 23:59:40 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 00:45:02 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,36 +35,6 @@ float	clamp(float x, float min, float max)
 	if (x > max)
 		return (max);
 	return (x);
-}
-
-t_vector	rotate_z(t_cam *c, t_vector dir)
-{
-	t_vector	pre;
-
-	pre = dir;
-	dir.x = (pre.x * cos(c->vector.z)) + (pre.y * sin(c->vector.z));
-	dir.y = (pre.y * cos(c->vector.z)) - (pre.x * sin(c->vector.z));
-	return (dir);
-}
-
-t_vector	rotate_x(t_cam *c, t_vector dir)
-{
-	t_vector	pre;
-
-	pre = dir;
-	dir.x = (pre.x * cos(c->vector.x)) - (pre.z * sin(c->vector.x));
-	dir.z = (pre.z * cos(c->vector.x)) + (pre.x * sin(c->vector.x));
-	return (dir);
-}
-
-t_vector	rotate_y(t_cam *c, t_vector dir)
-{
-	t_vector	pre;
-
-	pre = dir;
-	dir.z = (pre.z * cos(c->vector.y)) - (pre.y * sin(c->vector.y));
-	dir.y = (pre.y * cos(c->vector.y)) + (pre.z * sin(c->vector.y));
-	return (dir);
 }
 
 t_vector	sampling_ray(t_cam *cam, float x, float y)
