@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:22:12 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 16:01:51 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:30:04 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void		init_disk(t_object *ob, t_vector center, t_vector n, t_color rgb);
 t_color		ray_color(t_cam *c, t_ray ca, t_object *ob, int depth);
 
 //hit object
-int			hit(t_object *ob, float sdis, t_vector v, t_vector cam, float t_max);
-int			hit_object(t_object *ob, t_vector v, t_vector cam, float t_max);
-int			hit_sphere(t_object *ob, t_vector v, t_vector cam, float t_max);
-int			hit_cylinder(t_object *ob, t_vector v, t_vector cam, float t_max);
-int			hit_plane(t_object *ob, t_vector v, t_vector cam, float t_max);
-int			hit_disk(t_object *ob, t_vector v, t_vector cam, t_vector p, float t);
+int			hit(t_object *ob, float sdis, t_ray r, float t_max);
+int			hit_object(t_object *ob, t_ray r, float t_max);
+int			hit_sphere(t_object *ob, t_ray r, float t_max);
+int			hit_cylinder(t_object *ob, t_ray r, float t_max);
+int			hit_plane(t_object *ob, t_ray r, float t_max);
+int			hit_disk(t_object *ob, t_ray r, t_vector p, float t);
 
 t_vector	isfront_face(t_vector v, t_vector outward, t_object *ob);
 t_vector	random_hemisphere(t_vector normal);

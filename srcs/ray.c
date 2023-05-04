@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:19 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 16:03:00 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:35:09 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ t_color	ray_color(t_cam *c, t_ray ca, t_object *ob, int depth)
 	t_color		ncolor;
 	float		tn;
 	int			i;
-	int		t;
-	int		idx;
+	int			t;
+	int			idx;
 
 	i = 0;
 	tn = 1;
@@ -36,7 +36,7 @@ t_color	ray_color(t_cam *c, t_ray ca, t_object *ob, int depth)
 		return (ncolor);
 	while (ob[i].type)
 	{
-		t = hit_object(&ob[i], ca.dir, ca.origin, c->t_max);
+		t = hit_object(&ob[i], ca, c->t_max);
 		if (t > -1)
 		{
 			c->t_max = ob[i].ob_hit.t;
