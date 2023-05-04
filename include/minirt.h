@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/02 15:44:28 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:44:23 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include "object.h"
 # include "color.h"
 # include "antialiasing.h"
-# include "matrix.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096 
@@ -74,16 +73,7 @@ typedef struct s_plane
 /*build type object to kept all information and identified which type is*/
 void		create_background(t_cam *cam, t_object *ob, t_vars *data, t_color color);
 void		put_pixel(t_data *data, int x, int y, int color);
-void		write_line(t_vars vars, t_point point[2], t_color color);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-float		find_stepxy(t_point diff);
-float		find_stepxz(t_point diff);
-int			check_point(t_point begin, t_point end, t_point step);
-t_point		find_dxdy(t_point start, t_point end);
-t_point		rotatez(t_point pnt, t_vars vars);
-t_point		rotatex(t_point pnt, t_vars vars);
-t_point		rotatey(t_point pnt, t_vars vars);
-t_point		point_transformation(t_point pnt, t_vars vars);
 t_vector	random_vector(float min, float max);
 t_vector	rand_in_sphere( void );
 
@@ -91,8 +81,9 @@ t_vector	rand_in_sphere( void );
 t_vector	isreflect(t_vector v, t_vector n);
 t_vector	diffuse_mat(t_object ob, t_cam *c, t_vector dir);
 t_vector	specular_mat(t_object ob, t_cam *c, t_vector dir);
+
 // t_color	diffuse_mat(t_object *ob, t_cam *c, t_vector p, t_vector n, int depth);
-float	is_shadow(t_cam *c, t_vector cam, t_vector ldir, t_object *ob, int idx);
-t_color	light_color(t_object *ob, t_cam *c, int depth);
+float		is_shadow(t_cam *c, t_vector cam, t_vector ldir, t_object *ob, int idx);
+t_color		light_color(t_object *ob, t_cam *c, int depth);
 
 #endif

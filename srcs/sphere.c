@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:44:08 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/27 00:05:23 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:39:11 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,4 @@ int	hit_sphere(t_object *ob, t_vector v, t_vector cam, float t_max)
 	else
 		return (hit(ob, sdis, v, cam, t_max));
 }
-
-int	hit_object(t_object *ob, t_vector v, t_vector cam, float t_max)
-{
-	if (!strcmp(ob->type, "sp"))
-		return (hit_sphere(ob, v, cam, t_max));
-	else if (!strcmp(ob->type, "cy"))
-		return (hit_cylinder(ob, v, cam, t_max));
-	else if (!strcmp(ob->type, "pl"))
-		return (hit_plane(ob, v, cam, t_max));
-	else if (!strcmp(ob->type, "dk"))
-	{
-		if (hit_plane(ob, v, cam, t_max) != -1)
-			return (hit_disk(ob, v, cam, ob->center, ob->ob_hit.t));
-	}
-	return (-1);
-}
-
 //unit_vector == vector_normalize

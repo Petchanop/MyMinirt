@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/05/02 15:44:00 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/05/04 15:43:25 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,7 @@ INCLUDE_DIR= include/
 BUILD_DIR = build/
 
 SRC= minirt.c \
-	adjust_point.c \
-	finddxdy.c \
 	write_line.c \
-	checkpoint.c	\
 	camera.c \
 	object.c \
 	calculate_vector.c \
@@ -41,8 +38,7 @@ SRC= minirt.c \
 	texture.c \
 	light.c \
 	bg.c \
-	matrix_operation.c \
-	matrix_calculation.c
+	intersect.c \
 
 SRCS= ${addprefix ${SRCS_DIR}, ${SRC}}
 
