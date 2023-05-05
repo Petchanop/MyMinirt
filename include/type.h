@@ -6,12 +6,33 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:48:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 19:34:07 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 17:35:11 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPE_H
 # define TYPE_H
+
+typedef struct s_data {
+	void	*img;
+	char	*addr;
+	float	zoom;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		depth;
+	int		width;
+}	t_data;
+
+typedef struct s_vars {
+	void		*mlx;
+	void		*mlx_win;
+	pthread_mutex_t	mutex;
+	t_data		img;
+	float		angle;
+	float		angle1;
+	float		angle2;
+}	t_vars;
 
 typedef struct s_matrix
 {
@@ -112,5 +133,17 @@ typedef struct s_object
 	t_color		color;
 	t_cam		cam;
 }	t_object;
+
+typedef struct s_scence
+{
+	t_vars		*data;
+	t_cam		c;
+	t_object	*ob;
+	int			maxx;
+	int			maxy;
+	int			minx;
+	int			miny;
+	int			id;
+}	t_scence;
 
 #endif

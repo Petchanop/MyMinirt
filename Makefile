@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/05/04 18:33:16 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/05/05 17:07:51 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME=minirt
 
 CC=gcc 
 
-CFLAGS= -Wall -Werror -Wextra
+CFLAGS= -Wall -Werror -Wextra -fsanitize=address
 
 SRCS_DIR= srcs/
 
@@ -54,7 +54,7 @@ OBJS_INC=$(SRC_INCLUDE:%.c=$(BUILD_DIR)/%.o)
 
 MLX=mlx/
 
-LIBS= -Lmlx -lmlx -framework OpenGL -framework AppKit
+LIBS= -lpthread -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 # LIB_FT=-Llibft -lft 
 

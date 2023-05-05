@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:50:06 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/05 01:43:46 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 18:14:20 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	cameara_fov(t_cam *cam)
 	float		z;
 	t_vector	w;
 
-	cam->lookat = (t_vector){1, 0, 0, 0};
+	cam->lookat = (t_vector){0, 0, 0, 0};
 	w = vector_sub(cam->lookat, cam->cpoint);
 	w = vector_normalize(w);
 	cam->u = vector_normalize(cross_product(w, cam->vector));
@@ -41,7 +41,7 @@ t_cam	*init_camera( void )
 
 	cam = malloc(sizeof(t_cam));
 	cam->c = "C";
-	cam->cpoint = (t_vector){0, 6, -10, 0};
+	cam->cpoint = (t_vector){0, 2, -10, 0};
 	cam->vector = (t_vector){0, 1, 0, 0};
 	init_light(&cam->light);
 	init_ambient(&cam->ambient);

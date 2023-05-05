@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 15:57:59 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 17:49:55 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <pthread.h>
 # include "../mlx/mlx.h"
 # include "../include/getnextline/get_next_line.h"
 # include "vector.h"
@@ -41,27 +42,6 @@
 # define MAX_TRACE_DIS 1000.0
 # define MAX_STEP 600;
 
-typedef struct s_data {
-	void	*img;
-	char	*addr;
-	float	zoom;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		depth;
-	int		width;
-}	t_data;
-
-typedef struct s_vars {
-	void		*mlx;
-	void		*mlx_win;
-	t_data		img;
-	t_point		zoom;
-	float		angle;
-	float		angle1;
-	float		angle2;
-}	t_vars;
-
 typedef struct s_plane
 {
 	char	*pl;
@@ -71,7 +51,9 @@ typedef struct s_plane
 }	t_plane;
 
 /*build type object to kept all information and identified which type is*/
-void		create_background(t_cam *cam, t_object *ob, t_vars *data, t_color color);
+// void		create_background(t_cam *cam, t_object *ob, t_vars *data, t_color color);
+void		create_background(t_scence *sc, t_object *ob, t_vars *data, t_color color);
+void		create_scence(t_cam *cam, t_object *ob, t_vars *data);
 void		put_pixel(t_data *data, int x, int y, int color);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_vector	random_vector(float min, float max);
