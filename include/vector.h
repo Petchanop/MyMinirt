@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 16:41:16 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/28 21:19:18 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 23:43:23 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 
 # include "type.h"
 
-float		distanceto_ob(t_vector p1, t_vector p2);
 float		dot_product(t_vector v1, t_vector v2);
 float		vector_length(t_vector v);
-float		normalize_cord(float a, float b);
 float		min(float a, float b);
 t_vector	cross_product(t_vector p1, t_vector p2);
 t_vector	vector_normalize(t_vector v);

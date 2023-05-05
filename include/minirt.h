@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/05 17:49:55 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 23:47:04 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define MIN_HIT_DIS 0.001
 # define MAX_TRACE_DIS 1000.0
 # define MAX_STEP 600;
+# define THREAD_NUM 10 
 
 typedef struct s_plane
 {
@@ -51,9 +52,8 @@ typedef struct s_plane
 }	t_plane;
 
 /*build type object to kept all information and identified which type is*/
-// void		create_background(t_cam *cam, t_object *ob, t_vars *data, t_color color);
-void		create_background(t_scence *sc, t_object *ob, t_vars *data, t_color color);
-void		create_scence(t_cam *cam, t_object *ob, t_vars *data);
+void		create_scence(t_scence *sc, t_object *ob, t_vars *data, t_color color);
+void		run_thread(t_cam *cam, t_object *ob, t_vars *data);
 void		put_pixel(t_data *data, int x, int y, int color);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 t_vector	random_vector(float min, float max);
@@ -64,9 +64,9 @@ t_vector	light_dir(t_object ob, t_cam *c);
 
 //texture
 t_vector	isreflect(t_vector v, t_vector n);
-t_vector	specular_mat(t_object ob, t_cam *c, t_vector dir);
 
 float		is_shadow(t_cam *c, t_ray r, t_object *ob);
-t_color		light_color(t_object *ob, t_cam *c, int depth);
+
+void		*render_scence(void *sc);
 
 #endif

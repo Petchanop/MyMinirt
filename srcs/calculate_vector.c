@@ -6,30 +6,11 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/24 14:31:43 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/04/26 00:45:33 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 23:43:19 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-
-float	min(float a, float b)
-{
-	return ((a < b) ? a : b);
-}
-
-float	distanceto_ob(t_vector p1, t_vector p2)
-{
-	float	distance;
-	float	diffx;
-	float	diffy;
-	float	diffz;
-
-	diffx = pow(p1.x - p2.x, 2);
-	diffy = pow(p1.y - p2.y, 2);
-	diffz = pow(p1.z - p2.z, 2);
-	distance = sqrt(diffx + diffy + diffz);
-	return (distance);
-}
 
 t_vector	cross_product(t_vector p1, t_vector p2)
 {
@@ -66,13 +47,6 @@ t_vector	vector_normalize(t_vector v)
 	return (n_vector);
 }
 
-float normalize_cord(float a, float b)
-{
-	float	n;
-
-	n = sqrt(pow(a, 2) + pow(b, 2));
-	return (n);
-}
 /*
 int	main(void)
 {

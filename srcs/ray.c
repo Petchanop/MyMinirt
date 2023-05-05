@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 16:34:19 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/05 02:01:20 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 23:54:46 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@
 t_color	texture_color(t_cam *c, t_ray r, t_object *ob, int depth)
 {
 	t_color		ncolor;
+	t_ray		reflec;
 	t_vector	s;
 	int			idx;
 
 	ncolor = (t_color){0, 0, 0};
+	reflec = r;
 	idx = c->id_hit;
 	s = isreflect(r.dir, r.normal);
 	s = vector_normalize(s);
@@ -33,7 +35,10 @@ t_color	texture_color(t_cam *c, t_ray r, t_object *ob, int depth)
 	if (!strcmp(ob[idx].texture, "df"))
 		ncolor = ray_color(c, r, ob, depth - 1);
 	else if (!strcmp(ob[idx].texture, "mt"))
-		ncolor = metal_reflec(c, ob, &ob[idx], c->ray.dir, depth - 1);
+	{
+		reflec = metal_reflec(&ob[idx], c->ray.dir);
+		ncolor = ray_color(c, reflec, ob, depth - 1);
+	}
 	else
 		ncolor = ray_color(c, r, ob, depth - 1);
 	ncolor = color_multiply(ob[idx].color, ncolor);
@@ -53,20 +58,17 @@ t_color	ray_color(t_cam *c, t_ray ca, t_object *ob, int depth)
 	idx = find_objecthit(c, ca, ob);
 	c->id_hit = -1;
 	c->t_max = T_MAX;
-	if (idx > -1)
+	if (idx > -1 && (ob[idx].ob_hit.t != 0.000))
 	{
-		if (ob[idx].ob_hit.t != 0.000)
-		{
-			c->id_hit = idx;
-			r.dir = light_dir(ob[idx], c);
-			r.origin = ob[idx].ob_hit.p;
-			r.normal = ob[idx].ob_hit.normal;
-			ob[idx].tn = c->ambient.bright_ratio;
-			ob[idx].tn *= compute_shade(c, r.normal, r.dir);
-			if (is_shadow(c, r, ob) != -1)
-				return (ncolor);
-			return (texture_color(c, r, ob, depth));
-		}
+		c->id_hit = idx;
+		r.dir = light_dir(ob[idx], c);
+		r.origin = ob[idx].ob_hit.p;
+		r.normal = ob[idx].ob_hit.normal;
+		ob[idx].tn = c->ambient.bright_ratio;
+		ob[idx].tn *= compute_shade(c, r.normal, r.dir);
+		if (is_shadow(c, r, ob) != -1)
+			return (ncolor);
+		return (texture_color(c, r, ob, depth));
 	}
 	return (generate_color(ca.dir));
 }

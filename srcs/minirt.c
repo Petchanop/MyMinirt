@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/05 17:49:22 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 23:05:09 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,10 @@ int	main(int argc, char **argv)
 	ob[4].index = 4;
 	ob[5].index = 5;
 	ob[6].index = 6;
-	create_scence(cam, ob, &vars);
-	// create_background(cam, ob, &vars, rgb);
+	run_thread(cam, ob, &vars);
 	mlx_put_image_to_window(vars.mlx, vars.mlx_win, vars.img.img, 0, 0);
 	mlx_loop(vars.mlx);
+	pthread_mutex_destroy(&vars.mutex);
 	free(cam);
 	free(ob);
 }

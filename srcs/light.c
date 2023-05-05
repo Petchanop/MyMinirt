@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 20:52:28 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/05 01:44:49 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 23:44:32 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,6 @@ void	init_ambient(t_light *light)
 	light->color = (t_color){1, 0.5, 0.5};
 }
 
-t_color	light_color(t_object *ob, t_cam *c, int depth)
-{
-	t_vector	reflec;
-	(void)depth;
-
-	reflec = isreflect(vector_normalize(c->light.dir), ob->ob_hit.normal);
-	return (ob->color);
-}
-
-//light direcrtion ob.ob_hit.p - light.point
 t_vector	light_dir(t_object ob, t_cam *c)
 {
 	t_vector	l;

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:20:52 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 18:54:39 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 23:45:28 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,3 @@ void	init_type(t_object *ob, char *type, char *reflec)
 	ob->reflec = reflec;
 	ob->tn = 1;
 }
-
-int	isclose(float f1, float f2)
-{
-	return (fabs(f1 - f2) < EPSILON);
-}
-// int	isintersection(t_vector point, t_point point, t_vector local, t_color color)

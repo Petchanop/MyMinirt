@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:22:12 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/05 02:01:50 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 23:54:18 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ float		dis_from_sphere(t_vector current, t_object *ob, float r);
 
 //texture
 // t_color		scatter_lambertian(t_object *ob_h, t_vector dir, int depth);
-t_color		metal_reflec(t_cam *c, t_object *ob, t_object *ob_h, t_vector dir, int depth);
+t_ray		metal_reflec(t_object *ob_h, t_vector dir);
 int			closed_object(t_object *ob);
 
 //shading
