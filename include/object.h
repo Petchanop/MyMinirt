@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:22:12 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/05 23:54:18 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/06 00:01:39 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 //initialize
 void		init_object(t_object *ob, t_vector center, t_vector n, t_color rgb);
 void		init_type(t_object *ob, char *type, char *reflec);
-void		init_cylinder(t_object *ob, t_vector center, t_vector n, t_color rgb);
+void		init_cylinder(t_object *ob, t_vector cent, t_vector n, t_color rgb);
 void		init_plane(t_object *ob, t_vector center, t_vector n, t_color rgb);
 void		init_disk(t_object *ob, t_vector center, t_vector n, t_color rgb);
 //ray
@@ -38,18 +38,13 @@ int			hit_disk(t_object *ob, t_ray r, t_vector p, float t);
 
 t_vector	isfront_face(t_vector v, t_vector outward, t_object *ob);
 t_vector	random_hemisphere(t_vector normal);
-float		dis_from_sphere(t_vector current, t_object *ob, float r);
-
 //texture
 // t_color		scatter_lambertian(t_object *ob_h, t_vector dir, int depth);
 t_ray		metal_reflec(t_object *ob_h, t_vector dir);
-int			closed_object(t_object *ob);
 
 //shading
 float		compute_shade(t_cam *c, t_vector p, t_vector s);
 float		compute_specular(t_cam *c, t_vector p, t_vector s);
 
-int			near_zero(t_vector v);
-int			isclose(float f1, float f2);
 int			convert_to_int(t_color color);
 #endif

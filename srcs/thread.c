@@ -6,13 +6,13 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 21:16:49 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/05 23:07:59 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/06 00:45:23 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	init_scence(t_scence sc[], t_cam *cam, t_object *ob, t_vars *data)
+void	init_scene(t_scence sc[], t_cam *cam, t_object *ob, t_vars *data)
 {
 	int	count;
 	int	i;
@@ -84,12 +84,12 @@ void	run_thread(t_cam *cam, t_object *ob, t_vars *data)
 	int			i;
 
 	i = 0;
-	init_scence(sc, cam, ob, data);
+	init_scene(sc, cam, ob, data);
 	pthread_mutex_init(&data->mutex, NULL);
 	assign_portion(sc);
 	while (i < THREAD_NUM)
 	{	
-		if (pthread_create(&th[i], NULL, &render_scence, &sc[i]) != 0)
+		if (pthread_create(&th[i], NULL, &render_scene, &sc[i]) != 0)
 			printf("Thread %d fail to create\n", i + 1);
 		i++;
 	}

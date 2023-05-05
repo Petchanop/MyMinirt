@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 16:00:31 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/05 23:55:15 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/05 23:59:51 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,6 @@ t_vector	isreflect(t_vector v, t_vector n)
 
 	dot_n = vector_mul(n, 2 * dot_product(v, n));
 	return (vector_sub(v, dot_n));
-}
-
-int	near_zero(t_vector v)
-{
-	float	s;
-
-	s = 0.001;
-	return ((fabs(v.x) < s) && (fabs(v.y) < s) && (fabs(v.z) < s));
 }
 
 t_ray	metal_reflec(t_object *ob_h, t_vector dir)

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/05 23:47:04 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/06 00:46:16 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_plane
 }	t_plane;
 
 /*build type object to kept all information and identified which type is*/
-void		create_scence(t_scence *sc, t_object *ob, t_vars *data, t_color color);
+void		create_scene(t_scence *sc, t_object *ob, t_vars *data, t_color color);
 void		run_thread(t_cam *cam, t_object *ob, t_vars *data);
 void		put_pixel(t_data *data, int x, int y, int color);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -67,6 +67,6 @@ t_vector	isreflect(t_vector v, t_vector n);
 
 float		is_shadow(t_cam *c, t_ray r, t_object *ob);
 
-void		*render_scence(void *sc);
+void		*render_scene(void *sc);
 
 #endif
