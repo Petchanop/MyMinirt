@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 15:38:42 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 18:59:32 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:16:53 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	hit_object(t_object *ob, t_ray r, float t_max)
 		if (hit_plane(ob, r, t_max) != -1)
 			return (hit_disk(ob, r, ob->center, ob->ob_hit.t));
 	}
+	else if (!strcmp(ob->type, "co"))
+		return (hit_cone(ob, r, t_max));
 	return (-1);
 }
 

@@ -6,13 +6,13 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 21:16:49 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/06 00:45:23 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/06 12:29:29 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	init_scene(t_scence sc[], t_cam *cam, t_object *ob, t_vars *data)
+void	init_scene(t_scene sc[], t_cam *cam, t_object *ob, t_vars *data)
 {
 	int	count;
 	int	i;
@@ -40,7 +40,7 @@ void	init_scene(t_scence sc[], t_cam *cam, t_object *ob, t_vars *data)
 	}
 }
 
-void	assign_section(t_scence *sc, int x[], int y[])
+void	assign_section(t_scene *sc, int x[], int y[])
 {
 	sc->maxx = x[0];
 	sc->maxy = y[0] / 2;
@@ -48,7 +48,7 @@ void	assign_section(t_scence *sc, int x[], int y[])
 	sc->miny = y[1];
 }
 
-void	assign_portion(t_scence sc[])
+void	assign_portion(t_scene sc[])
 {
 	int			i;
 	int			sizex[2];
@@ -80,7 +80,7 @@ void	assign_portion(t_scence sc[])
 void	run_thread(t_cam *cam, t_object *ob, t_vars *data)
 {
 	pthread_t	th[10];
-	t_scence	sc[10];
+	t_scene		sc[10];
 	int			i;
 
 	i = 0;
@@ -99,4 +99,14 @@ void	run_thread(t_cam *cam, t_object *ob, t_vars *data)
 	i = 0;
 	while (i < THREAD_NUM)
 		pthread_detach(th[i++]);
+	free_scene(sc);
+}
+
+void	free_scene(t_scene sc[])
+{
+	int	i;
+
+	i = 0;
+	while (i < THREAD_NUM)
+		free(sc[i++].ob);
 }

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:48:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/05 17:35:11 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/06 15:05:48 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ typedef struct s_object
 	float		radius;
 	float		height;
 	float		width;
+	float		k;
 	float		t_min;
 	float		t_max;
 	float		tn;
@@ -127,6 +128,7 @@ typedef struct s_object
 	t_hit		ob_hit;
 	t_vector	vector;
 	t_vector	center;
+	t_vector	oc;
 	t_vector	diff;
 	t_vector	t_cap;
 	t_vector	b_cap;
@@ -134,7 +136,7 @@ typedef struct s_object
 	t_cam		cam;
 }	t_object;
 
-typedef struct s_scence
+typedef struct s_scene
 {
 	t_vars		*data;
 	t_cam		c;
@@ -144,6 +146,6 @@ typedef struct s_scence
 	int			minx;
 	int			miny;
 	int			id;
-}	t_scence;
+}	t_scene;
 
 #endif

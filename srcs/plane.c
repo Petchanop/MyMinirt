@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 18:38:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 16:31:22 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:39:31 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ int	hit_disk(t_object *ob, t_ray r, t_vector p, float t)
 
 	p0 = vector_add(vector_mul(r.dir, t), r.origin);
 	w = vector_sub(p, p0);
-	d = vector_length(w) / 2;
+	d = dot_product(w, w);
 	if (sqrt(d) <= ob->radius)
 	{
 		ob->ob_hit.t = t;
 		ob->ob_hit.p = p0;
 		ob->ob_hit.normal = ob->ob_hit.normal;
+		if (ob->ob_hit.normal.z < 0)
+			ob->ob_hit.normal.z *= -1;
 		return (ob->index);
 	}
 	return (-1);
@@ -40,7 +42,7 @@ int	hit_plane(t_object *ob, t_ray r, float t_max)
 	denom = dot_product(ob->vector, r.dir);
 	t = 0.0;
 	p = (t_vector){0, 0, 0, 0};
-	if (fabs(denom) < 0.0001f)
+	if (fabs(denom) < 1e-6)
 		return (-1);
 	p = vector_sub(ob->center, r.origin);
 	t = dot_product(p, ob->vector) / denom;

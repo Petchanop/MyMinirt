@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/05/05 23:39:37 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/05/06 13:16:51 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC= minirt.c \
 	sphere.c \
 	cylinder.c \
 	plane.c \
+	cone.c \
 	color.c \
 	ray.c \
 	antialiasing.c \

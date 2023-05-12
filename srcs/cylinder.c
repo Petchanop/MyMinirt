@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 16:59:05 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/04 18:23:01 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:07:47 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ int	hit_cap(t_object *ob, t_ray r, float t_max)
 	p[1] = vector_sub(ob->b_cap, r.origin);
 	t[1] = dot_product(p[1], ob->vector) / denom;
 	ob->ob_hit.normal = ob->vector;
-	if (denom > 0)
-		ob->ob_hit.normal = vector_mul(ob->vector, -1);
 	if (T_MIN < t[0] && t[0] < t_max)
 		compare[0] = hit_disk(ob, r, ob->t_cap, t[0]);
 	if (T_MIN < t[1] && t[1] < t_max)
@@ -107,17 +105,11 @@ int	hit_cylinder(t_object *ob, t_ray r, float t_max)
 	if (ob->ob_hit.dis < 0)
 		return (-1);
 	t[0] = ((-ob->ob_hit.b - sdis) / ob->ob_hit.a);
+	t[1] = (-ob->ob_hit.b + sdis) / ob->ob_hit.a;
+	if (t[0] > t[1])
+		t[0] = t[1];
+	if (t[0] > T_MIN && t[0] < t_max && hit_body(ob, r, t, 0) != -1)
+		return (ob->index);
 	t[1] = t_max;
-	if (t[0] > T_MIN && t[0] < t_max)
-	{
-		if (hit_body(ob, r, t, 0) != -1)
-			return (ob->index);
-	}
-	t[0] = (-ob->ob_hit.b + sdis) / ob->ob_hit.a;
-	if (t[1] > T_MIN && t[1] < t_max)
-	{
-		if (hit_body(ob, r, t, 0) != -1)
-			return (ob->index);
-	}
 	return (hit_cap(ob, r, t[1]));
 }
