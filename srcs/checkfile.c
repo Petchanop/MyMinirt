@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:41:43 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/25 22:02:41 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/26 03:01:56 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,49 +36,61 @@ t_object *check_file(char *av)
     ob = malloc (sizeof(t_object));
     if (!ob)
         return (NULL);
-    line = get_next_line(fd);
-    int i = 0;
-    t_cam *cam;
-    cam = malloc(sizeof(t_cam))
-    if (!cam)
-        return (NULL);
-    while (line != NULL)
-    {   
-        //Each type of element can be separated by one or more line break(s).
-        //Each type of information from an element can be separated by one or more space(s).
-        //Each type of element can be set in any order in the file.
+    while (1)
+    {
+        line = get_next_line(fd);
+        if (line == NULL)
+            break ;
+        // int i = 0;
+        // t_cam *cam;
+        // cam = malloc(sizeof(t_cam))
+        // if (!cam)
+        //     return (NULL);  
+            //Each type of element can be separated by one or more line break(s).
+            //Each type of information from an element can be separated by one or more space(s).
+            //Each type of element can be set in any order in the file.
+            
+        char **split_space;
+        split_space = ft_split(line, ' ');
         
-        char **split_space = ft_split(line, ' ');
-        int i = 0;
         if (ft_strncmp(ft_toupper(split_space[0])), "a", 2)//Ambient lightning identifier A, ratio 0-1, RGB color
         {
-            check_ratio(av);
-            check_RGB
+            if (count(split_space) != 3)
+                exit (1);
+            check_ratio(split_space[1]);
+            check_RGB(split_space[2]);
             init_ambient(t_light *light)
         }
         else if (ft_strncmp(ft_toupper(split_space[0])), "c", 2)// Cam identifier C, coor, vector, FOV
         {
+            if (count(split_space) != 4)
+                exit (1);
             
         }
         else if (ft_strncmp(ft_toupper(split_space[0])), "l", 2)//light identifier L, coor, ratio 0-1, RGB color
         {
-            
+            if (count(split_space) != 4)
+                exit (1);
         }
         else if (ft_strncmp(ft_toupper(split_space[0])), "pl", 3)//plane identifier pl, coor, vector, RGB color
         {
-            
+            if (count(split_space) != 4)
+                exit (1);
         }
         else if (ft_strncmp(ft_toupper(split_space[0])), "sp", 3)//Sphere identifier sp, coor, diameter, RGB color 
         {
-            
+            if (count(split_space) != 4)
+                exit (1);
         }
         else if (ft_strncmp(ft_toupper(split_space[0])), "cy", 3)//cylinder identifer cy, coor, vector, diameter, height, RGB color
         {
-            
+            if (count(split_space) != 5)
+                exit (1);
         }
         else if (ft_strncmp(ft_toupper(split_space[0])), "co", 3)
         {
-            
+            if (count(split_space) != 5)
+                exit (1);
         }
         else
             {
@@ -90,12 +102,6 @@ t_object *check_file(char *av)
         //followed by all specific information for each object in a strict order such as:
         
         //obj order
-        
-        
-        
-        
-        
-        
     }
 }
 
@@ -126,7 +132,7 @@ int check_RGB(char *str)
     int i = 0;
     if (count(split_RGB) != 3) // if (funtion(split_RGB) != 3) strlen(char *)
         exit (1);
-     while (split_RGB[i] != NULL)
+    while (split_RGB[i] != NULL)
     {
         int j = 0;
         while(split_RGB[i][j])
@@ -154,4 +160,40 @@ int check_RGB(char *str)
     return (0);
 }
 
+int check_coor(char *str)
+{
+    char **split_coor = ft_split(line, ',');
+    int i = 0;
+    if (count(split_coor) != 3)
+        exit (1);
+    while (split_coor[i] != NULL)
+    {
+        int j = 0;
+        int count = 0;
+        while(split_coor[i][j])
+        {
+            if (!ft_isdigit(split_coor[i][0]) || split_coor[i][0] != '-' || (split_coor[i][0] == '-' && split_coor[i][1] == '.'))
+            {
+                write(2, "Error !!\n", 9);
+                exit (1);
+            }
+            else if (!ft_isdigit(split_coor[i][j]) && split_coor[i][j] != '.')
+            {
+                write(2, "Error !!\n", 9);
+                exit (1);
+            }
+            else if (split_coor[i][j] == '.')
+            {
+                count++;
+                if (count > 1)
+                {
+                    write(2, "Error !!\n", 9);
+                    exit (1);
+                }
+            }
+            j++;
+        }
+        i++;  
+    }
+}
 // free later
