@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:41:43 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/25 20:56:43 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/25 22:02:41 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_object *check_file(char *av)
 		perror(av);
 		exit(EXIT_FAILURE);
 	}
-    
     t_object *ob = NULL;
     ob = malloc (sizeof(t_object));
     if (!ob)
