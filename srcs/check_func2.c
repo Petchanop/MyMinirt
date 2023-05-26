@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_func.c                                       :+:      :+:    :+:   */
+/*   check_func2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 20:31:06 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/25 20:49:42 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/26 20:59:25 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,23 @@ int ft_isdigit(int n)
     return (0);
 }
 
-int check_range(int n)
+int check_range_RGB(int n)
 {
     if (n >= 0 && n <= 255)
+        return (1);
+    return (0);
+}
+
+int check_range_vec(int n)
+{
+    if (n >= -1 && n <= 1)
+        return (1);
+    return (0);
+}
+
+int check_range_FOV(int n)
+{
+    if (n >= 0 && n <= 180)
         return (1);
     return (0);
 }
