@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:41:43 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/27 00:49:07 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/27 17:57:29 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ int check_vec(char *str)
 int check_FOV(char *str)
 {
     int i = 0;
-    char *str = "-180";
+    //char *str = "-180";
     while (str[i] != '\0')
     {
         if (ft_isdigit(str[i]) == 0)

@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/27 01:16:34 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/27 23:03:58 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ t_object *check_file(char *av)
         if (line == NULL)
             break ;
         // int i = 0;
-        // t_cam *cam;
-        // cam = malloc(sizeof(t_cam))
-        // if (!cam)
-        //     return (NULL);  
+        t_cam *cam;
+        //&cam->light
+        cam = malloc(sizeof(t_cam));
+        if (!cam)
+            return (NULL);  
             //Each type of element can be separated by one or more line break(s).
             //Each type of information from an element can be separated by one or more space(s).
             //Each type of element can be set in any order in the file.
@@ -59,7 +60,7 @@ t_object *check_file(char *av)
                 exit (1);
             check_ratio(split_space[1]);
             check_RGB(split_space[2]);
-            init_ambient(t_light *light);
+            init_ambient(t_light *light);//add ratio 
         }
         else if (ft_strncmp(ft_toupper(split_space[0])), "c", 2)// Cam identifier C, coor, vector, FOV
         {
@@ -68,7 +69,7 @@ t_object *check_file(char *av)
             check_coor(split_space[1]);
             check_vec(split_space[2]);
             check_FOV(split_space[3]);
-            init_camera(void);
+            //init_camera(void);
         }
         else if (ft_strncmp(ft_toupper(split_space[0])), "l", 2)//light identifier L, coor, ratio 0-1, RGB color
         {
@@ -77,7 +78,7 @@ t_object *check_file(char *av)
             check_coor(split_space[1]);
             check_ratio(split_space[2]);
             check_RGB(split_space[3]);
-            init_light(t_light *light);
+            //init_light(t_light *light);
         }
         else if (ft_strncmp(ft_toupper(split_space[0])), "pl", 3)//plane identifier pl, coor, vector, RGB color
         {
@@ -86,7 +87,7 @@ t_object *check_file(char *av)
             check_coor(split_space[1]);
             check_vec(split_space[2]);
             check_RGB(split_space[3]);
-            //
+            //plane identifier
         }
         else if (ft_strncmp(ft_toupper(split_space[0])), "sp", 3)//Sphere identifier sp, coor, diameter, RGB color 
         {
@@ -95,7 +96,7 @@ t_object *check_file(char *av)
             check_coor(split_space[1]);
             //diameter
             check_RGB(split_space[3]);
-            //sphere
+            //Sphere identifier
         }
         else if (ft_strncmp(ft_toupper(split_space[0])), "cy", 3)//cylinder identifer cy, coor, vector, diameter, height, RGB color
         {
@@ -106,7 +107,7 @@ t_object *check_file(char *av)
             //diameter
             //height
             check_RGB(split_space[3]);
-            //cylinder
+            //cylinder identifer
         }
         else if (ft_strncmp(ft_toupper(split_space[0])), "co", 3)
         {
@@ -117,7 +118,7 @@ t_object *check_file(char *av)
             //diameter
             //height
             check_RGB(split_space[3]);
-            //cylinder // co
+            //co identifer
             
         }
         else
@@ -131,5 +132,4 @@ t_object *check_file(char *av)
         
         //obj order
         //check upper
-    }
-}
+

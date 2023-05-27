@@ -1,20 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_func2.c                                      :+:      :+:    :+:   */
+/*   maintest3.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/27 17:30:21 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/27 19:15:34 by lkaewsae         ###   ########.fr       */
+/*   Created: 2023/05/27 17:40:18 by lkaewsae          #+#    #+#             */
+/*   Updated: 2023/05/27 19:18:23 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../include/minirt.h"
-#include <stdio.h>
-//#include <libft.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 unsigned int check_dia(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:16:10 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/27 00:48:54 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/27 22:45:09 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,38 +136,20 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 }
 int main()
 {
-    char *line = "-1,1.0,0.12";
-    char **split_vec = ft_split(line, ',');
-    int i = 0;
-    if (count(split_vec) != 3)
-        exit (1);
-    while (split_vec[i] != NULL)
+	char **str = "12";
+    unsigned int i = 0;
+    while (str[i] != NULL)
     {
-        
-        if (check_range_vec(atoi(split_vec[i])) == 0)
-        {
-            write(2, "Error !!\n", 9);
-            exit (EXIT_FAILURE);
-        }
-        i++;
-    }
-    while (split_vec[i] != NULL)
-    {
-        int j = 0;
+        unsigned int j = 0;
         int count = 0;
-        while(split_vec[i][j])
+        while (str[i][j] != '\0')
         {
-            if (!ft_isdigit(split_vec[i][0]) || split_vec[i][0] != '-' || (split_vec[i][0] == '-' && split_vec[i][1] == '.'))
+            if (!ft_isdigit(str[i][j]) && str[i][j] != '.')
             {
                 write(2, "Error !!\n", 9);
                 exit (1);
             }
-            else if (!ft_isdigit(split_vec[i][j]) && split_vec[i][j] != '.')
-            {
-                write(2, "Error !!\n", 9);
-                exit (1);
-            }
-            else if (split_vec[i][j] == '.')
+            else if (str[i][j] == '.')
             {
                 count++;
                 if (count > 1)
@@ -178,7 +160,6 @@ int main()
             }
             j++;
         }
-        i++;  
-    }  
-    
+        i++;
+    }
 }
