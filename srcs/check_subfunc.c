@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:27:05 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/27 18:09:09 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:33:52 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	file_extension(char *av)
 	return (1);
 }
 
-void write_error()
-{
-    write(2, "Error !!\n", 9);
-    exit(1);
-}
+// void write_error()
+// {
+//     write(2, "Error !!\n", 9);
+//     exit(1);
+// }

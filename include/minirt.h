@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/06 12:28:46 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/28 23:59:26 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "object.h"
 # include "color.h"
 # include "antialiasing.h"
+# include "libft.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096 
@@ -69,5 +70,20 @@ float		is_shadow(t_cam *c, t_ray r, t_object *ob);
 
 void		*render_scene(void *sc);
 void		free_scene(t_scene sc[]);
+
+/*checkfile*/
+t_object *check_file(char *av);
+int check_ratio(char *str);
+int check_RGB(char *str);
+int check_coor(char *str);
+int check_vec(char *str);
+int check_FOV(char *str);
+int check_size(char *str);
+int check_range_RGB(int n);
+int check_range_vec(int n);
+int check_range_FOV(int n);
+int count(char **str);
+int ft_isdigit(int n);
+int	file_extension(char *av);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/27 23:03:58 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/29 00:24:15 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_object *check_file(char *av)
                 exit (1);
             check_ratio(split_space[1]);
             check_RGB(split_space[2]);
-            init_ambient(t_light *light);//add ratio 
+            // init_ambient(&cam->ambient);
         }
         else if (ft_strncmp(ft_toupper(split_space[0])), "c", 2)// Cam identifier C, coor, vector, FOV
         {
@@ -94,7 +94,7 @@ t_object *check_file(char *av)
             if (count(split_space) != 4)
                 exit (1);
             check_coor(split_space[1]);
-            //diameter
+            check_size(split_space[2]);
             check_RGB(split_space[3]);
             //Sphere identifier
         }
@@ -104,28 +104,29 @@ t_object *check_file(char *av)
                 exit (1);
             check_coor(split_space[1]);
             check_vec(split_space[2]);
-            //diameter
-            //height
-            check_RGB(split_space[3]);
+            check_size(split_space[3]);
+            check_size(split_space[4]);
+            check_RGB(split_space[5]);
             //cylinder identifer
         }
-        else if (ft_strncmp(ft_toupper(split_space[0])), "co", 3)
+        else if (ft_strncmp(ft_toupper(split_space[0]), "co", 3))
         {
             if (count(split_space) != 5)
                 exit (1);
             check_coor(split_space[1]);
             check_vec(split_space[2]);
-            //diameter
-            //height
-            check_RGB(split_space[3]);
+            check_size(split_space[3]);
+            check_size(split_space[4]);
+            check_RGB(split_space[5]);
             //co identifer
-            
         }
         else
             {
                 write(2, "Error !!\n", 9);
-                exit ;
+                exit (1);
             }
+    }
+}
         //Elements which are defined by a capital letter can only be declared once in the scene.
         //Each element first’s information is the type identifier (composed by one or two character(s)), 
         //followed by all specific information for each object in a strict order such as:

@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:41:43 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/27 17:57:29 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/28 20:45:54 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ char *line;
 int check_ratio(char *str)
 {
     int i = 0;
+    //str[i] = ft_atoi(str[i]);
     if(str[i] == '0' || str[i] == '1')
     {
         i++;
