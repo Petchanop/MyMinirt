@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:41:43 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/29 21:49:33 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/30 01:04:11 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,7 @@ int check_RGB(char *line)
         while(split_RGB[i][j])
         {
             if (!ft_isdigit(split_RGB[i][j]))
-            {
-                write(2, "Error !!\n", 9);
-                exit (1);
-            }
+                write_error();
             j++;
         }
         i++;  
@@ -64,10 +61,7 @@ int check_RGB(char *line)
     {
         
         if (check_range_RGB(atoi(split_RGB[i])) == 0)
-        {
-            write(2, "Error !!\n", 9);
-            exit (EXIT_FAILURE);
-        }
+            write_error();
         i++;
     }
     return (0);
@@ -90,24 +84,15 @@ void check_coor(char *line)
             if (j == 0)
             {
                 if ((!ft_isdigit(split_coor[i][0]) && split_coor[i][0] != '-') || (split_coor[i][0] == '-' && split_coor[i][1] == '.'))
-                {
-                    write(2, "Error1 !!\n", 10);
-                    exit (1);
-                }
+                    write_error();
             }
             else if (!ft_isdigit(split_coor[i][j]) && split_coor[i][j] != '.')
-            {
-                write(2, "Error2 !!\n", 10);
-                exit (1);
-            }
+                write_error();
             else if (split_coor[i][j] == '.')
             {
                 count++;
                 if (count > 1)
-                {
-                    write(2, "Error3 !!\n", 10);
-                    exit (1);
-                }
+                    write_error();
             }
             j++;
         }
@@ -126,10 +111,7 @@ void check_vec(char *line)
     {
         
         if (check_range_vec(atoi(split_vec[i])) == 0)
-        {
-            write(2, "Error !!\n", 9);
-            exit (EXIT_FAILURE);
-        }
+            write_error();
         i++;
     }
     while (split_vec[i] != NULL)
@@ -139,23 +121,14 @@ void check_vec(char *line)
         while(split_vec[i][j])
         {
             if (!ft_isdigit(split_vec[i][0]) || split_vec[i][0] != '-' || (split_vec[i][0] == '-' && split_vec[i][1] == '.'))
-            {
-                write(2, "Error !!\n", 9);
-                exit (1);
-            }
+                write_error();
             else if (!ft_isdigit(split_vec[i][j]) && split_vec[i][j] != '.')
-            {
-                write(2, "Error !!\n", 9);
-                exit (1);
-            }
+                write_error();
             else if (split_vec[i][j] == '.')
             {
                 count++;
                 if (count > 1)
-                {
-                    write(2, "Error !!\n", 9);
-                    exit (1);
-                }
+                    write_error();
             }
             j++;
         }
@@ -170,17 +143,11 @@ int check_FOV(char *str)
     while (str[i] != '\0')
     {
         if (ft_isdigit(str[i]) == 0)
-        {
-            write(2, "Error !!\n", 9);
-            exit (1);
-        }
+            write_error();
         i++;
     }
     if (check_range_FOV(atoi(str)) == 0)
-    {
-        write(2, "Error !!\n", 9);
-        exit (1);
-    }
+        write_error();    
     return (0);
 }
 // free later

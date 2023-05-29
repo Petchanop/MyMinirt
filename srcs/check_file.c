@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/30 00:12:33 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/30 00:49:34 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,10 @@ t_object *check_file(char *av)
     char *line;
     
     if(file_extension(av))
-    {
-        write(2, "Error !!\n", 9);
-        exit (EXIT_FAILURE);
-    }
+        write_error();
     fd = open(av, O_RDONLY);
 	if (fd < 0)
 	{
-        //printf("%s\n", "aa");
 		perror(av);
 		exit(EXIT_FAILURE);
 	}
