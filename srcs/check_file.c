@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/29 00:24:15 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/30 00:12:33 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_object *check_file(char *av)
     fd = open(av, O_RDONLY);
 	if (fd < 0)
 	{
+        //printf("%s\n", "aa");
 		perror(av);
 		exit(EXIT_FAILURE);
 	}
@@ -53,34 +54,39 @@ t_object *check_file(char *av)
             
         char **split_space;
         split_space = ft_split(line, ' ');
-        
-        if (ft_strncmp(ft_toupper(split_space[0])), "a", 2)//Ambient lightning identifier A, ratio 0-1, RGB color
+        int acount = 0;
+        int ccount = 0;
+        int lcount = 0;
+        if (ft_strncmp(split_space[0], "A", 2))//Ambient lightning identifier A, ratio 0-1, RGB color
         {
-            if (count(split_space) != 3)
+            acount++;
+            if (count(split_space) != 3 || acount > 1)
                 exit (1);
             check_ratio(split_space[1]);
             check_RGB(split_space[2]);
             // init_ambient(&cam->ambient);
         }
-        else if (ft_strncmp(ft_toupper(split_space[0])), "c", 2)// Cam identifier C, coor, vector, FOV
+        else if (ft_strncmp(split_space[0], "C", 2))// Cam identifier C, coor, vector, FOV
         {
-            if (count(split_space) != 4)
+            ccount++;
+            if (count(split_space) != 4 || ccount > 1)
                 exit (1);
             check_coor(split_space[1]);
             check_vec(split_space[2]);
             check_FOV(split_space[3]);
             //init_camera(void);
         }
-        else if (ft_strncmp(ft_toupper(split_space[0])), "l", 2)//light identifier L, coor, ratio 0-1, RGB color
+        else if (ft_strncmp(split_space[0], "L", 2))//light identifier L, coor, ratio 0-1, RGB color
         {
-            if (count(split_space) != 4)
+            lcount++;
+            if (count(split_space) != 4 || lcount > 1)
                 exit (1);
             check_coor(split_space[1]);
             check_ratio(split_space[2]);
             check_RGB(split_space[3]);
             //init_light(t_light *light);
         }
-        else if (ft_strncmp(ft_toupper(split_space[0])), "pl", 3)//plane identifier pl, coor, vector, RGB color
+        else if (ft_strncmp(split_space[0], "pl", 3))//plane identifier pl, coor, vector, RGB color
         {
             if (count(split_space) != 4)
                 exit (1);
@@ -89,7 +95,7 @@ t_object *check_file(char *av)
             check_RGB(split_space[3]);
             //plane identifier
         }
-        else if (ft_strncmp(ft_toupper(split_space[0])), "sp", 3)//Sphere identifier sp, coor, diameter, RGB color 
+        else if (ft_strncmp(split_space[0], "sp", 3))//Sphere identifier sp, coor, diameter, RGB color 
         {
             if (count(split_space) != 4)
                 exit (1);
@@ -98,7 +104,7 @@ t_object *check_file(char *av)
             check_RGB(split_space[3]);
             //Sphere identifier
         }
-        else if (ft_strncmp(ft_toupper(split_space[0])), "cy", 3)//cylinder identifer cy, coor, vector, diameter, height, RGB color
+        else if (ft_strncmp(split_space[0], "cy", 3))//cylinder identifer cy, coor, vector, diameter, height, RGB color
         {
             if (count(split_space) != 5)
                 exit (1);
@@ -109,7 +115,7 @@ t_object *check_file(char *av)
             check_RGB(split_space[5]);
             //cylinder identifer
         }
-        else if (ft_strncmp(ft_toupper(split_space[0]), "co", 3))
+        else if (ft_strncmp(split_space[0], "co", 3))
         {
             if (count(split_space) != 5)
                 exit (1);
@@ -126,6 +132,7 @@ t_object *check_file(char *av)
                 exit (1);
             }
     }
+    return (ob);
 }
         //Elements which are defined by a capital letter can only be declared once in the scene.
         //Each element first’s information is the type identifier (composed by one or two character(s)), 

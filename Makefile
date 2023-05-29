@@ -6,7 +6,7 @@
 #    By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/05/28 23:59:56 by lkaewsae         ###   ########.fr        #
+#    Updated: 2023/05/29 22:03:41 by lkaewsae         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,15 @@ SRCS_DIR= srcs/
 INCLUDE_DIR= include/
 
 BUILD_DIR = build/
+
+LIBFT = ./libft
+
+LIBFT_LIB = libft/libft.a
+
+LIBS= -lpthread -Lmlx -lmlx -framework OpenGL -framework AppKit $(LIBFT_LIB)
+
+SRCS_INCLUDE= include/getnextline/get_next_line.c\
+	include/getnextline/get_next_line_utils.c\
 
 SRC= minirt.c \
 	write_line.c \
@@ -59,9 +68,9 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(LIBFT)
+	# make -C $(LIBFT)
 	cp $(LIBFT)/libft.a .
-	$(CC) $(CFLAGS) $(LIBFT)/libft.a $^ -o $@
+	$(CC) $(CFLAGS) $(LIBS) $(SRCS_INCLUDE) $(LIBFT)/libft.a $^ -o $@
 
 #=======
 

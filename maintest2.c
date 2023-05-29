@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 21:16:10 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/28 23:19:16 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/30 00:00:08 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,35 +134,39 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	str[j] = '\0';
 	return (str);
 }
-int main()
+
+float ft_atof (char *str)
 {
-	// 1. [o] != . && last positon
-	// 2. . =1
-	// 3. . && digit
-	char *str = "15.5";
-	int i = 0;
-	int count = 0;
-	if (str[0] == '.')
+    double result = 0.0;
+    int sign = 1;
+    int i = 0;
+    int decimalflag = 0;
+    double decimalmul = 1.0;
+    while (str[i] < 33 && str[i] != '\0')
+        i++;
+	if(str[i] == '-')
 	{
-		write(2, "Error !!\n", 9);
-		exit (1);
-	}
-	while (str[i] != '\0')
-	{
-		if (!ft_isdigit(str[i]) && str[i] != '.')
-		{
-			write(2, "Error !!\n", 9);
-			exit (1);
-		}
-		else if (str[i] == '.')
-		{
-			count++;
-			if (count > 1)
-			{
-				write(2, "Error !!\n", 9);
-				exit (1);
-			}
-		}
+		sign = -1;
 		i++;
 	}
+    while(str[i] >= '0' && str[i] <= '9' || str[i] == '.')
+	{
+        if (str[i] == '.')
+            decimalflag = 1;
+        else if (decimalflag == 0)
+		    result = result * 10 + (str[i] - '0');
+        else
+        {
+            decimalmul *= 0.1;
+            result = result + (str[i] - '0') * decimalmul;
+        } 
+        i++;
+	}
+    return ((float)(sign * result));
+}
+int main()
+{
+	// char *str = "1.0";
+	float test = ft_atof("-10.526755");
+	printf("%f\n", test);
 }

@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:30:21 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/28 23:22:52 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/29 21:50:45 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int check_size(char *str)
+void check_size(char *str)
 {
     //char *str = "15.5";
 	int i = 0;

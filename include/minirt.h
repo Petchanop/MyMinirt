@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/28 23:59:26 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/29 21:51:12 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void		free_scene(t_scene sc[]);
 t_object *check_file(char *av);
 int check_ratio(char *str);
 int check_RGB(char *str);
-int check_coor(char *str);
-int check_vec(char *str);
+void check_coor(char *str);
+void check_vec(char *str);
 int check_FOV(char *str);
-int check_size(char *str);
+void check_size(char *str);
 int check_range_RGB(int n);
 int check_range_vec(int n);
 int check_range_FOV(int n);

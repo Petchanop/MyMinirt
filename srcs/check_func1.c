@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:41:43 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/28 20:45:54 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/29 21:49:33 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int check_ratio(char *str)
     return (0);
 }
 
-int check_RGB(char *str)
+int check_RGB(char *line)
 {
     char **split_RGB = ft_split(line, ',');
     int i = 0;
@@ -73,7 +73,7 @@ int check_RGB(char *str)
     return (0);
 }
 
-int check_coor(char *str)
+void check_coor(char *line)
 {
     //char *line = "-1,2.0,0.12";
     char **split_coor = ft_split(line, ',');
@@ -115,7 +115,7 @@ int check_coor(char *str)
     }  
 }
 
-int check_vec(char *str)
+void check_vec(char *line)
 {
     //char *line = "-1,2.0,0.12";
     char **split_vec = ft_split(line, ',');

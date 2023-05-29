@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:27:05 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/28 23:33:52 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/29 23:50:52 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,35 @@ int	file_extension(char *av)
 	return (1);
 }
 
+float ft_atof (char *str)
+{
+    double result = 0.0;
+    int sign = 1;
+    int i = 0;
+    int decimalflag = 0;
+    double decimalmul = 1.0;
+    while (str[i] < 33 && str[i] != '\0')
+        i++;
+	if(str[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+    while(str[i] >= '0' && str[i] <= '9' || str[i] == '.')
+	{
+        if (str[i] == '.')
+            decimalflag = 1;
+        else if (decimalflag == 0)
+		    result = result * 10 + (str[i] - '0');
+        else
+        {
+            decimalmul *= 0.1;
+            result = result + (str[i] - '0') * decimalmul;
+        } 
+        i++;
+	}
+    return ((float)(sign * result));
+}
 // void write_error()
 // {
 //     write(2, "Error !!\n", 9);
