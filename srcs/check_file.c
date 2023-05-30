@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/30 13:07:16 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:08:08 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,8 @@ t_object *check_file(char *av)
             check_coor(split_space[1]);
             check_ratio(split_space[2]);
             check_RGB(split_space[3]);
-            /*do the same as init ambient light add one parameter
-            coord prototype init_light(t_light *light, t_vector coor, float ratio, t_color rgb)*/
+            /*do the same as init ambient light add one parameter coord
+            prototype init_light(t_light *light, t_vector coor, float ratio, t_color rgb)*/
             //init_light(t_light *light);
         }
         else if (ft_strncmp(split_space[0], "pl", 3))//plane identifier pl, coor, vector, RGB color
