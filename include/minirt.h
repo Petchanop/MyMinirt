@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/29 21:51:12 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:35:16 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ int check_range_FOV(int n);
 int count(char **str);
 int ft_isdigit(int n);
 int	file_extension(char *av);
+void free2p(char **ptr);
 
 #endif

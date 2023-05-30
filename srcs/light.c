@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 20:52:28 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/11 17:42:32 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:42:06 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_light(t_light *light)
 	light->dir = vector_normalize(light->point);
 }
 
-void	init_ambient(t_light *light)
+int	init_ambient(t_light *light, float ratio, t_color color)
 {
 	light->l = "A";
 	light->bright_ratio = 0.8;

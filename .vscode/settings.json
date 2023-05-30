@@ -1,5 +1,11 @@
 {
     "files.associations": {
-        "minirt.h": "c"
+        "minirt.h": "c",
+        "__functional_03": "c",
+        "__string": "c",
+        "functional": "c",
+        "string": "c",
+        "system_error": "c",
+        "vector": "c"
     }
 }

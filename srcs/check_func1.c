@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:41:43 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/30 01:43:04 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/30 20:27:41 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	check_RGB(char *line)
 			write_error ();
 		i++; 
 	}
+	free2p(split_RGB);
 	return (0);
 }
 
@@ -100,7 +101,8 @@ void	check_coor(char *line)
 			j++;
 		}
 		i++;
-	}  
+	}
+	free2p(split_coor);  
 }
 
 void	check_vec(char *line)
@@ -142,6 +144,7 @@ void	check_vec(char *line)
 		}
 		i++;  
 	}  
+	free2p(split_vec);
 }
 
 int	check_FOV(char *str)
@@ -159,4 +162,3 @@ int	check_FOV(char *str)
 		write_error ();    
 	return (0);
 }
-// free later
