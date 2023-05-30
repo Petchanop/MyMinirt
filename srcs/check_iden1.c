@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_file2.c                                      :+:      :+:    :+:   */
+/*   check_iden1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 23:39:47 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/31 01:07:00 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/31 02:04:50 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void    iden_a()
    
     split_space = ft_split(line, ' ');
     acount = 0;
-    if (ft_strncmp(split_space[0], "A", 2))//Ambient lightning identifier A, ratio 0-1, RGB color
         {
             
             acount++;
@@ -64,7 +63,7 @@ void    iden_c()
    
     split_space = ft_split(line, ' ');
     ccount = 0;
-    if (ft_strncmp(split_space[0], "C", 2))// Cam identifier C, coor, vector, FOV
+   
         {
             ccount++;
             if (count(split_space) != 4 || ccount > 1)
@@ -111,7 +110,6 @@ void    iden_l()
    
     split_space = ft_split(line, ' ');
     lcount = 0;
-    if (ft_strncmp(split_space[0], "L", 2))//light identifier L, coor, ratio 0-1, RGB color
         {
             lcount++;
             if (count(split_space) != 4 || lcount > 1)

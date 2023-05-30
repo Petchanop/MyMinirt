@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/31 01:07:12 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/31 02:07:44 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,79 +33,36 @@ t_object *check_file(char *av)
     ob = malloc (sizeof(t_object));
     if (!ob)
         return (NULL);
+    t_cam *cam;
+    cam = malloc(sizeof(t_cam));
+        if (!cam)
+            return (NULL);  
     while (1)
     {
         line = get_next_line(fd);
         if (line == NULL)
             break ;
         // int i = 0;
-        t_cam *cam;
         //&cam->light
-        cam = malloc(sizeof(t_cam));
-        if (!cam)
-            return (NULL);  
             //Each type of element can be separated by one or more line break(s).
             //Each type of information from an element can be separated by one or more space(s).
             //Each type of element can be set in any order in the file.
-            
-        
-       
-        
+        if (ft_strncmp(split_space[0], "A", 2))//Ambient lightning identifier A, ratio 0-1, RGB color
+            iden_a();
+        else  if (ft_strncmp(split_space[0], "C", 2))// Cam identifier C, coor, vector, FOV
+            iden_c();
+        else if (ft_strncmp(split_space[0], "L", 2))//light identifier L, coor, ratio 0-1, RGB color 
+            iden_l();
         else if (ft_strncmp(split_space[0], "pl", 3))//plane identifier pl, coor, vector, RGB color
-        {
-            if (count(split_space) != 4)
-                exit (1);
-            check_coor(split_space[1]);
-            check_vec(split_space[2]);
-            check_RGB(split_space[3]);
-            //look at object.c file their are all prototype function
-            // 1) init_properties (in minirt.c)
-            init_properties(ob, radius, height, width);
-            // 2) init by type (in object.c)
-            init_type(ob, type, reflec);
-            // 3) init_type (this function use for object texture)
-            init_type();
-            // function call look like this init_plane(ob, coor, vec, rgb)
-            init_plane(ob, center, n, rgb);hy76
-            // the rest of other shape do the same way*/
-            //plane identifier
-        }
+            iden_pl();
         else if (ft_strncmp(split_space[0], "sp", 3))//Sphere identifier sp, coor, diameter, RGB color 
-        {
-            if (count(split_space) != 4)
-                exit (1);
-            check_coor(split_space[1]);
-            check_size(split_space[2]);
-            check_RGB(split_space[3]);
-            //Sphere identifier
-        }
+            iden_sp();
         else if (ft_strncmp(split_space[0], "cy", 3))//cylinder identifer cy, coor, vector, diameter, height, RGB color
-        {
-            if (count(split_space) != 5)
-                exit (1);
-            check_coor(split_space[1]);
-            check_vec(split_space[2]);
-            check_size(split_space[3]);
-            check_size(split_space[4]);
-            check_RGB(split_space[5]);
-            //cylinder identifer
-        }
+            iden_cy();
         else if (ft_strncmp(split_space[0], "co", 3))
-        {
-            if (count(split_space) != 5)
-                exit (1);
-            check_coor(split_space[1]);
-            check_vec(split_space[2]);
-            check_size(split_space[3]);
-            check_size(split_space[4]);
-            check_RGB(split_space[5]);
-            //co identifer
-        }
-        else
-            {
-                write(2, "Error !!\n", 9);
-                exit (1);
-            }
+            iden_co();    
+        else 
+            write_error ();
     }
     return (ob);
 }
