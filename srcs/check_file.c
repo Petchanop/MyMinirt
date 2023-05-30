@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/30 13:08:08 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:09:13 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ t_object *check_file(char *av)
             /*look at object.c file their are all prototype function
             1) init_properties (in minirt.c)
             2) init by type (in object.c)
+            3) init_type (this function use for object texture)
             function call look like this init_plane(ob, coor, vec, rgb)
             the rest of other shape do the same way*/
             //plane identifier
