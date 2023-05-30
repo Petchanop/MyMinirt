@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/30 00:49:34 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:07:16 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,12 @@ t_object *check_file(char *av)
                 exit (1);
             check_ratio(split_space[1]);
             check_RGB(split_space[2]);
-            // init_ambient(&cam->ambient);
+            /*convert split_space[1] to float (ratio)
+            convert split_space[2] to t_color (see type.h)
+            pass it to function init_ambient
+            changes intit_ambient function parameter to
+            prototype init_ambient(t_light *light, float ratio, t_color color)*/
+            // init_ambient(&cam->ambient, ratio, color);
         }
         else if (ft_strncmp(split_space[0], "C", 2))// Cam identifier C, coor, vector, FOV
         {
@@ -70,6 +75,11 @@ t_object *check_file(char *av)
             check_coor(split_space[1]);
             check_vec(split_space[2]);
             check_FOV(split_space[3]);
+            /*convert split_space[1] to t_vector assign to cam->cpoint 
+            convert split_space[2] to t_vector assign to cam->vector
+            convert split_space[3] to float assign to cam->fov
+            changes function parameter from void to intit_camare(t_vector coord, t_vector vector, float fov)
+            remove init_light and intit_ambient in init_camera*/
             //init_camera(void);
         }
         else if (ft_strncmp(split_space[0], "L", 2))//light identifier L, coor, ratio 0-1, RGB color
@@ -80,6 +90,8 @@ t_object *check_file(char *av)
             check_coor(split_space[1]);
             check_ratio(split_space[2]);
             check_RGB(split_space[3]);
+            /*do the same as init ambient light add one parameter
+            coord prototype init_light(t_light *light, t_vector coor, float ratio, t_color rgb)*/
             //init_light(t_light *light);
         }
         else if (ft_strncmp(split_space[0], "pl", 3))//plane identifier pl, coor, vector, RGB color
@@ -89,6 +101,11 @@ t_object *check_file(char *av)
             check_coor(split_space[1]);
             check_vec(split_space[2]);
             check_RGB(split_space[3]);
+            /*look at object.c file their are all prototype function
+            1) init_properties (in minirt.c)
+            2) init by type (in object.c)
+            function call look like this init_plane(ob, coor, vec, rgb)
+            the rest of other shape do the same way*/
             //plane identifier
         }
         else if (ft_strncmp(split_space[0], "sp", 3))//Sphere identifier sp, coor, diameter, RGB color 
