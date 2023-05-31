@@ -6,7 +6,7 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:27:05 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/30 00:49:08 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:38:41 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,3 @@ float ft_atof (char *str)
     return ((float)(sign * result));
 }
 
-void write_error()
-{
-    write(2, "Error !!\n", 9);
-    exit(1);
-}
