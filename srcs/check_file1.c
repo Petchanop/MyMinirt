@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/31 15:06:44 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:54:57 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,9 @@
 
 t_object *check_file(char *av)
 {
+    check_fd(av);
     int fd;
     char *line;
-    
-    if(file_extension(av))
-        write_error();
-    fd = open(av, O_RDONLY);
-	if (fd < 0)
-	{
-		perror(av);
-		exit(EXIT_FAILURE);
-	}
-    t_object *ob = NULL;
-    ob = malloc (sizeof(t_object));
-    if (!ob)
-        return (NULL);
-    t_cam *cam;
-    cam = malloc(sizeof(t_cam));
-        if (!cam)
-            return (NULL);  
     while (1)
     {
         line = get_next_line(fd);
@@ -47,6 +31,11 @@ t_object *check_file(char *av)
             //Each type of element can be separated by one or more line break(s).
             //Each type of information from an element can be separated by one or more space(s).
             //Each type of element can be set in any order in the file.
+        char    **split_space;
+        char    **line;
+        int     acount;
+        t_cam   *cam;
+   
         if (ft_strncmp(split_space[0], "A", 2))//Ambient lightning identifier A, ratio 0-1, RGB color
             iden_a();
         else  if (ft_strncmp(split_space[0], "C", 2))// Cam identifier C, coor, vector, FOV
