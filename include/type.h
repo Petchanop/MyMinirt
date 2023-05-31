@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:48:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/06 15:05:48 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:02:29 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,6 @@ typedef struct s_vars {
 	float		angle1;
 	float		angle2;
 }	t_vars;
-
-typedef struct s_matrix
-{
-	float	m[4][4];
-}	t_matrix;
 
 typedef struct s_color
 {

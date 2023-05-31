@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_file1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/31 02:07:44 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:06:44 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,22 @@ t_object *check_file(char *av)
         
         //obj order
         
+t_object   *reallocate_object(t_object *ob, int i)
+{
+    t_object    *new_ob;
+    int         j;
+    int         k;
 
+    j = 0;
+    k = 0;
+    new_ob = malloc(sizeof(t_object) * i + 1);
+    while (i)
+    {
+        new_ob[j] = ob[k];
+        j++;
+        k++;
+        i--;
+    }
+    new_ob[j].type = NULL;
+    return (new_ob);
+}
