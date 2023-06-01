@@ -6,26 +6,38 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:20:52 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/11 16:41:17 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:27:02 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	init_object(t_object *ob, t_vector center, t_vector n, t_color rgb)
+void	init_sphere(t_object *ob, char **c, char **col)
 {
+	t_vector	center;
+	t_color		rgb;
+
+	center = (t_vector){ft_atof(c[0]), ft_atof(c[1]), ft_atof(c[2]), 0};
+	rgb = (t_color){ft_atof(col[0]), ft_atof(col[1]), ft_atof(col[2])};
 	ob->type = "sp";
 	ob->center = center;
-	ob->color = rgb;
-	ob->vector = vector_normalize(n);
+	ob->color.r = rgb.r / 255.999;
+	ob->color.g = rgb.g / 255.999;
+	ob->color.b = rgb.b / 255.999;
 }
 
-void	init_cylinder(t_object *ob, t_vector cent, t_vector n, t_color rgb)
+void	init_cylinder(t_object *ob, char **c, char **v, char **col)
 {
+	t_vector	center;
+	t_vector	n;
 	t_vector	half_height;
+	t_color		rgb;
 
 	ob->type = "cy";
-	ob->center = cent;
+	center = (t_vector){ft_atof(c[0]), ft_atof(c[1]), ft_atof(c[2]), 0};
+	n = (t_vector){ft_atof(v[0]), ft_atof(v[1]), ft_atof(v[2]), 0};
+	rgb = (t_color){ft_atof(col[0]), ft_atof(col[1]), ft_atof(col[2])};
+	ob->center = center;
 	ob->color = rgb;
 	ob->vector = vector_normalize(n);
 	half_height = vector_mul(ob->vector, ob->height / 2);
@@ -34,11 +46,20 @@ void	init_cylinder(t_object *ob, t_vector cent, t_vector n, t_color rgb)
 	ob->diff = vector_sub(ob->b_cap, ob->t_cap);
 }
 
-void	init_plane(t_object *ob, t_vector center, t_vector n, t_color rgb)
+void	init_plane(t_object *ob, char **c, char **v, char **col)
 {
+	t_vector	center;
+	t_vector	n;
+	t_color		rgb;
+
+	center = (t_vector){ft_atof(c[0]), ft_atof(c[1]), ft_atof(c[2]), 0};
+	n = (t_vector){ft_atof(v[0]), ft_atof(v[1]), ft_atof(v[2]), 0};
+	rgb = (t_color){ft_atof(col[0]), ft_atof(col[1]), ft_atof(col[2])};
 	ob->type = "pl";
 	ob->center = center;
-	ob->color = rgb;
+	ob->color.r = rgb.r / 255.999;
+	ob->color.g = rgb.g / 255.999;
+	ob->color.b = rgb.b / 255.999;
 	ob->vector = vector_normalize(n);
 }
 
@@ -50,12 +71,18 @@ void	init_disk(t_object *ob, t_vector center, t_vector n, t_color rgb)
 	ob->vector = vector_normalize(n);
 }
 
-void	init_cone(t_object *ob, t_vector cent, t_vector n, t_color rgb)
+void	init_cone(t_object *ob, char **c, char **v, char **col)
 {
+	t_vector	center;
+	t_vector	n;
 	t_vector	half_height;
+	t_color		rgb;
 
 	ob->type = "co";
-	ob->center = cent;
+	center = (t_vector){ft_atof(c[0]), ft_atof(c[1]), ft_atof(c[2]), 0};
+	n = (t_vector){ft_atof(v[0]), ft_atof(v[1]), ft_atof(v[2]), 0};
+	rgb = (t_color){ft_atof(col[0]), ft_atof(col[1]), ft_atof(col[2])};
+	ob->center = center;
 	ob->color = rgb;
 	ob->vector = vector_normalize(n);
 	half_height = vector_mul(ob->vector, ob->height / 2);

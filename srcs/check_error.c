@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:38:28 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/31 19:54:44 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/05/31 21:16:05 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ void	write_error(void)
 	exit (1);
 }
 
-void	check_fd(char *av)
+int	check_fd(char *av, t_cam *cam, t_object *ob)
 {
-	char	*line;
-	int		fd;	
-	
+	t_object	*ob;
+	t_cam		*cam;
+	char		*line;
+	int			fd;
+
 	if (file_extension(av))
 		write_error ();
 	fd = open(av, O_RDONLY);
@@ -35,13 +37,11 @@ void	check_fd(char *av)
 		perror(av);
 		exit(EXIT_FAILURE);
 	}
-	t_object	*ob;
-	ob = NULL;
 	ob = malloc (sizeof(t_object));
 	if (!ob)
 		return (NULL);
-    t_cam	*cam;
 	cam = malloc(sizeof(t_cam));
 	if (!cam)
-			return (NULL);  
+		return (NULL);
+	return (fd);
 }

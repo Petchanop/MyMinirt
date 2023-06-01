@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+         #
+#    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/05/29 22:03:41 by lkaewsae         ###   ########.fr        #
+#    Updated: 2023/06/01 14:11:45 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,9 +53,11 @@ SRC= minirt.c \
 	thread.c \
 	math_utils.c \
 	color_operation.c \
-	check_file.c \
+	check_file1.c \
 	check_func1.c \
 	check_func2.c \
+	check_iden1.c \
+	check_iden2.c \
 	check_range.c \
 	check_subfunc.c 
 

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/31 20:54:57 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/05/31 21:22:20 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,40 +16,34 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-t_object *check_file(char *av)
+t_object *check_file(char *av, t_cam *cam, t_object *ob)
 {
-    check_fd(av);
-    int fd;
-    char *line;
+    int     fd;
+    int     acount;
+    char    *line;
+    char    **split_space;
+
+    fd = check_fd(av, cam, ob);
     while (1)
     {
         line = get_next_line(fd);
         if (line == NULL)
             break ;
-        // int i = 0;
-        //&cam->light
-            //Each type of element can be separated by one or more line break(s).
-            //Each type of information from an element can be separated by one or more space(s).
-            //Each type of element can be set in any order in the file.
-        char    **split_space;
-        char    **line;
-        int     acount;
-        t_cam   *cam;
-   
-        if (ft_strncmp(split_space[0], "A", 2))//Ambient lightning identifier A, ratio 0-1, RGB color
-            iden_a();
-        else  if (ft_strncmp(split_space[0], "C", 2))// Cam identifier C, coor, vector, FOV
-            iden_c();
-        else if (ft_strncmp(split_space[0], "L", 2))//light identifier L, coor, ratio 0-1, RGB color 
-            iden_l();
-        else if (ft_strncmp(split_space[0], "pl", 3))//plane identifier pl, coor, vector, RGB color
-            iden_pl();
-        else if (ft_strncmp(split_space[0], "sp", 3))//Sphere identifier sp, coor, diameter, RGB color 
-            iden_sp();
-        else if (ft_strncmp(split_space[0], "cy", 3))//cylinder identifer cy, coor, vector, diameter, height, RGB color
-            iden_cy();
+        split_space = ft_split(line, ' ');
+        if (ft_strncmp(split_space[0], "A", 2))
+            iden_a(cam, split_space, acount);
+        else  if (ft_strncmp(split_space[0], "C", 2))
+            iden_c(cam, split_space, acount);
+        else if (ft_strncmp(split_space[0], "L", 2))
+            iden_l(cam, split_space);
+        else if (ft_strncmp(split_space[0], "pl", 3))
+            iden_pl(ob, split_space);
+        else if (ft_strncmp(split_space[0], "sp", 3))
+            iden_sp(ob, split_space);
+        else if (ft_strncmp(split_space[0], "cy", 3))
+            iden_cy(ob, split_space);
         else if (ft_strncmp(split_space[0], "co", 3))
-            iden_co();    
+            iden_co(ob, split_space);    
         else 
             write_error ();
     }
@@ -69,7 +63,7 @@ t_object   *reallocate_object(t_object *ob, int i)
 
     j = 0;
     k = 0;
-    new_ob = malloc(sizeof(t_object) * i + 1);
+    new_ob = malloc(sizeof(t_object) * (i + 1));
     while (i)
     {
         new_ob[j] = ob[k];

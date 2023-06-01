@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/29 22:17:11 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:10:43 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,9 @@ void	init_properties(t_object *ob, float radius, float height, float width)
 
 int	main(int argc, char **argv)
 {
-	// (void)argc;
-	(void)argv;
-
-	// t_cam		*cam;
+	t_cam		*cam;
 	// t_vars		vars;
-	// t_object	*ob;
+	t_object	*ob;
 	// t_vector	p;
 	// t_color 	rgb;
 	// t_color 	rgb1;
@@ -122,9 +119,11 @@ int	main(int argc, char **argv)
 		write(2, "Error !!", 9);
 		exit (1);
 	}
-	check_file(argv[1]);
-	
-	
+	ob = NULL;
+	cam = NULL;
+	check_file(argv[1], cam);
+
+
 	// run_thread(cam, ob, &vars);
 	// mlx_put_image_to_window(vars.mlx, vars.mlx_win, vars.img.img, 0, 0);
 	// mlx_loop(vars.mlx);

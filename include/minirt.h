@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/30 20:35:16 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/06/01 16:28:52 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include "libft.h"
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4096 
+#  define BUFFER_SIZE 4096
 # endif
 
 # ifndef PI
@@ -42,7 +42,7 @@
 # define MIN_HIT_DIS 0.001
 # define MAX_TRACE_DIS 1000.0
 # define MAX_STEP 600;
-# define THREAD_NUM 10 
+# define THREAD_NUM 10
 
 typedef struct s_plane
 {
@@ -72,7 +72,7 @@ void		*render_scene(void *sc);
 void		free_scene(t_scene sc[]);
 
 /*checkfile*/
-t_object *check_file(char *av);
+t_object *check_file(char *av, t_cam *cam, t_object *ob);
 int check_ratio(char *str);
 int check_RGB(char *str);
 void check_coor(char *str);
@@ -86,5 +86,6 @@ int count(char **str);
 int ft_isdigit(int n);
 int	file_extension(char *av);
 void free2p(char **ptr);
+float ft_atof (char *str);
 
 #endif

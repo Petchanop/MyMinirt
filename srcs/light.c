@@ -3,30 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 20:52:28 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/30 20:42:06 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:42:18 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	init_light(t_light *light)
+void	init_light(t_light *light, t_vector c, t_color color, float ratio)
 {
-	light->l = "L";
-	light->point = (t_vector){8, 10, -10, 0};
+	light->point = c;
 	light->vector = (t_vector){0, 0, 1, 0};
-	light->color = (t_color){200 / 255.999, 200 / 255.999, 255 / 255.999};
-	light->bright_ratio = 0.8;
+	light->color = color;
+	light->bright_ratio = ratio;
 	light->dir = vector_normalize(light->point);
 }
 
-int	init_ambient(t_light *light, float ratio, t_color color)
+void	init_ambient(t_light *light, float ratio, t_color color)
 {
-	light->l = "A";
-	light->bright_ratio = 0.8;
-	light->color = (t_color){1, 0.5, 0.5};
+	light->bright_ratio = ratio;
+	light->color = color;
 }
 
 t_vector	light_dir(t_object ob, t_cam *c)
