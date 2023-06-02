@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_func1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:41:43 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/30 20:27:41 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:43:28 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_ratio(char *str)
 					return (0);
 			}
 			return (1);
-		} 
+		}
 	}
 	return (0);
 }
@@ -42,7 +42,7 @@ int	check_RGB(char *line)
 {
 	char	**split_RGB;
 	int		i;
-	
+
 	split_RGB = ft_split(line, ',');
 	i = 0;
 	if (count(split_RGB) != 3)
@@ -56,15 +56,15 @@ int	check_RGB(char *line)
 				write_error ();
 			j++;
 		}
-		i++;  
+		i++;
 	}
 	i = 0;
 	while (split_RGB[i] != NULL)
 	{
-		
+
 		if (check_range_RGB(atoi(split_RGB[i])) == 0)
 			write_error ();
-		i++; 
+		i++;
 	}
 	free2p(split_RGB);
 	return (0);
@@ -102,13 +102,13 @@ void	check_coor(char *line)
 		}
 		i++;
 	}
-	free2p(split_coor);  
+	free2p(split_coor);
 }
 
 void	check_vec(char *line)
 {
 	char	**split_vec;
-	int 	i;
+	int		i;
 
 	split_vec = ft_split(line, ',');
 	i = 0;
@@ -116,7 +116,7 @@ void	check_vec(char *line)
 		exit (1);
 	while (split_vec[i] != NULL)
 	{
-		
+
 		if (check_range_vec(atoi(split_vec[i])) == 0)
 			write_error();
 		i++;
@@ -128,6 +128,7 @@ void	check_vec(char *line)
 
 		i = 0;
 		count = 0;
+		j = 0;
 		while (split_vec[i][j])
 		{
 			if (!ft_isdigit(split_vec[i][0]) || split_vec[i][0] != '-' || (split_vec[i][0] == '-' && split_vec[i][1] == '.'))
@@ -142,8 +143,8 @@ void	check_vec(char *line)
 			}
 			j++;
 		}
-		i++;  
-	}  
+		i++;
+	}
 	free2p(split_vec);
 }
 
@@ -159,6 +160,6 @@ int	check_FOV(char *str)
 		i++;
 	}
 	if (check_range_FOV(atoi(str)) == 0)
-		write_error ();    
+		write_error ();
 	return (0);
 }

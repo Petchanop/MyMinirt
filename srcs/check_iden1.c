@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 23:39:47 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/01 15:20:01 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:42:18 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	iden_c(t_cam *cam, char **split_space)
 	free2p(vec);
 }
 
-void	iden_l(t_cam *cam, char **split_space, int lcount)
+void	iden_l(t_cam *cam, char **split_space)
 {
 	static unsigned int	lcount = 0;
 	char				**vec;

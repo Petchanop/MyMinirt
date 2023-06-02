@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/01 16:28:52 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:42:25 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_plane
 }	t_plane;
 
 /*build type object to kept all information and identified which type is*/
-void		create_scene(t_scene *sc, t_object *ob, t_vars *data, t_color color);
+void		create_scene(t_scene *sc, t_object *ob, t_vars *data, t_color col);
 void		run_thread(t_cam *cam, t_object *ob, t_vars *data);
 void		put_pixel(t_data *data, int x, int y, int color);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -72,20 +72,29 @@ void		*render_scene(void *sc);
 void		free_scene(t_scene sc[]);
 
 /*checkfile*/
-t_object *check_file(char *av, t_cam *cam, t_object *ob);
-int check_ratio(char *str);
-int check_RGB(char *str);
-void check_coor(char *str);
-void check_vec(char *str);
-int check_FOV(char *str);
-void check_size(char *str);
-int check_range_RGB(int n);
-int check_range_vec(int n);
-int check_range_FOV(int n);
-int count(char **str);
-int ft_isdigit(int n);
-int	file_extension(char *av);
-void free2p(char **ptr);
-float ft_atof (char *str);
+t_object	*check_file(char *av, t_cam *cam, t_object *ob);
+int			check_ratio(char *str);
+int			check_RGB(char *str);
+void		check_coor(char *str);
+void		check_vec(char *str);
+int			check_FOV(char *str);
+void		check_size(char *str);
+int			check_range_RGB(int n);
+int			check_range_vec(int n);
+int			check_range_FOV(int n);
+int			count(char **str);
+int			ft_isdigit(int n);
+int			file_extension(char *av);
+void		free2p(char **ptr);
+float		ft_atof(char *str);
+
+void	iden_a(t_cam *cam, char **split_space);
+void	iden_c(t_cam *cam, char **split_space);
+void	iden_l(t_cam *cam, char **split_space);
+void	iden_pl(t_object *ob, char **split_space);
+void	iden_sp(t_object *ob, char **split_space);
+void	iden_cy(t_object *ob, char **split_space);
+void	iden_co(t_object *ob, char **split_space);
+void	write_error ();
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/01 15:10:43 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:36:30 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	main(int argc, char **argv)
 	}
 	ob = NULL;
 	cam = NULL;
-	check_file(argv[1], cam);
+	check_file(argv[1], cam, ob);
 
 
 	// run_thread(cam, ob, &vars);

@@ -6,13 +6,13 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 14:31:47 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/06 12:29:14 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 15:33:29 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	create_scene(t_scene *sc, t_object *ob, t_vars *data, t_color color)
+void	create_scene(t_scene *sc, t_object *ob, t_vars *data, t_color col)
 {
 	int	x;
 	int	y;
@@ -24,8 +24,8 @@ void	create_scene(t_scene *sc, t_object *ob, t_vars *data, t_color color)
 		x = sc->maxx;
 		while (x > sc->minx)
 		{
-			color = antialiasing(&sc->c, ob, x, y);
-			c = convert_to_int(color);
+			col = antialiasing(&sc->c, ob, x, y);
+			c = convert_to_int(col);
 			pthread_mutex_lock(&data->mutex);
 			put_pixel(&data->img, SCENCE_WIDTH - x, y, c);
 			pthread_mutex_unlock(&data->mutex);

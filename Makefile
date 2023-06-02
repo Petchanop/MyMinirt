@@ -6,13 +6,13 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/06/01 14:11:45 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/06/02 15:53:49 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=minirt
 
-CC=gcc 
+CC=gcc
 
 CFLAGS= -Wall -Werror -Wextra -fsanitize=address -I$(INCLUDE_DIR)
 
@@ -24,9 +24,9 @@ BUILD_DIR = build/
 
 LIBFT = ./libft
 
-LIBFT_LIB = libft/libft.a
+LIBFT_LIB = -Llibft -lft
 
-LIBS= -lpthread -Lmlx -lmlx -framework OpenGL -framework AppKit $(LIBFT_LIB)
+LIBS= $(LIBFT_LIB) -lpthread -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 SRCS_INCLUDE= include/getnextline/get_next_line.c\
 	include/getnextline/get_next_line_utils.c\
@@ -59,7 +59,7 @@ SRC= minirt.c \
 	check_iden1.c \
 	check_iden2.c \
 	check_range.c \
-	check_subfunc.c 
+	check_subfunc.c
 
 SRCS= ${addprefix ${SRCS_DIR}, ${SRC}}
 
@@ -70,9 +70,9 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	# make -C $(LIBFT)
-	cp $(LIBFT)/libft.a .
-	$(CC) $(CFLAGS) $(LIBS) $(SRCS_INCLUDE) $(LIBFT)/libft.a $^ -o $@
+	make -C $(LIBFT)
+	# cp $(LIBFT)/libft.a .
+	$(CC) $(CFLAGS) $(LIBS) $(SRCS_INCLUDE) $^ -o $@
 
 #=======
 
@@ -97,11 +97,11 @@ $(NAME): $(OBJS)
 
 # LIBS= -lpthread -Lmlx -lmlx -framework OpenGL -framework AppKit $(LIBFT_LIB)
 
-# LIB_FT=-Llibft #-lft 
+# LIB_FT=-Llibft #-lft
 
 # all: $(NAME)
 
-# $(NAME):$(OBJS) $(OBJS_IN) 
+# $(NAME):$(OBJS) $(OBJS_IN)
 # 	@make -C $(LIBFT)
 # 	@make -C $(MLX)
 # 	$(CC) $(CFLAGS)$(LIBS) $^ -o $@
