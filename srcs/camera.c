@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:50:06 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/01 14:29:36 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 19:47:35 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ t_cam	*init_camera(t_cam *cam, t_vector c, t_vector v, float fov)
 {
 	cam->cpoint = c;
 	cam->vector = v;
-	// init_light(&cam->light);
-	// init_ambient(&cam->ambient);
 	cam->aspect_ratio = (float)SCENCE_WIDTH / (float)SCENCE_HEIGHT;
 	cam->t_max = T_MAX;
 	cam->depth = 50;

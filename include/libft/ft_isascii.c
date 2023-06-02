@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error.c                                      :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 19:38:28 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/02 18:27:38 by npiya-is         ###   ########.fr       */
+/*   Created: 2021/12/29 15:21:13 by npiya-is          #+#    #+#             */
+/*   Updated: 2022/02/20 16:27:29 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "libft.h"
 
-void	write_error(void)
+int	ft_isascii(int c)
 {
-	write (2, "Error !!\n", 9);
-	exit (1);
+	if ((c >= 0) && (c <= 127))
+		return (1);
+	return (0);
 }
-
-int	check_fd(char *av, t_cam *cam, t_object *ob)
+/*
+int	main(void)
 {
-	int			fd;
-
-	if (file_extension(av))
-		write_error ();
-	fd = open(av, O_RDONLY);
-	if (fd < 0)
-	{
-		perror(av);
-		free(cam);
-		free(ob);
-		exit(EXIT_FAILURE);
-	}
-	return (fd);
-}
+	printf("%d\n",ft_isascii('5'));
+	return (0);
+}*/

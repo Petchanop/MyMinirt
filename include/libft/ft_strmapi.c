@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error.c                                      :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 19:38:28 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/02 18:27:38 by npiya-is         ###   ########.fr       */
+/*   Created: 2022/01/03 15:43:56 by npiya-is          #+#    #+#             */
+/*   Updated: 2022/02/19 17:53:18 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "libft.h"
 
-void	write_error(void)
+size_t	ft_strlen(char const *str);
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	write (2, "Error !!\n", 9);
-	exit (1);
-}
+	unsigned int	i;
+	char			*str;
 
-int	check_fd(char *av, t_cam *cam, t_object *ob)
-{
-	int			fd;
-
-	if (file_extension(av))
-		write_error ();
-	fd = open(av, O_RDONLY);
-	if (fd < 0)
+	str = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!(str) || !s || !f)
+		return (NULL);
+	i = 0;
+	while (i < ft_strlen(s))
 	{
-		perror(av);
-		free(cam);
-		free(ob);
-		exit(EXIT_FAILURE);
+		str[i] = f(i, s[i]);
+		i++;
 	}
-	return (fd);
+	str[i] = 0;
+	return (str);
 }

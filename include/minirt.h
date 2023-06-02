@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/02 15:42:25 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 17:43:54 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@
 # include <math.h>
 # include <fcntl.h>
 # include <time.h>
+# include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <pthread.h>
 # include "../mlx/mlx.h"
-# include "../include/getnextline/get_next_line.h"
+# include "getnextline/get_next_line.h"
 # include "vector.h"
 # include "camera.h"
 # include "object.h"
 # include "color.h"
 # include "antialiasing.h"
-# include "libft.h"
+# include "libft/libft.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
@@ -73,6 +74,8 @@ void		free_scene(t_scene sc[]);
 
 /*checkfile*/
 t_object	*check_file(char *av, t_cam *cam, t_object *ob);
+t_object	*reallocate_object(t_object *ob, t_cam *cam, int i);
+int			check_fd(char *av, t_cam *cam, t_object *ob);
 int			check_ratio(char *str);
 int			check_RGB(char *str);
 void		check_coor(char *str);
@@ -96,5 +99,6 @@ void	iden_sp(t_object *ob, char **split_space);
 void	iden_cy(t_object *ob, char **split_space);
 void	iden_co(t_object *ob, char **split_space);
 void	write_error ();
+void	init_properties(t_object *ob, float radius, float height, float width);
 
 #endif

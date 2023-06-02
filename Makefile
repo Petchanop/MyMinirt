@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/06/02 15:53:49 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/06/02 17:46:18 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME=minirt
 
 CC=gcc
 
-CFLAGS= -Wall -Werror -Wextra -fsanitize=address -I$(INCLUDE_DIR)
+CFLAGS= -Wall -Werror -Wextra -fsanitize=address
 
 SRCS_DIR= srcs/
 
@@ -22,11 +22,14 @@ INCLUDE_DIR= include/
 
 BUILD_DIR = build/
 
-LIBFT = ./libft
+LIBFT = libft
 
-LIBFT_LIB = -Llibft -lft
+MLX= mlx
 
-LIBS= $(LIBFT_LIB) -lpthread -Lmlx -lmlx -framework OpenGL -framework AppKit
+LIBFT_LIB = -lft
+LIB_DIR= ${addprefix ${INCLUDE_DIR}, ${LIBFT}}
+
+LIBS= -Linclude/libft $(LIBFT_LIB) -lpthread -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 SRCS_INCLUDE= include/getnextline/get_next_line.c\
 	include/getnextline/get_next_line_utils.c\
@@ -59,60 +62,33 @@ SRC= minirt.c \
 	check_iden1.c \
 	check_iden2.c \
 	check_range.c \
-	check_subfunc.c
+	check_subfunc.c \
+	check_error.c \
+	subfunc2.c \
 
 SRCS= ${addprefix ${SRCS_DIR}, ${SRC}}
 
 #=======
 
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:%.c=%.o)
+OBJS_INCLUDE = $(SRCS_INCLUDE:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	make -C $(LIBFT)
-	# cp $(LIBFT)/libft.a .
-	$(CC) $(CFLAGS) $(LIBS) $(SRCS_INCLUDE) $^ -o $@
+$(NAME): $(OBJS) $(OBJS_INCLUDE)
+	make -C $(LIB_DIR)
+	make -C $(MLX)
+	$(CC) $(CFLAGS) $(OBJS) $(OBJS_INCLUDE) $(LIBS) -o $(NAME)
 
-#=======
+debug:$(SRCS) $(SRCS_INCLUDE)
+	@make -C $(LIB_DIR)
+	@make -C $(MLX)
+	@$(CC) -g $(CFLAGS) $(SRCS) $(SRCS_INCLUDE) $(LIBS) -o $(NAME)
 
-
-# LIBFT=libft/
-
-# LIBFT_LIB = libft/libft.a
-
-# SRCS_LIBFT = ${addprefix ${LIBFT}, ${SRC_LIBFT}}
-
-# SRCS_INCLUDE= include/getnextline/get_next_line.c\
-# 	include/getnextline/get_next_line_utils.c\
-
-# OBJS=$(SRCS:%.c=$(BUILD_DIR)/%.o)
-
-# OBJS_INC=$(SRC_INCLUDE:%.c=$(BUILD_DIR)/%.o)
-
-# OBJS_LIBFT=$(SRCS_LIBFT:%.c=$(BUILD_DIR)/%.o)
-
-
-# MLX=mlx/
-
-# LIBS= -lpthread -Lmlx -lmlx -framework OpenGL -framework AppKit $(LIBFT_LIB)
-
-# LIB_FT=-Llibft #-lft
-
-# all: $(NAME)
-
-# $(NAME):$(OBJS) $(OBJS_IN)
-# 	@make -C $(LIBFT)
-# 	@make -C $(MLX)
-# 	$(CC) $(CFLAGS)$(LIBS) $^ -o $@
-
-# debug:$(SRCS)
-# 	@make -C $(LIBFT)
-# 	@make -C $(MLX)
-# 	@$(CC) -g $(CFLAGS) $(SRCS) $(LIBS) -o $(NAME)
-
-# leaks:$(SRCS)
-# 	@$(CC) -g $(CFLAGS) $(SRCS) -o $(NAME)
+leaks:$(SRCS) $(SRCS_INCLUDE)
+	@make -C $(LIB_DIR)
+	@make -C $(MLX)
+	@$(CC) -g $(CFLAGS) $(SRCS) $(SRCS_INCLUDE) $(LIBS) -o $(NAME)
 
 clean:
 	rm -rf $(OBJS)

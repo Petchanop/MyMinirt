@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error.c                                      :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 19:38:28 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/02 18:27:38 by npiya-is         ###   ########.fr       */
+/*   Created: 2021/12/23 22:33:47 by npiya-is          #+#    #+#             */
+/*   Updated: 2022/02/20 21:49:52 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "libft.h"
 
-void	write_error(void)
+size_t	ft_strlen(const char *str);
+
+void	*ft_memcpy(void *dst, const void *src, size_t len);
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t len)
 {
-	write (2, "Error !!\n", 9);
-	exit (1);
-}
+	size_t	srclen;
 
-int	check_fd(char *av, t_cam *cam, t_object *ob)
-{
-	int			fd;
-
-	if (file_extension(av))
-		write_error ();
-	fd = open(av, O_RDONLY);
-	if (fd < 0)
+	srclen = ft_strlen(src);
+	if (srclen + 1 < len)
+		ft_memcpy(dst, src, srclen + 1);
+	else if (len)
 	{
-		perror(av);
-		free(cam);
-		free(ob);
-		exit(EXIT_FAILURE);
+		ft_memcpy(dst, src, len - 1);
+		dst[len - 1] = '\0';
 	}
-	return (fd);
+	return (srclen);
 }

@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error.c                                      :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 19:38:28 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/02 18:27:38 by npiya-is         ###   ########.fr       */
+/*   Created: 2022/01/17 14:20:07 by npiya-is          #+#    #+#             */
+/*   Updated: 2022/02/21 02:19:28 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "libft.h"
 
-void	write_error(void)
+size_t		ft_strlen(char const *str);
+
+t_list	*ft_lstnew(void *content)
 {
-	write (2, "Error !!\n", 9);
-	exit (1);
-}
+	t_list	*tmp;
 
-int	check_fd(char *av, t_cam *cam, t_object *ob)
-{
-	int			fd;
-
-	if (file_extension(av))
-		write_error ();
-	fd = open(av, O_RDONLY);
-	if (fd < 0)
+	tmp = malloc(sizeof(t_list));
+	if (!tmp)
+		return (NULL);
+	if (tmp)
 	{
-		perror(av);
-		free(cam);
-		free(ob);
-		exit(EXIT_FAILURE);
+		tmp->content = content;
+		tmp->next = NULL;
 	}
-	return (fd);
+	return (tmp);
 }
+/*
+
+int	main(void)
+{
+	t_list	*test;
+
+	char	*str = "test";
+//	int	*num = 1;
+	test = ft_lstnew(str);
+	ft_print_lst(test);
+	return (0);
+}*/

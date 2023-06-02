@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:41:43 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/02 15:43:28 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 18:51:28 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_RGB(char *line)
 	while (split_RGB[i] != NULL)
 	{
 		int j = 0;
-		while (split_RGB[i][j])
+		while (split_RGB[i][j] && split_RGB[i][j] != '\n')
 		{
 			if (!ft_isdigit(split_RGB[i][j]))
 				write_error ();
@@ -155,7 +155,7 @@ int	check_FOV(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (ft_isdigit(str[i]) == 0)
+		if (str[i] != '\n' && ft_isdigit(str[i]) == 0)
 			write_error();
 		i++;
 	}

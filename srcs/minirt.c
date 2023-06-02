@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/02 15:36:30 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 19:33:18 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	init_properties(t_object *ob, float radius, float height, float width)
 int	main(int argc, char **argv)
 {
 	t_cam		*cam;
-	// t_vars		vars;
+	t_vars		vars;
 	t_object	*ob;
 	// t_vector	p;
 	// t_color 	rgb;
@@ -59,10 +59,10 @@ int	main(int argc, char **argv)
 	// t_color 	rgb6;
 
 	// ob = malloc(sizeof(t_object) * 8);
-	// vars.mlx = mlx_init();
-	// vars.mlx_win = mlx_new_window(vars.mlx, SCENCE_WIDTH, SCENCE_HEIGHT, "npiya-is");
-	// build_image(&vars.img, 100, 100);
-	// init_t_data(&vars);
+	vars.mlx = mlx_init();
+	vars.mlx_win = mlx_new_window(vars.mlx, SCENCE_WIDTH, SCENCE_HEIGHT, "npiya-is");
+	build_image(&vars.img, 100, 100);
+	init_t_data(&vars);
 	// cam = init_camera();
 	// p = (t_vector){-5.5, 1.6, -2, 0};
 	// t_vector p1 = (t_vector){0, 0, 0, 0};
@@ -119,15 +119,28 @@ int	main(int argc, char **argv)
 		write(2, "Error !!", 9);
 		exit (1);
 	}
-	ob = NULL;
-	cam = NULL;
-	check_file(argv[1], cam, ob);
-
-
-	// run_thread(cam, ob, &vars);
-	// mlx_put_image_to_window(vars.mlx, vars.mlx_win, vars.img.img, 0, 0);
-	// mlx_loop(vars.mlx);
-	// pthread_mutex_destroy(&vars.mutex);
-	// free(cam);
-	// free(ob);
+	ob = malloc(sizeof(t_object));
+	if (!ob)
+		return (1);
+	cam = malloc(sizeof(t_cam));
+	if (!cam)
+		return (1);
+	ob[0].type = NULL;
+	ob = check_file(argv[1], cam, ob);
+	// printf("cam: %f, %f, %f\n", cam->cpoint.x, cam->cpoint.y, cam->cpoint.z);
+	// printf("cam: %f, %f, %f\n", cam->vector.x, cam->vector.y, cam->vector.z);
+	// printf("ambient : %f\n", cam->ambient.bright_ratio);
+	// printf("light : %f\n", cam->light.bright_ratio);
+	// while (ob[i].type)
+	// {
+	// 	printf("type : %s %f, %f, %f\n", ob[i].type, ob[i].center.x, ob[i].center.y, ob[i].center.z);
+	// 	printf("color: %f, %f, %f\n", ob[i].color.r, ob[i].color.g, ob[i].color.b);
+	// 	i++;
+	// }
+	run_thread(cam, ob, &vars);
+	mlx_put_image_to_window(vars.mlx, vars.mlx_win, vars.img.img, 0, 0);
+	mlx_loop(vars.mlx);
+	pthread_mutex_destroy(&vars.mutex);
+	free(cam);
+	free(ob);
 }

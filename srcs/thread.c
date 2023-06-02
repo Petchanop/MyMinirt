@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 21:16:49 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/06 12:29:29 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 19:41:21 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ void	init_scene(t_scene sc[], t_cam *cam, t_object *ob, t_vars *data)
 		sc[i].ob[j].type = NULL;
 		i++;
 	}
+	printf("cam: %f, %f, %f\n", cam->cpoint.x, cam->cpoint.y, cam->cpoint.z);
+	printf("cam: %f, %f, %f\n", cam->vector.x, cam->vector.y, cam->vector.z);
+	printf("ambient : %f\n", cam->ambient.bright_ratio);
+	printf("light : %f\n", cam->light.bright_ratio);
 }
 
 void	assign_section(t_scene *sc, int x[], int y[])
@@ -88,7 +92,7 @@ void	run_thread(t_cam *cam, t_object *ob, t_vars *data)
 	pthread_mutex_init(&data->mutex, NULL);
 	assign_portion(sc);
 	while (i < THREAD_NUM)
-	{	
+	{
 		if (pthread_create(&th[i], NULL, &render_scene, &sc[i]) != 0)
 			printf("Thread %d fail to create\n", i + 1);
 		i++;

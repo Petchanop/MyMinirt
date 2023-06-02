@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:20:52 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/01 16:27:02 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 19:40:14 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	init_sphere(t_object *ob, char **c, char **col)
 
 	center = (t_vector){ft_atof(c[0]), ft_atof(c[1]), ft_atof(c[2]), 0};
 	rgb = (t_color){ft_atof(col[0]), ft_atof(col[1]), ft_atof(col[2])};
-	ob->type = "sp";
 	ob->center = center;
 	ob->color.r = rgb.r / 255.999;
 	ob->color.g = rgb.g / 255.999;
@@ -33,12 +32,13 @@ void	init_cylinder(t_object *ob, char **c, char **v, char **col)
 	t_vector	half_height;
 	t_color		rgb;
 
-	ob->type = "cy";
 	center = (t_vector){ft_atof(c[0]), ft_atof(c[1]), ft_atof(c[2]), 0};
 	n = (t_vector){ft_atof(v[0]), ft_atof(v[1]), ft_atof(v[2]), 0};
 	rgb = (t_color){ft_atof(col[0]), ft_atof(col[1]), ft_atof(col[2])};
 	ob->center = center;
-	ob->color = rgb;
+	ob->color.r = rgb.r / 255.999;
+	ob->color.g = rgb.g / 255.999;
+	ob->color.b = rgb.b / 255.999;
 	ob->vector = vector_normalize(n);
 	half_height = vector_mul(ob->vector, ob->height / 2);
 	ob->t_cap = vector_add(half_height, ob->center);
@@ -55,7 +55,6 @@ void	init_plane(t_object *ob, char **c, char **v, char **col)
 	center = (t_vector){ft_atof(c[0]), ft_atof(c[1]), ft_atof(c[2]), 0};
 	n = (t_vector){ft_atof(v[0]), ft_atof(v[1]), ft_atof(v[2]), 0};
 	rgb = (t_color){ft_atof(col[0]), ft_atof(col[1]), ft_atof(col[2])};
-	ob->type = "pl";
 	ob->center = center;
 	ob->color.r = rgb.r / 255.999;
 	ob->color.g = rgb.g / 255.999;
@@ -78,7 +77,6 @@ void	init_cone(t_object *ob, char **c, char **v, char **col)
 	t_vector	half_height;
 	t_color		rgb;
 
-	ob->type = "co";
 	center = (t_vector){ft_atof(c[0]), ft_atof(c[1]), ft_atof(c[2]), 0};
 	n = (t_vector){ft_atof(v[0]), ft_atof(v[1]), ft_atof(v[2]), 0};
 	rgb = (t_color){ft_atof(col[0]), ft_atof(col[1]), ft_atof(col[2])};

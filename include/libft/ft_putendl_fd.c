@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error.c                                      :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 19:38:28 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/02 18:27:38 by npiya-is         ###   ########.fr       */
+/*   Created: 2022/01/04 12:59:52 by npiya-is          #+#    #+#             */
+/*   Updated: 2022/02/19 17:49:53 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "libft.h"
+#include <fcntl.h>
 
-void	write_error(void)
+void	ft_putendl_fd(char *s, int fd)
 {
-	write (2, "Error !!\n", 9);
-	exit (1);
-}
-
-int	check_fd(char *av, t_cam *cam, t_object *ob)
-{
-	int			fd;
-
-	if (file_extension(av))
-		write_error ();
-	fd = open(av, O_RDONLY);
-	if (fd < 0)
+	while (*s)
 	{
-		perror(av);
-		free(cam);
-		free(ob);
-		exit(EXIT_FAILURE);
+		write(fd, &(*s), 1);
+		s++;
 	}
-	return (fd);
+	write(fd, "\n", 1);
 }
+/*
+int	main(void)
+{
+	int fd = open("text", O_WRONLY | O_CREAT | O_TRUNC);
+	ft_putendl_fd("change", fd);
+	return (0);
+}*/

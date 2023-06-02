@@ -6,17 +6,17 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 20:52:28 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/01 14:42:18 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 19:47:24 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	init_light(t_light *light, t_vector c, t_color color, float ratio)
+void	init_light(t_light *light, t_vector c, t_color col, float ratio)
 {
 	light->point = c;
 	light->vector = (t_vector){0, 0, 1, 0};
-	light->color = color;
+	light->color = (t_color){col.r / 255.999, col.g / 255.999, col.b / 255.999};
 	light->bright_ratio = ratio;
 	light->dir = vector_normalize(light->point);
 }
