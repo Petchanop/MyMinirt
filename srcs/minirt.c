@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/02 19:33:18 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 23:06:08 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,16 +127,6 @@ int	main(int argc, char **argv)
 		return (1);
 	ob[0].type = NULL;
 	ob = check_file(argv[1], cam, ob);
-	// printf("cam: %f, %f, %f\n", cam->cpoint.x, cam->cpoint.y, cam->cpoint.z);
-	// printf("cam: %f, %f, %f\n", cam->vector.x, cam->vector.y, cam->vector.z);
-	// printf("ambient : %f\n", cam->ambient.bright_ratio);
-	// printf("light : %f\n", cam->light.bright_ratio);
-	// while (ob[i].type)
-	// {
-	// 	printf("type : %s %f, %f, %f\n", ob[i].type, ob[i].center.x, ob[i].center.y, ob[i].center.z);
-	// 	printf("color: %f, %f, %f\n", ob[i].color.r, ob[i].color.g, ob[i].color.b);
-	// 	i++;
-	// }
 	run_thread(cam, ob, &vars);
 	mlx_put_image_to_window(vars.mlx, vars.mlx_win, vars.img.img, 0, 0);
 	mlx_loop(vars.mlx);

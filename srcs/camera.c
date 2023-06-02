@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:50:06 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/02 19:47:35 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 22:17:16 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	cameara_fov(t_cam *cam)
 	cam->lower.w = 0;
 }
 
-t_cam	*init_camera(t_cam *cam, t_vector c, t_vector v, float fov)
+void	init_camera(t_cam *cam, t_vector c, t_vector v, float fov)
 {
 	cam->cpoint = c;
 	cam->vector = v;
@@ -44,10 +44,8 @@ t_cam	*init_camera(t_cam *cam, t_vector c, t_vector v, float fov)
 	cam->depth = 50;
 	cam->fov = fov;
 	cam->theta = degrees_to_radians(cam->fov * 0.5);
-	cam->len = 1;
 	cam->h = tan(cam->theta);
 	cameara_fov(cam);
-	return (cam);
 }
 
 float	degrees_to_radians(float degrees)

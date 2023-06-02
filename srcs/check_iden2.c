@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 01:11:38 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/02 19:40:29 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 23:01:21 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ void	iden_pl(t_object *ob, char **split_space)
 	check_vec(split_space[2]);
 	check_RGB(split_space[3]);
 	init_properties(ob, 0, 0, 0);
-	init_type(ob, "pl", "");
+	init_type(ob, "df", "");
 	coor = ft_split(split_space[1], ',');
 	vec = ft_split(split_space[2], ',');
 	color = ft_split(split_space[3], ',');
 	ob->type = ft_strdup(split_space[0]);
-	ob->texture = "df";
 	init_plane(ob, coor, vec, color);
+	printf("%s coord: %f, %f, %f\n", ob->type, ob->center.x, ob->center.y, ob->center.z);
+	printf("color: %f %f %f, width : %f\n" ,ob->color.r, ob->color.g, ob->color.b, ob->radius);
 }
 
 void	iden_sp(t_object *ob, char **split_space)
@@ -52,9 +53,11 @@ void	iden_sp(t_object *ob, char **split_space)
 	size = ft_split(split_space[2], ',');
 	color = ft_split(split_space[3], ',');
 	ob->type = ft_strdup(split_space[0]);
-	ob->texture = "df";
-	init_properties(ob, ft_atof(size[0]), 0, 0);
+	init_properties(ob, ft_atof(size[0]) / 2, 0, 0);
 	init_sphere(ob, coor, color);
+	init_type(ob, "df", "");
+	printf("%s coord: %f, %f, %f\n", ob->type, ob->center.x, ob->center.y, ob->center.z);
+	printf("color: %f %f %f, width : %f\n" ,ob->color.r, ob->color.g, ob->color.b, ob->radius);
 }
 
 void	iden_cy(t_object *ob, char **split_space)
@@ -78,9 +81,11 @@ void	iden_cy(t_object *ob, char **split_space)
 	dia = ft_atof(split_space[3]) / 2;
 	length = ft_atof(split_space[4]);
 	ob->type = ft_strdup(split_space[0]);
-	ob->texture = "df";
 	init_properties(ob, dia, length, 0);
 	init_cylinder(ob, coor, vec, color);
+	init_type(ob, "df", "");
+	printf("%s coord: %f, %f, %f\n", ob->type, ob->center.x, ob->center.y, ob->center.z);
+	printf("color: %f %f %f, width : %f\n" ,ob->color.r, ob->color.g, ob->color.b, ob->radius);
 }
 
 void	iden_co(t_object *ob, char **split_space)
@@ -104,7 +109,7 @@ void	iden_co(t_object *ob, char **split_space)
 	dia = ft_atof(split_space[3]) / 2;
 	length = ft_atof(split_space[4]);
 	ob->type = ft_strdup(split_space[0]);
-	ob->texture = "df";
 	init_properties(ob, dia, length, 0);
 	init_cone(ob, coor, vec, color);
+	init_type(ob, "df", "");
 }

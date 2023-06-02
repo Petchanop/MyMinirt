@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 23:39:47 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/02 19:45:23 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 22:16:33 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	iden_c(t_cam *cam, char **split_space)
 	c = (t_vector){ft_atof(coord[0]), ft_atof(coord[1]), ft_atof(coord[2]), 0};
 	vec = ft_split(split_space[2], ',');
 	v = (t_vector){ft_atof(vec[0]), ft_atof(vec[1]), ft_atof(vec[2]), 0};
-	cam = init_camera(cam, c, v, ft_atof(split_space[3]));
+	init_camera(cam, c, v, ft_atof(split_space[3]));
 	free2p(coord);
 	free2p(vec);
 }

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/02 19:17:24 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 22:39:52 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,12 @@ t_object	*reallocate_object(t_object *ob, t_cam *cam, int i)
 	while (i--)
 	{
 		new_ob[j] = ob[k];
-		new_ob->cam = *cam;
+		new_ob[j].index = j;
+		new_ob[j].cam = *cam;
 		j++;
 		k++;
 	}
 	new_ob[j].type = NULL;
+	new_ob[j].index = j + 1;
 	return (new_ob);
 }

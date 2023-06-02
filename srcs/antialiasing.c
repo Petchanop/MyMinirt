@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:46:25 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/05/05 23:37:56 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/02 23:52:46 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ t_color	*half_sampling(t_cam *cam, t_object *ob, int x, int y)
 t_color	*generate_sampling(t_cam *cam, t_object *ob, int x, int y)
 {
 	t_color		ret;
-	t_color		*h;
 	t_color		*pixel;
+	t_color		*h;
 	float		u;
 	float		v;
 
