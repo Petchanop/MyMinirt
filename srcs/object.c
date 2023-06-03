@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:20:52 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/02 19:40:14 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/04 00:23:37 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,9 @@ void	init_cone(t_object *ob, char **c, char **v, char **col)
 	n = (t_vector){ft_atof(v[0]), ft_atof(v[1]), ft_atof(v[2]), 0};
 	rgb = (t_color){ft_atof(col[0]), ft_atof(col[1]), ft_atof(col[2])};
 	ob->center = center;
-	ob->color = rgb;
+	ob->color.r = rgb.r / 255.999;
+	ob->color.g = rgb.g / 255.999;
+	ob->color.b = rgb.b / 255.999;
 	ob->vector = vector_normalize(n);
 	half_height = vector_mul(ob->vector, ob->height / 2);
 	ob->t_cap = vector_add(half_height, ob->center);

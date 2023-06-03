@@ -6,13 +6,13 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 23:39:47 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/02 22:16:33 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/04 02:00:07 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
-void	iden_a(t_cam *cam, char **split_space)
+int	iden_a(t_cam *cam, char **split_space)
 {
 	static unsigned int	acount = 0;
 	t_color				color;
@@ -29,9 +29,10 @@ void	iden_a(t_cam *cam, char **split_space)
 	color.b = ft_atof(colour[2]) / 255.999;
 	init_ambient(&cam->ambient, ft_atof(split_space[1]), color);
 	free2p(colour);
+	return (1);
 }
 
-void	iden_c(t_cam *cam, char **split_space)
+int	iden_c(t_cam *cam, char **split_space)
 {
 	static unsigned int	ccount = 0;
 	char				**coord;
@@ -53,9 +54,10 @@ void	iden_c(t_cam *cam, char **split_space)
 	init_camera(cam, c, v, ft_atof(split_space[3]));
 	free2p(coord);
 	free2p(vec);
+	return (1);
 }
 
-void	iden_l(t_cam *cam, char **split_space)
+int	iden_l(t_cam *cam, char **split_space)
 {
 	static unsigned int	lcount = 0;
 	char				**vec;
@@ -77,4 +79,5 @@ void	iden_l(t_cam *cam, char **split_space)
 	init_light(&cam->light, c, color, ft_atof(split_space[2]));
 	free2p(vec);
 	free2p(col);
+	return (1);
 }

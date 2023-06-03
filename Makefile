@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/06/02 17:46:18 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/06/04 00:48:02 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME=minirt
 
 CC=gcc
 
-CFLAGS= -Wall -Werror -Wextra -fsanitize=address
+CFLAGS= -Wall -Werror -Wextra
+#-fsanitize=address
 
 SRCS_DIR= srcs/
 
@@ -65,6 +66,7 @@ SRC= minirt.c \
 	check_subfunc.c \
 	check_error.c \
 	subfunc2.c \
+	keyhook.c \
 
 SRCS= ${addprefix ${SRCS_DIR}, ${SRC}}
 
@@ -87,8 +89,7 @@ debug:$(SRCS) $(SRCS_INCLUDE)
 
 leaks:$(SRCS) $(SRCS_INCLUDE)
 	@make -C $(LIB_DIR)
-	@make -C $(MLX)
-	@$(CC) -g $(CFLAGS) $(SRCS) $(SRCS_INCLUDE) $(LIBS) -o $(NAME)
+	@$(CC) -g $(CFLAGS) $(SRCS) $(SRCS_INCLUDE) -Linclude/libft $(LIBFT_LIB) -lpthread -o $(NAME)
 
 clean:
 	rm -rf $(OBJS)

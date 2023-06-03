@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:41:43 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/02 18:51:28 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/03 23:40:14 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	check_ratio(char *str)
 	int	i;
 
 	i = 0;
-	//str[i] = ft_atoi(str[i]);
 	if (str[i] == '0' || str[i] == '1')
 	{
 		i++;
@@ -53,7 +52,7 @@ int	check_RGB(char *line)
 		while (split_RGB[i][j] && split_RGB[i][j] != '\n')
 		{
 			if (!ft_isdigit(split_RGB[i][j]))
-				write_error ();
+				write_error ("wrong RGB format : rgb is not digit ");
 			j++;
 		}
 		i++;
@@ -61,9 +60,8 @@ int	check_RGB(char *line)
 	i = 0;
 	while (split_RGB[i] != NULL)
 	{
-
 		if (check_range_RGB(atoi(split_RGB[i])) == 0)
-			write_error ();
+			write_error ("wrong RGB format : wrong range number ");
 		i++;
 	}
 	free2p(split_RGB);
@@ -88,15 +86,15 @@ void	check_coor(char *line)
 			if (j == 0)
 			{
 				if ((!ft_isdigit(split_coor[i][0]) && split_coor[i][0] != '-') || (split_coor[i][0] == '-' && split_coor[i][1] == '.'))
-					write_error();
+					write_error("wrong co ordinates format : coord is not a number ");
 			}
 			else if (!ft_isdigit(split_coor[i][j]) && split_coor[i][j] != '.')
-				write_error();
+				write_error("wrong co ordinates format : coord is not a number ");
 			else if (split_coor[i][j] == '.')
 			{
 				count++;
 				if (count > 1)
-					write_error ();
+					write_error ("wrong coordinate format ");
 			}
 			j++;
 		}
@@ -116,9 +114,8 @@ void	check_vec(char *line)
 		exit (1);
 	while (split_vec[i] != NULL)
 	{
-
 		if (check_range_vec(atoi(split_vec[i])) == 0)
-			write_error();
+			write_error("vector value not between -1 - 1 ");
 		i++;
 	}
 	while (split_vec[i] != NULL)
@@ -132,14 +129,14 @@ void	check_vec(char *line)
 		while (split_vec[i][j])
 		{
 			if (!ft_isdigit(split_vec[i][0]) || split_vec[i][0] != '-' || (split_vec[i][0] == '-' && split_vec[i][1] == '.'))
-				write_error();
+				write_error("wrong vector format : vector is not number ");
 			else if (!ft_isdigit(split_vec[i][j]) && split_vec[i][j] != '.')
-				write_error();
+				write_error("wrong vector format : vector is not number ");
 			else if (split_vec[i][j] == '.')
 			{
 				count++;
 				if (count > 1)
-					write_error ();
+					write_error ("wrong vector format ");
 			}
 			j++;
 		}
@@ -156,10 +153,10 @@ int	check_FOV(char *str)
 	while (str[i] != '\0')
 	{
 		if (str[i] != '\n' && ft_isdigit(str[i]) == 0)
-			write_error();
+			write_error("wrong Fov formate ");
 		i++;
 	}
 	if (check_range_FOV(atoi(str)) == 0)
-		write_error ();
+		write_error ("wrong fov format : fov not between 0 - 180 ");
 	return (0);
 }

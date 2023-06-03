@@ -6,15 +6,57 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/02 22:39:52 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/04 02:06:49 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-#include <stdio.h>
-//#include <libft.h>
-#include <stdlib.h>
-#include <unistd.h>
+
+int	assign_env(t_cam *cam, char **split_space)
+{
+	if (!ft_strncmp(split_space[0], "A", 2))
+		return (iden_a(cam, split_space));
+	else if (!ft_strncmp(split_space[0], "C", 2))
+		return (iden_c(cam, split_space));
+	else if (!ft_strncmp(split_space[0], "L", 2))
+		return (iden_l(cam, split_space));
+	return (0);
+}
+
+int	assign_object(t_object *ob, char **split_space, int i)
+{
+	if (ft_strncmp(split_space[0], "A", 2) && ft_strncmp(split_space[0], "C", 2)
+		&& ft_strncmp(split_space[0], "L", 2))
+	{
+		if (!ft_strncmp(split_space[0], "pl", 3))
+		{
+			iden_pl(&ob[i], split_space);
+			ob[i].index = i;
+			i++;
+		}
+		else if (!ft_strncmp(split_space[0], "sp", 3))
+		{
+			iden_sp(&ob[i], split_space);
+			ob[i].index = i;
+			i++;
+		}
+		else if (!ft_strncmp(split_space[0], "cy", 3))
+		{
+			iden_cy(&ob[i], split_space);
+			ob[i].index = i;
+			i++;
+		}
+		else if (!ft_strncmp(split_space[0], "co", 3))
+		{
+			iden_co(&ob[i], split_space);
+			ob[i].index = i;
+			i++;
+		}
+	}
+	else if (ft_strncmp(split_space[0], "#", 1) && ft_strncmp(split_space[0], "\n", 1))
+		write_error ("type not match in program format ");
+	return (i);
+}
 
 t_object	*check_file(char *av, t_cam *cam, t_object *ob)
 {
@@ -31,55 +73,38 @@ t_object	*check_file(char *av, t_cam *cam, t_object *ob)
 		if (line == NULL)
 			break ;
 		split_space = ft_split(line, ' ');
-		if (!ft_strncmp(split_space[0], "A", 2))
-			iden_a(cam, split_space);
-		else if (!ft_strncmp(split_space[0], "C", 2))
-			iden_c(cam, split_space);
-		else if (!ft_strncmp(split_space[0], "L", 2))
-			iden_l(cam, split_space);
-		else if (!ft_strncmp(split_space[0], "pl", 3))
-			iden_pl(&ob[i], split_space);
-		else if (!ft_strncmp(split_space[0], "sp", 3))
-			iden_sp(&ob[i], split_space);
-		else if (!ft_strncmp(split_space[0], "cy", 3))
-			iden_cy(&ob[i], split_space);
-		else if (!ft_strncmp(split_space[0], "co", 3))
-			iden_co(&ob[i], split_space);
-		else if (!ft_strncmp(split_space[0], "#", 1))
-			continue ;
-		else if (!ft_strncmp(split_space[0], "\n", 1))
-			continue ;
-		else
-			write_error ();
-		if (ob[i].type)
-		{
-			i++;
-			ob = reallocate_object(ob, cam, i);
-		}
+		free(line);
+		if (!assign_env(cam, split_space))
+			i = assign_object(ob, split_space, i);
+		free2p(split_space);
 	}
 	return (ob);
 }
 
-t_object	*reallocate_object(t_object *ob, t_cam *cam, int i)
+int	count_size(int fd)
 {
-	t_object	*new_ob;
-	int			j;
-	int			k;
+	int		size;
+	char	*line;
+	char	**split_space;
 
-	j = 0;
-	k = 0;
-	if (i == 0)
-		return (ob);
-	new_ob = malloc(sizeof(t_object) * (i + 1));
-	while (i--)
+	size = 0;
+	while (1)
 	{
-		new_ob[j] = ob[k];
-		new_ob[j].index = j;
-		new_ob[j].cam = *cam;
-		j++;
-		k++;
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		split_space = ft_split(line, ' ');
+		free(line);
+		if (!ft_strncmp(split_space[0], "pl", 3))
+			size++;
+		else if (!ft_strncmp(split_space[0], "sp", 3))
+			size++;
+		else if (!ft_strncmp(split_space[0], "cy", 3))
+			size++;
+		else if (!ft_strncmp(split_space[0], "co", 3))
+			size++;
+		free2p(split_space);
 	}
-	new_ob[j].type = NULL;
-	new_ob[j].index = j + 1;
-	return (new_ob);
+	close(fd);
+	return (size);
 }

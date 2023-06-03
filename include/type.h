@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 19:48:40 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/02 22:16:21 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/04 00:40:40 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,6 @@ typedef struct s_data {
 	int		depth;
 	int		width;
 }	t_data;
-
-typedef struct s_vars {
-	void		*mlx;
-	void		*mlx_win;
-	pthread_mutex_t	mutex;
-	t_data		img;
-	float		angle;
-	float		angle1;
-	float		angle2;
-}	t_vars;
 
 typedef struct s_color
 {
@@ -129,6 +119,18 @@ typedef struct s_object
 	t_color		color;
 	t_cam		cam;
 }	t_object;
+
+typedef struct s_vars {
+	pthread_mutex_t	mutex;
+	void			*mlx;
+	void			*mlx_win;
+	t_data			img;
+	float			angle;
+	float			angle1;
+	float			angle2;
+	t_object		*ob;
+	t_cam			*cam;
+}	t_vars;
 
 typedef struct s_scene
 {
