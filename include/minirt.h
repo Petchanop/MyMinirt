@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/04 02:00:28 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/04 15:30:14 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 #  define PI  3.14159
 # endif
 
-# define SCENCE_WIDTH 1067
-# define SCENCE_HEIGHT 600
+# define SC_WIDTH 1067
+# define SC_HEIGHT 600
 # define MIN_HIT_DIS 0.001
 # define MAX_TRACE_DIS 1000.0
 # define MAX_STEP 600

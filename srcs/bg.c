@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 14:31:47 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/02 23:07:15 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/04 15:30:51 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	create_scene(t_scene *sc, t_object *ob, t_vars *data, t_color col)
 			col = antialiasing(&sc->c, ob, x, y);
 			c = convert_to_int(col);
 			pthread_mutex_lock(&data->mutex);
-			put_pixel(&data->img, SCENCE_WIDTH - x, y, c);
+			put_pixel(&data->img, SC_WIDTH - x, y, c);
 			pthread_mutex_unlock(&data->mutex);
 			x--;
 		}

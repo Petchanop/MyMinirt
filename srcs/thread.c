@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 21:16:49 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/03 23:54:31 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/04 15:30:51 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	assign_portion(t_scene sc[])
 	int			dx;
 
 	i = 0;
-	dx = (SCENCE_WIDTH) / 5;
-	sizey[0] = SCENCE_HEIGHT - 1;
+	dx = (SC_WIDTH) / 5;
+	sizey[0] = SC_HEIGHT - 1;
 	sizey[1] = 0;
 	sizex[0] = dx;
 	sizex[1] = 0;

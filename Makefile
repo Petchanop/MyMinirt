@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/06/04 00:48:02 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/06/04 15:38:22 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,11 @@ NAME=minirt
 
 CC=gcc
 
-CFLAGS= -Wall -Werror -Wextra
-#-fsanitize=address
+CFLAGS= -Wall -Werror -Wextra -fsanitize=address
 
 SRCS_DIR= srcs/
 
 INCLUDE_DIR= include/
-
-BUILD_DIR = build/
 
 LIBFT = libft
 
@@ -89,12 +86,16 @@ debug:$(SRCS) $(SRCS_INCLUDE)
 
 leaks:$(SRCS) $(SRCS_INCLUDE)
 	@make -C $(LIB_DIR)
-	@$(CC) -g $(CFLAGS) $(SRCS) $(SRCS_INCLUDE) -Linclude/libft $(LIBFT_LIB) -lpthread -o $(NAME)
+	@make -C $(MLX)
+	@$(CC) -g $(CFLAGS) $(SRCS) $(SRCS_INCLUDE) $(LIBS) -o $(NAME)
 
 clean:
-	rm -rf $(OBJS)
+	make clean -C $(MLX)
+	make clean -C $(LIB_DIR)
+	rm -rf $(OBJS) $(OBJS_INCLUDE)
 
 fclean:clean
+	make fclean -C $(LIB_DIR)
 	rm -rf $(NAME) $(NAME).dSYM
 
 re:fclean all

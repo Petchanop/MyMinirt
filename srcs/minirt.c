@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/04 02:09:30 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/04 15:34:24 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	build_image(t_data *img, int width, int length)
 
 void	init_t_data(t_vars *vars)
 {
-	vars->img.img = mlx_new_image(vars->mlx, SCENCE_WIDTH, SCENCE_HEIGHT);
+	vars->img.img = mlx_new_image(vars->mlx, SC_WIDTH, SC_HEIGHT);
 	vars->img.addr = mlx_get_data_addr(vars->img.img, &vars->img.bits_per_pixel,
 			&vars->img.line_length, &vars->img.endian);
 	if (!vars->angle)
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	int			fd;
 
 	vars.mlx = mlx_init();
-	vars.mlx_win = mlx_new_window(vars.mlx, SCENCE_WIDTH, SCENCE_HEIGHT, "npiya-is");
+	vars.mlx_win = mlx_new_window(vars.mlx, SC_WIDTH, SC_HEIGHT, "npiya-is");
 	build_image(&vars.img, 100, 100);
 	init_t_data(&vars);
 	if (argc != 2)
