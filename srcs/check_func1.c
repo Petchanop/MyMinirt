@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_func1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:41:43 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/04 20:01:54 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:57:00 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-#include <stdio.h>
-//#include <libft.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 int	check_ratio(char *str)
 {
@@ -97,7 +93,7 @@ void	check_coor(char *line)
 			else if (split_coor[i][j] == '.')
 			{
 				ccount++;
-				if (count > 1)
+				if (ccount > 1)
 					write_error ("wrong coordinate format ");
 			}
 			j++;
@@ -139,7 +135,7 @@ void	check_vec(char *line)
 			else if (split_vec[i][j] == '.')
 			{
 				vcount++;
-				if (count > 1)
+				if (vcount > 1)
 					write_error ("wrong vector format ");
 			}
 			j++;

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 18:20:52 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/04 00:23:37 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/05 00:21:06 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,4 @@ void	init_cone(t_object *ob, char **c, char **v, char **col)
 	ob->diff = vector_sub(ob->b_cap, ob->t_cap);
 	ob->k = ob->radius / ob->height;
 	ob->k = 1 + pow(ob->k, 2);
-}
-
-void	init_type(t_object *ob, char *type, char *reflec)
-{
-	ob->texture = type;
-	ob->reflec = reflec;
-	ob->tn = 1;
 }

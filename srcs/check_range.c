@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_range.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 20:31:06 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/04 20:13:28 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:52:38 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
-#include <stdio.h>
-//#include <libft.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 int	check_range_rgb(int n)
 {

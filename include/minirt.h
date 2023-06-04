@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/04 20:55:17 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:58:05 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ t_object	*reallocate_object(t_object *ob, t_cam *cam, int i);
 int			count_size(int fd);
 int			check_fd(char *av, t_cam *cam, t_object *ob);
 int			check_ratio(char *str);
-int			check_RGB(char *str);
+int			check_rgb(char *str);
 void		check_coor(char *str);
 void		check_vec(char *str);
-int			check_FOV(char *str);
+int			check_fov(char *str);
 void		check_size(char *str);
-int			check_range_RGB(int n);
+int			check_range_rgb(int n);
 int			check_range_vec(int n);
-int			check_range_FOV(int n);
+int			check_range_fov(int n);
 int			key_hook(int keycode, t_vars *vars);
 int			close_minirt(t_vars *vars);
 int			count(char **str);

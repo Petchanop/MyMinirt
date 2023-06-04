@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_iden1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
+/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 23:39:47 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/04 18:32:47 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:57:33 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	iden_a(t_cam *cam, char **split_space)
 	if (count(split_space) != 3 || acount > 1)
 		exit (1);
 	check_ratio(split_space[1]);
-	check_RGB(split_space[2]);
+	check_rgb(split_space[2]);
 	colour = ft_split(split_space[2], ',');
 	color.r = ft_atof(colour[0]) / 255.999;
 	color.g = ft_atof(colour[1]) / 255.999;
@@ -45,7 +45,7 @@ int	iden_c(t_cam *cam, char **split_space)
 		exit (1);
 	check_coor(split_space[1]);
 	check_vec(split_space[2]);
-	check_FOV(split_space[3]);
+	check_fov(split_space[3]);
 	cam->c = ft_strdup(split_space[0]);
 	coord = ft_split(split_space[1], ',');
 	c = (t_vector){ft_atof(coord[0]), ft_atof(coord[1]), ft_atof(coord[2]), 0};
@@ -70,7 +70,7 @@ int	iden_l(t_cam *cam, char **split_space)
 		exit (1);
 	check_coor(split_space[1]);
 	check_ratio(split_space[2]);
-	check_RGB(split_space[3]);
+	check_rgb(split_space[3]);
 	cam->light.l = ft_strdup(split_space[0]);
 	vec = ft_split(split_space[1], ',');
 	col = ft_split(split_space[3], ',');

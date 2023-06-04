@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 01:11:38 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/04 15:20:47 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/04 23:57:00 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	iden_pl(t_object *ob, char **split_space)
 		exit (1);
 	check_coor(split_space[1]);
 	check_vec(split_space[2]);
-	check_RGB(split_space[3]);
+	check_rgb(split_space[3]);
 	init_properties(ob, 0, 0, 0);
 	init_type(ob, "df", "");
 	coor = ft_split(split_space[1], ',');
@@ -45,7 +45,7 @@ void	iden_sp(t_object *ob, char **split_space)
 		exit (1);
 	check_coor(split_space[1]);
 	check_size(split_space[2]);
-	check_RGB(split_space[3]);
+	check_rgb(split_space[3]);
 	coor = ft_split(split_space[1], ',');
 	size = ft_split(split_space[2], ',');
 	color = ft_split(split_space[3], ',');
@@ -72,7 +72,7 @@ void	iden_cy(t_object *ob, char **split_space)
 	check_vec(split_space[2]);
 	check_size(split_space[3]);
 	check_size(split_space[4]);
-	check_RGB(split_space[5]);
+	check_rgb(split_space[5]);
 	coor = ft_split(split_space[1], ',');
 	vec = ft_split(split_space[2], ',');
 	color = ft_split(split_space[5], ',');
@@ -101,7 +101,7 @@ void	iden_co(t_object *ob, char **split_space)
 	check_vec(split_space[2]);
 	check_size(split_space[3]);
 	check_size(split_space[4]);
-	check_RGB(split_space[5]);
+	check_rgb(split_space[5]);
 	coor = ft_split(split_space[1], ',');
 	vec = ft_split(split_space[2], ',');
 	color = ft_split(split_space[5], ',');

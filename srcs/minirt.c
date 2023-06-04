@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:41:51 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/04 15:34:24 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/05 00:20:55 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ void	init_properties(t_object *ob, float radius, float height, float width)
 	ob->radius = radius;
 	ob->height = height;
 	ob->width = width;
+}
+
+void	init_type(t_object *ob, char *type, char *reflec)
+{
+	ob->texture = type;
+	ob->reflec = reflec;
+	ob->tn = 1;
 }
 
 int	main(int argc, char **argv)
