@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/06/04 15:38:22 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/06/04 16:10:41 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME=minirt
 
 CC=gcc
 
-CFLAGS= -Wall -Werror -Wextra -fsanitize=address
+CFLAGS= -Wall -Werror -Wextra
+# -fsanitize=address
 
 SRCS_DIR= srcs/
 
