@@ -6,19 +6,19 @@
 /*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:31:49 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/05/23 21:40:53 by lkaewsae         ###   ########.fr       */
+/*   Updated: 2023/06/04 20:48:17 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
 
 //read file
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-    if(ac != 2)
-    {
-        write(2, "Error !!\n", 9);
-        return (0);
-    }
-    checkfile()
+	if (ac != 2)
+	{
+		write(2, "Error !!\n", 9);
+		return (0);
+	}
+	checkfile();
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_subfunc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 17:27:05 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/02 18:13:54 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/04 20:33:34 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int count(char **str)
+int	count(char **str)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (str[i] != NULL)
-	   i++;
+		i++;
 	return (i);
 }
 
-int ft_isdigit(int n)
+int	ft_isdigit(int n)
 {
-	if(n >= '0' && n <= '9')
+	if (n >= '0' && n <= '9')
 		return (1);
 	return (0);
 }
@@ -40,21 +42,37 @@ int	file_extension(char *av)
 	return (1);
 }
 
-float ft_atof (char *str)
+void	free2p(char **ptr)
 {
-	double result = 0.0;
-	int sign = 1;
-	int i = 0;
-	int decimalflag = 0;
-	double decimalmul = 1.0;
+	int	i;
+
+	i = 0;
+	while (ptr[i] != NULL)
+		free (ptr[i++]);
+	free (ptr);
+}
+
+float	ft_atof(char *str)
+{
+	double	result;
+	int		sign;
+	int		i;
+	int		decimalflag;
+	double	decimalmul;
+
+	result = 0.0;
+	sign = 1;
+	i = 0;
+	decimalflag = 0;
+	decimalmul = 1.0;
 	while (str[i] < 33 && str[i] != '\0')
 		i++;
-	if(str[i] == '-')
+	if (str[i] == '-')
 	{
 		sign = -1;
 		i++;
 	}
-	while((str[i] >= '0' && str[i] <= '9') || str[i] == '.')
+	while ((str[i] >= '0' && str[i] <= '9') || str[i] == '.')
 	{
 		if (str[i] == '.')
 			decimalflag = 1;
@@ -69,4 +87,3 @@ float ft_atof (char *str)
 	}
 	return ((float)(sign * result));
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/04 15:30:14 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/04 20:55:17 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	iden_pl(t_object *ob, char **split_space);
 void	iden_sp(t_object *ob, char **split_space);
 void	iden_cy(t_object *ob, char **split_space);
 void	iden_co(t_object *ob, char **split_space);
-void	write_error (char *err);
+void	write_error(char *err);
 void	init_properties(t_object *ob, float radius, float height, float width);
 
 #endif

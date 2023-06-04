@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_func1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lkaewsae <lkaewsae@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 21:41:43 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/03 23:40:14 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/04 20:01:54 by lkaewsae         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,41 +37,44 @@ int	check_ratio(char *str)
 	return (0);
 }
 
-int	check_RGB(char *line)
+int	check_rgb(char *line)
 {
-	char	**split_RGB;
+	char	**split_rgb;
 	int		i;
+	int		j;
 
-	split_RGB = ft_split(line, ',');
+	split_rgb = ft_split(line, ',');
 	i = 0;
-	if (count(split_RGB) != 3)
+	if (count(split_rgb) != 3)
 		exit (1);
-	while (split_RGB[i] != NULL)
+	while (split_rgb[i] != NULL)
 	{
-		int j = 0;
-		while (split_RGB[i][j] && split_RGB[i][j] != '\n')
+		j = 0;
+		while (split_rgb[i][j] && split_rgb[i][j] != '\n')
 		{
-			if (!ft_isdigit(split_RGB[i][j]))
+			if (!ft_isdigit(split_rgb[i][j]))
 				write_error ("wrong RGB format : rgb is not digit ");
 			j++;
 		}
 		i++;
 	}
 	i = 0;
-	while (split_RGB[i] != NULL)
+	while (split_rgb[i] != NULL)
 	{
-		if (check_range_RGB(atoi(split_RGB[i])) == 0)
+		if (check_range_rgb(atoi(split_rgb[i])) == 0)
 			write_error ("wrong RGB format : wrong range number ");
 		i++;
 	}
-	free2p(split_RGB);
+	free2p(split_rgb);
 	return (0);
 }
 
 void	check_coor(char *line)
 {
 	char	**split_coor;
+	int		ccount;
 	int		i;
+	int		j;
 
 	i = 0;
 	split_coor = ft_split(line, ',');
@@ -79,20 +82,21 @@ void	check_coor(char *line)
 		exit (1);
 	while (split_coor[i] != NULL)
 	{
-		int j = 0;
-		int count = 0;
+		ccount = 0;
+		j = 0;
 		while (split_coor[i][j])
 		{
 			if (j == 0)
 			{
-				if ((!ft_isdigit(split_coor[i][0]) && split_coor[i][0] != '-') || (split_coor[i][0] == '-' && split_coor[i][1] == '.'))
-					write_error("wrong co ordinates format : coord is not a number ");
+				if ((!ft_isdigit(split_coor[i][0]) && split_coor[i][0] != '-')
+					|| (split_coor[i][0] == '-' && split_coor[i][1] == '.'))
+					write_error("wrong coordinates format : not number");
 			}
 			else if (!ft_isdigit(split_coor[i][j]) && split_coor[i][j] != '.')
-				write_error("wrong co ordinates format : coord is not a number ");
+				write_error("wrong coordinates format : not number");
 			else if (split_coor[i][j] == '.')
 			{
-				count++;
+				ccount++;
 				if (count > 1)
 					write_error ("wrong coordinate format ");
 			}
@@ -106,7 +110,9 @@ void	check_coor(char *line)
 void	check_vec(char *line)
 {
 	char	**split_vec;
+	int		vcount;
 	int		i;
+	int		j;
 
 	split_vec = ft_split(line, ',');
 	i = 0;
@@ -120,21 +126,19 @@ void	check_vec(char *line)
 	}
 	while (split_vec[i] != NULL)
 	{
-		int j;
-		int count;
-
+		vcount = 0;
 		i = 0;
-		count = 0;
 		j = 0;
 		while (split_vec[i][j])
 		{
-			if (!ft_isdigit(split_vec[i][0]) || split_vec[i][0] != '-' || (split_vec[i][0] == '-' && split_vec[i][1] == '.'))
+			if (!ft_isdigit(split_vec[i][0]) || split_vec[i][0] != '-'
+					|| (split_vec[i][0] == '-' && split_vec[i][1] == '.'))
 				write_error("wrong vector format : vector is not number ");
 			else if (!ft_isdigit(split_vec[i][j]) && split_vec[i][j] != '.')
 				write_error("wrong vector format : vector is not number ");
 			else if (split_vec[i][j] == '.')
 			{
-				count++;
+				vcount++;
 				if (count > 1)
 					write_error ("wrong vector format ");
 			}
@@ -145,7 +149,7 @@ void	check_vec(char *line)
 	free2p(split_vec);
 }
 
-int	check_FOV(char *str)
+int	check_fov(char *str)
 {
 	int	i;
 
@@ -156,7 +160,7 @@ int	check_FOV(char *str)
 			write_error("wrong Fov formate ");
 		i++;
 	}
-	if (check_range_FOV(atoi(str)) == 0)
+	if (check_range_fov(atoi(str)) == 0)
 		write_error ("wrong fov format : fov not between 0 - 180 ");
 	return (0);
 }
