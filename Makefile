@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/06/05 23:59:41 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/06/06 01:22:01 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRC= minirt.c \
 	check_subfunc.c \
 	check_subfunc2.c \
 	check_error.c \
+	ft_split_space.c \
 	keyhook.c \
 
 SRCS= ${addprefix ${SRCS_DIR}, ${SRC}}

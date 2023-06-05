@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 21:43:18 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/06 00:07:30 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/06 01:22:28 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void		free2p(char **ptr);
 void		free_allobject(t_object *ob, t_cam *cam);
 float		convert_to_float(char *str, int i, int sign);
 float		ft_atof(char *str);
+char		**ft_split_space(char const *s);
 
 int			iden_a(t_cam *cam, char **split_space);
 int			iden_c(t_cam *cam, char **split_space);

@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 19:20:15 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/05 21:47:06 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/06 01:22:53 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_object	*check_file(char *av, t_cam *cam, t_object *ob)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		split_space = ft_split(line, ' ');
+		split_space = ft_split_space(line);
 		free(line);
 		if (!assign_env(cam, split_space))
 		{
@@ -92,7 +92,7 @@ int	count_size(int fd)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		sep = ft_split(line, ' ');
+		sep = ft_split_space(line);
 		free(line);
 		if (!ft_strncmp(sep[0], "pl", 3) || !ft_strncmp(sep[0], "PL", 3))
 			size++;
