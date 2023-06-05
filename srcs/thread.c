@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 21:16:49 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/04 15:30:51 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/06 00:09:09 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void	run_thread(t_cam *cam, t_object *ob, t_vars *data)
 	int			i;
 
 	i = 0;
+	data->ob = ob;
+	data->cam = cam;
 	init_scene(sc, cam, ob, data);
 	pthread_mutex_init(&data->mutex, NULL);
 	assign_portion(sc);
@@ -99,14 +101,19 @@ void	run_thread(t_cam *cam, t_object *ob, t_vars *data)
 	i = 0;
 	while (i < THREAD_NUM)
 		pthread_detach(th[i++]);
-	free_scene(sc);
+	handle_scene(sc, *data);
 }
 
-void	free_scene(t_scene sc[])
+void	handle_scene(t_scene sc[], t_vars vars)
 {
 	int	i;
 
 	i = 0;
+	mlx_put_image_to_window(vars.mlx, vars.mlx_win, vars.img.img, 0, 0);
+	mlx_key_hook(vars.mlx_win, key_hook, &vars);
+	mlx_hook(vars.mlx_win, ON_DESTROY, 1L << 0, close_minirt, &vars);
+	mlx_loop(vars.mlx);
+	pthread_mutex_destroy(&vars.mutex);
 	while (i < THREAD_NUM)
 		free(sc[i++].ob);
 }

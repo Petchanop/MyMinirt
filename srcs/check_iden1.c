@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 23:39:47 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/04 23:57:33 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/05 23:10:21 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 int	iden_a(t_cam *cam, char **split_space)
 {
-	static unsigned int	acount = 0;
 	t_color				color;
 	char				**colour;
 
-	acount++;
-	if (count(split_space) != 3 || acount > 1)
-		exit (1);
+	if (count(split_space) != 3)
+		write_error("Wrong object format");
 	check_ratio(split_space[1]);
 	check_rgb(split_space[2]);
 	colour = ft_split(split_space[2], ',');
@@ -34,15 +32,13 @@ int	iden_a(t_cam *cam, char **split_space)
 
 int	iden_c(t_cam *cam, char **split_space)
 {
-	static unsigned int	ccount = 0;
 	char				**coord;
 	char				**vec;
 	t_vector			c;
 	t_vector			v;
 
-	ccount++;
-	if (count(split_space) != 4 || ccount > 1)
-		exit (1);
+	if (count(split_space) != 4)
+		write_error("Wrong object format");
 	check_coor(split_space[1]);
 	check_vec(split_space[2]);
 	check_fov(split_space[3]);
@@ -59,15 +55,13 @@ int	iden_c(t_cam *cam, char **split_space)
 
 int	iden_l(t_cam *cam, char **split_space)
 {
-	static unsigned int	lcount = 0;
 	char				**vec;
 	char				**col;
 	t_vector			c;
 	t_color				color;
 
-	lcount++;
-	if (count(split_space) != 4 || lcount > 1)
-		exit (1);
+	if (count(split_space) != 4)
+		write_error("Wrong object format");
 	check_coor(split_space[1]);
 	check_ratio(split_space[2]);
 	check_rgb(split_space[3]);

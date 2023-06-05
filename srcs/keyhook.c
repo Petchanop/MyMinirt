@@ -6,18 +6,33 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 22:54:22 by npiya-is          #+#    #+#             */
-/*   Updated: 2023/06/04 01:39:07 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/05 21:33:06 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minirt.h"
+
+void	free_allobject(t_object *ob, t_cam *cam)
+{
+	int	i;
+
+	i = 0;
+	while (ob[i].type)
+	{
+		free(ob[i].type);
+		i++;
+	}
+	free(ob);
+	free(cam->c);
+	free(cam->light.l);
+	free(cam);
+}
 
 int	close_minirt(t_vars *vars)
 {
 	int	i;
 
 	i = 0;
-	(void)*vars;
 	while (vars->ob[i].type)
 	{
 		free(vars->ob[i].type);

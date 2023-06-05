@@ -6,7 +6,7 @@
 /*   By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 01:11:38 by lkaewsae          #+#    #+#             */
-/*   Updated: 2023/06/04 23:57:00 by npiya-is         ###   ########.fr       */
+/*   Updated: 2023/06/05 23:13:13 by npiya-is         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	iden_pl(t_object *ob, char **split_space)
 	char	**color;
 
 	if (count(split_space) != 4)
-		exit (1);
+		write_error("Wrong object format");
 	check_coor(split_space[1]);
 	check_vec(split_space[2]);
 	check_rgb(split_space[3]);
@@ -42,7 +42,7 @@ void	iden_sp(t_object *ob, char **split_space)
 	char	**color;
 
 	if (count(split_space) != 4)
-		exit (1);
+		write_error("Wrong object format");
 	check_coor(split_space[1]);
 	check_size(split_space[2]);
 	check_rgb(split_space[3]);
@@ -67,7 +67,7 @@ void	iden_cy(t_object *ob, char **split_space)
 	float	dia;
 
 	if (count(split_space) != 6)
-		exit (1);
+		write_error("Wrong object format");
 	check_coor(split_space[1]);
 	check_vec(split_space[2]);
 	check_size(split_space[3]);
@@ -96,7 +96,7 @@ void	iden_co(t_object *ob, char **split_space)
 	float	dia;
 
 	if (count(split_space) != 6)
-		exit (1);
+		write_error("Wrong object format");
 	check_coor(split_space[1]);
 	check_vec(split_space[2]);
 	check_size(split_space[3]);

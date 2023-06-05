@@ -6,7 +6,7 @@
 #    By: npiya-is <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/21 21:24:45 by npiya-is          #+#    #+#              #
-#    Updated: 2023/06/04 23:55:07 by npiya-is         ###   ########.fr        #
+#    Updated: 2023/06/05 23:59:41 by npiya-is         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,6 @@ NAME=minirt
 CC=gcc
 
 CFLAGS= -Wall -Werror -Wextra
-# -fsanitize=address
 
 SRCS_DIR= srcs/
 
@@ -56,12 +55,15 @@ SRC= minirt.c \
 	math_utils.c \
 	color_operation.c \
 	check_file1.c \
+	check_file2.c \
+	check_file3.c \
 	check_func1.c \
 	check_func2.c \
 	check_iden1.c \
 	check_iden2.c \
 	check_range.c \
 	check_subfunc.c \
+	check_subfunc2.c \
 	check_error.c \
 	keyhook.c \
 
